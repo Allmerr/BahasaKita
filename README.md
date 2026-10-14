@@ -51,3 +51,7 @@ File dan aset template agency lama telah dibersihkan. `dist/` merupakan keluaran
 ## Untuk rilis produksi
 
 Hubungkan autentikasi dan penyimpanan server yang aman, kurikulum dan video bahasa isyarat tervalidasi, remedial per konsep, akses luring, serta audit aksesibilitas bersama pengguna Tuli. Keputusan usia akun dan persetujuan perlu diselesaikan sesuai PRD sebelum mengumpulkan data pengguna anak.
+
+## Akun Supabase dan API
+
+Implementasi akun online terbaru menggantikan login lokal. Lihat [SETUP-SUPABASE.md](./SETUP-SUPABASE.md) untuk migrasi database, environment, dan pengujian. Bagian alur/status prototipe di atas menggambarkan versi sebelumnya; progres belajar tetap lokal, sedangkan profil/pengaturan akun menggunakan API.
