@@ -1,6 +1,6 @@
 export function profileInput(body: unknown) {
   const b = body as Record<string, unknown>
-  if (!b || typeof b.name !== 'string' || !b.name.trim() || b.name.trim().length > 30 || typeof b.grade !== 'string' || !['SD', 'SMP', 'SMA'].includes(b.grade) || !['Mengenal kata', 'Memahami cerita', 'Belajar matematika'].includes(String(b.goal))) throw new Error('Profil tidak valid. Pilih jenjang SD, SMP, atau SMA.')
+  if (!b || Array.isArray(b) || typeof b.name !== 'string' || !b.name.trim() || b.name.trim().length > 30 || typeof b.grade !== 'string' || !['SD', 'SMP', 'SMA'].includes(b.grade) || typeof b.goal !== 'string' || !['Mengenal kata', 'Memahami cerita', 'Belajar matematika'].includes(b.goal)) throw new Error('Profil tidak valid. Pilih jenjang SD, SMP, atau SMA.')
   return { name: b.name.trim(), grade: b.grade, goal: b.goal }
 }
 export function preferencesInput(body: unknown) {

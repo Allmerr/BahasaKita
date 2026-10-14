@@ -193,4 +193,4 @@ try {
  await build({ stdin: { contents: test, loader: 'jsx', resolveDir: process.cwd() }, define: { 'import.meta.env': '{}' }, bundle: true, platform: 'node', format: 'cjs', jsx: 'automatic', outfile: output, packages: 'external', logLevel: 'silent', plugins: [learningFixture] })
  const result = spawnSync(process.execPath, [output], { stdio: 'inherit' })
  process.exitCode = result.status ?? 1
-} finally { try { unlinkSync(output) } catch {} }
+} finally { for (const artifact of [output, '.check-learning.css']) { try { unlinkSync(artifact) } catch {} } }

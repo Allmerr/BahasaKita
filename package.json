@@ -11,7 +11,8 @@
     "dev:api": "npm --prefix server run dev",
     "setup:supabase": "node scripts/setup-supabase.mjs",
     "check:supabase": "node scripts/check-supabase.mjs",
-    "test:supabase-config": "node scripts/check-supabase-config.mjs"
+    "test:supabase-config": "node scripts/check-supabase-config.mjs",
+    "test:profile": "node scripts/check-profile-flow.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.117.3",

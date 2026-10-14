@@ -1,0 +1,11 @@
+.profile-card-avatar,.profile-main-avatar,.avatar { overflow: hidden; flex-shrink: 0; }
+.profile-photo { display: block; width: 100%; height: 100%; object-fit: cover; }
+.profile-photo-preview { display: flex; align-items: center; gap: 20px; margin: 18px 0; }
+.profile-photo-preview p { margin: 0; color: var(--muted); }
+.profile-photo-editor input[type="file"] { width: 100%; min-width: 0; }
+.profile-photo-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.profile-error { color: var(--ink); padding: 12px 14px; border-left: 3px solid #c64764; border-radius: 8px; background: var(--surface-soft, transparent); }
+@media (max-width: 480px) {
+ .profile-photo-preview { flex-direction: column; align-items: flex-start; gap: 12px; }
+ .profile-photo-actions .btn { flex: 1; }
+}

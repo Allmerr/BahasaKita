@@ -1,9 +1,11 @@
 import { existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
+import { dirname } from 'node:path'
+import { loadEnv } from 'vite'
 import { readSupabaseConfig } from '../src/supabaseConfig.js'
 const root = fileURLToPath(new URL('../.env.local', import.meta.url))
-if (existsSync(root)) process.loadEnvFile(root)
-const config = readSupabaseConfig(process.env.VITE_SUPABASE_URL, process.env.VITE_SUPABASE_PUBLISHABLE_KEY || process.env.VITE_SUPABASE_ANON_KEY)
+const env = loadEnv('development', dirname(root), 'VITE_SUPABASE_')
+const config = readSupabaseConfig(env.VITE_SUPABASE_URL, env.VITE_SUPABASE_PUBLISHABLE_KEY || env.VITE_SUPABASE_ANON_KEY)
 if (config.error) { console.error(config.error); process.exitCode = 1 }
 else {
  const server = fileURLToPath(new URL('../server/.env', import.meta.url))
