@@ -1,0 +1,36 @@
+.topbar-theme-toggle {
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+ width: 44px;
+ height: 44px;
+ flex: 0 0 44px;
+ padding: 0;
+ border: 1px solid transparent;
+ border-radius: 12px;
+ background: #4f46e5;
+ color: #fff;
+ box-shadow: 0 3px 10px #4f46e51c;
+ transition: background-color .15s ease;
+}
+.topbar-theme-toggle:hover { background: #4338ca; }
+.topbar-theme-toggle:focus-visible { outline: 3px solid var(--primary); outline-offset: 4px; }
+[data-theme=dark] { color-scheme: dark; }
+[data-theme=light] { color-scheme: light; }
+[data-theme=dark] .topbar-theme-toggle { background: #6366f1; }
+[data-theme=dark] .topbar-theme-toggle:hover { background: #818cf8; }
+[data-theme=dark] .sidebar .brand,
+[data-theme=dark] .topbar .mobile-brand { background: transparent; padding: 0; border-radius: 0; box-shadow: none; }
+[data-theme=dark] .sidebar .brand img,
+[data-theme=dark] .topbar .mobile-brand img { filter: brightness(0) invert(1); }
+[data-theme=dark] .auth-login-page .login-card-logo {
+ background: transparent;
+ padding: 0;
+ border: 0;
+ border-radius: 0;
+ box-shadow: none;
+ filter: brightness(0) invert(1);
+}
+[data-comfort=true] .topbar-theme-toggle { transition: none; }
+@media (prefers-reduced-motion: reduce) { .topbar-theme-toggle { transition: none; } }
+@media (max-width: 600px) { .topbar .topbar-right { gap: 10px; } }
