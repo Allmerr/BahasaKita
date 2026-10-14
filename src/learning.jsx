@@ -1,3 +1,4 @@
+import { useAccount } from './Account.jsx'
 import { createContext, useContext, useEffect, useState } from 'react'
 import { allGradeLessons, lessonsForGrade } from './gradeLessons.js'
 import { dictionaryForGrade } from './gradeDictionary.js'
@@ -82,9 +83,37 @@ export const questionsForGrade = grade => Object.hasOwn(questionBank, grade) ? q
 export const initialState = { profile: null, assessment: null, assessmentDraft: null, mastered: [], attempts: [], settings: { textSize: 'normal', theme: 'light', speed: '1', comfortable: false, contrast: false, language: 'default', dataSaver: false } }
 const Store = createContext(null)
 export function Provider({ children }) {
- const [state, setState] = useState(() => { try { const stored = JSON.parse(localStorage.getItem('bahasakita-v1')); return stored ? { ...initialState, ...stored, settings: { ...initialState.settings, ...stored.settings } } : initialState } catch { return initialState } })
+ const account = useAccount()
+ const userId = account?.session?.user.id
+ const [state, setState] = useState(() => { try { return { ...structuredClone(initialState), settings: { ...initialState.settings, ...JSON.parse(localStorage.getItem('bahasakita-preferences') || '{}') } } } catch { return structuredClone(initialState) } })
  const [clips, setClips] = useState({})
- useEffect(() => { try { localStorage.setItem('bahasakita-v1', JSON.stringify(state)) } catch {} }, [state])
+ const [accountError, setAccountError] = useState('')
+ const [accountReady, setAccountReady] = useState(false)
+ useEffect(() => {
+  let active = true
+  setAccountReady(false); setAccountError(''); setClips({})
+  setState(previous => ({ ...structuredClone(initialState), settings: previous.settings }))
+  if (!userId) return () => { active = false }
+  account.accountApi().then(data => {
+   if (!active) return
+   let saved = {}
+   try { saved = JSON.parse(localStorage.getItem('bahasakita-learning-' + userId) || '{}') } catch {}
+   setState({ ...structuredClone(initialState), assessment: saved.assessment || null, assessmentDraft: saved.assessmentDraft || null, mastered: saved.mastered || [], attempts: saved.attempts || [], profile: data.profile, settings: { ...initialState.settings, ...data.preferences } })
+   setAccountReady(true)
+  }).catch(error => { if (active) setAccountError(error.message) })
+  return () => { active = false }
+ }, [userId])
+ useEffect(() => {
+  try {
+   localStorage.setItem('bahasakita-preferences', JSON.stringify(state.settings))
+   if (userId && accountReady) localStorage.setItem('bahasakita-learning-' + userId, JSON.stringify({ assessment: state.assessment, assessmentDraft: state.assessmentDraft, mastered: state.mastered, attempts: state.attempts }))
+  } catch {}
+ }, [state, userId, accountReady])
+ const saveProfile = async profile => {
+  const data = await account.accountApi('/profile', profile)
+  setState(previous => ({ ...previous, profile: { ...previous.profile, name: data.name, grade: data.grade, goal: data.goal } }))
+ }
+ const savePreferences = async () => { await account.accountApi('/preferences', state.settings) }
  useEffect(() => { document.documentElement.dataset.theme = state.settings.theme; document.documentElement.dataset.size = state.settings.textSize; document.documentElement.dataset.comfort = String(state.settings.comfortable); document.documentElement.dataset.contrast = String(state.settings.contrast); document.title = 'BahasaKita — Belajar dengan caramu' }, [state.settings])
  const update = patch => setState(previous => ({ ...previous, ...patch }))
  const setting = (key, value) => setState(previous => ({ ...previous, settings: { ...previous.settings, [key]: value } }))
@@ -94,7 +123,7 @@ export function Provider({ children }) {
  const lessonAttempts = state.attempts.filter(attempt => attempt.type === 'lesson' && activeIds.has(attempt.lesson))
  const path = buildPath(state)
  const next = path.find(l => !state.mastered.includes(l.id))
- return <Store.Provider value={{ state, setState, update, setting, path, next, clips, setClips, lessons: catalog, dictionary: dictionaryForGrade(state.profile?.grade), masteredLessons, lessonAttempts }}>{children}</Store.Provider>
+ return <Store.Provider value={{ state, setState, update, setting, path, next, clips, setClips, saveProfile, savePreferences, accountError, accountReady, lessons: catalog, dictionary: dictionaryForGrade(state.profile?.grade), masteredLessons, lessonAttempts }}>{children}</Store.Provider>
 }
 export const useStore = () => useContext(Store)
 export function buildPath(state) {

@@ -1,5 +1,5 @@
-import { buildSync } from 'esbuild'
-import { writeFileSync, unlinkSync } from 'node:fs'
+import { build } from 'esbuild'
+import { readFileSync, unlinkSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 const output = '.check-learning.cjs'
 const test = `
@@ -8,11 +8,23 @@ import assert from 'node:assert/strict';
 import { renderToString } from 'react-dom/server';
 import { MemoryRouter } from 'react-router-dom';
 import EntryApp, { AppRoutes } from './src/App.jsx';
-import { Provider } from './src/learning.jsx';
+import { StoreForTests } from './src/learning.jsx';
+import { AccountProvider } from './src/Account.jsx';
 import { needsLogin, publicPages } from './src/access.jsx';
 import { youtubeMaterials, videosForGrade, youtubeEmbedUrl } from './src/youtubeMaterials.js';
 import { dictionaryForGrade } from './src/gradeDictionary.js';
 import { lessonsForGrade } from './src/gradeLessons.js';
+// Route rendering uses an already-loaded account fixture; the real provider
+// loads profiles asynchronously from the API and is checked separately below.
+function Provider({ children }) {
+ let snapshot = structuredClone(initialState);
+ try { snapshot = { ...snapshot, ...JSON.parse(saved || '{}') }; } catch {}
+ const catalog = lessonsForGrade(snapshot.profile?.grade);
+ const ids = new Set(catalog.map(lesson => lesson.id));
+ const path = buildPath(snapshot);
+ const value = { state: snapshot, setState: () => {}, update: () => {}, setting: () => {}, path, next: path.find(l => !snapshot.mastered.includes(l.id)), clips: {}, setClips: () => {}, lessons: catalog, dictionary: dictionaryForGrade(snapshot.profile?.grade), masteredLessons: snapshot.mastered.filter(id => ids.has(id)), lessonAttempts: snapshot.attempts.filter(a => a.type === 'lesson' && ids.has(a.lesson)), accountReady: true, accountError: '', saveProfile: async () => {}, savePreferences: async () => {} };
+ return <AccountProvider><StoreForTests.Provider value={value}>{children}</StoreForTests.Provider></AccountProvider>;
+}
 function App() { return <Provider><AppRoutes authorized={true} enter={() => {}}/></Provider> }
 import { initialState, buildPath, canOpen, lessons, questionBank, dictionary, evaluateLesson, assessmentScore, learningDestination } from './src/learning.jsx';
 let saved = null;
@@ -77,18 +89,18 @@ assert.ok(renderToString(<MemoryRouter><EntryApp/></MemoryRouter>).includes('Lay
 const login = renderToString(<MemoryRouter initialEntries={['/signin']}><Provider><AppRoutes authorized={false} enter={() => {}}/></Provider></MemoryRouter>);
 assert.ok(login.includes('Masuk dan lanjutkan') && login.includes('Register'), 'Login and register actions exist');
 assert.ok(!login.includes('app-shell'), 'Auth page has no workspace sidebar');
-for (const [route, title] of [['/', 'Caramu belajar'], ['/learning', 'Jalur yang dibuat untukmu'], ['/dictionary', 'Kamus visual'], ['/progress', 'Kemajuan saya']]) {
+for (const [route, title] of [['/', 'Caramu belajar'], ['/learning', 'Jalur yang dibuat untukmu'], ['/dictionary', 'Kamus visual'], ['/settings', 'Aksesibilitas']]) {
  const publicPage = renderToString(<MemoryRouter initialEntries={[route]}><Provider><AppRoutes authorized={false} enter={() => {}}/></Provider></MemoryRouter>);
  assert.ok(publicPage.includes(title), 'Guest may browse ' + route);
  assert.ok(!publicPage.includes('Kamu sedang menjelajah'), 'Guest banner removed from ' + route);
  const publicLinks = (publicPage.match(/<a[^>]*>/g) || []).filter(a => a.includes('data-public-navigation="true"'));
  for (const link of publicLinks) { const href = link.match(/href="([^"]+)"/)[1]; assert.ok(publicPages.includes(href) || href === '#main', 'No private destinations bypass login'); }
 }
-for (const route of ['/assessment', '/settings', '/lesson/sd-tumbuhan', '/basic-class']) {
+for (const route of ['/assessment', '/profile', '/progress', '/lesson/sd-tumbuhan', '/basic-class']) {
  const privatePage = renderToString(<MemoryRouter initialEntries={[route]}><Provider><AppRoutes authorized={false} enter={() => {}}/></Provider></MemoryRouter>);
  assert.ok(!privatePage.includes('Bukan ujian') && !privatePage.includes('Data &amp; privasi') && !privatePage.includes('Hari ini, kita belajar'), 'Private route requires login: ' + route);
 }
-assert.deepEqual(publicPages, ['/', '/learning', '/dictionary', '/progress']);
+assert.deepEqual(publicPages, ['/', '/learning', '/dictionary', '/settings']);
 assert.equal(needsLogin(false, true), false, 'Guest can use navigation');
 assert.equal(needsLogin(false, false), true, 'All other guest actions request login');
 assert.equal(needsLogin(true, false), false, 'Logged-in users can use features');
@@ -172,10 +184,13 @@ for (const grade of ['SD', 'SMP', 'SMA']) {
 assert.deepEqual(lessonsForGrade(undefined), []);
 
 console.error = warnings;
-console.log('PASS: assessment adaptation, prerequisites, remediation, mastery, content integrity, route/storage render checks, fresh-load splash, auth layout and access gate');
+console.log('PASS: assessment gates, grade lessons/dictionary, auth forms, public accessibility and private routes');
 `
+
 try {
- buildSync({ stdin: { contents: test, loader: 'jsx', resolveDir: process.cwd() }, bundle: true, platform: 'node', format: 'cjs', jsx: 'automatic', outfile: output, packages: 'external', logLevel: 'silent' })
+ // Expose the private context only in this test bundle, never in the app build.
+ const learningFixture = { name: 'learning-fixture', setup(build) { build.onLoad({ filter: /[\\/]src[\\/]learning\.jsx$/ }, args => ({ contents: readFileSync(args.path, 'utf8') + '\nexport { Store as StoreForTests };', loader: 'jsx' })) } }
+ await build({ stdin: { contents: test, loader: 'jsx', resolveDir: process.cwd() }, define: { 'import.meta.env': '{}' }, bundle: true, platform: 'node', format: 'cjs', jsx: 'automatic', outfile: output, packages: 'external', logLevel: 'silent', plugins: [learningFixture] })
  const result = spawnSync(process.execPath, [output], { stdio: 'inherit' })
  process.exitCode = result.status ?? 1
 } finally { try { unlinkSync(output) } catch {} }

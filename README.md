@@ -60,3 +60,9 @@ File dan aset template agency lama telah dibersihkan. `dist/` merupakan keluaran
 ## Untuk rilis produksi
 
 Hubungkan autentikasi dan penyimpanan server yang aman, kurikulum dan video bahasa isyarat tervalidasi, remedial per konsep, akses luring, serta audit aksesibilitas bersama pengguna Tuli. Keputusan usia akun dan persetujuan perlu diselesaikan sesuai PRD sebelum mengumpulkan data pengguna anak.
+
+## Akun Supabase dan API
+
+Implementasi akun online terbaru menggantikan login lokal. Lihat [SETUP-SUPABASE.md](./SETUP-SUPABASE.md) untuk migrasi database, environment, dan pengujian. Penjelasan autentikasi lokal di atas menggambarkan versi sebelumnya; progres belajar tetap lokal per user ID, sedangkan profil/pengaturan akun menggunakan API. Registrasi akun saat ini hanya mendukung SD. Jika konfirmasi email aktif, pengguna perlu mengonfirmasi email lalu login sebelum asesmen. Sesi Supabase dipulihkan saat refresh; setelah layar pembuka, pengguna diarahkan sesuai hasil asesmen.
+
+Kamus Visual (pratinjau SD untuk tamu) dan pengaturan aksesibilitas tetap dapat digunakan tanpa login. Kemajuan, profil, asesmen, dan materi memerlukan akun. Fitur asesmen, kelas dasar, serta materi/video per jenjang dari repo utama tetap tersedia. `node scripts/check-learning.mjs` memeriksa logika dan rute dengan fixture akun yang sudah dimuat. Skrip `check-entry-flow.mjs` masih mengasumsikan autentikasi lokal versi sebelumnya dan lokasi runtime perangkat asal; pengujian akun online mengikuti panduan Supabase.

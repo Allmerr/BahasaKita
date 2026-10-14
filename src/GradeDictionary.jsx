@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Icon from './components/Icon.jsx'
+import { useStore } from './learning.jsx'
 import { dictionaryForGrade, videoTime } from './gradeDictionary.js'
 import { youtubeEmbedUrl, youtubeWatchUrl, videosForGrade } from './youtubeMaterials.js'
 
 export function SourceWordModal({ entry, grade, onClose }) {
+ const { state, clips } = useStore()
+ const localSource = clips[`${state.settings.language}:${entry.word}`]
  const dialog = useRef(null)
  const [playing, setPlaying] = useState(false)
  useEffect(() => { const element = dialog.current; element.showModal(); return () => element.close() }, [])
@@ -12,12 +15,12 @@ export function SourceWordModal({ entry, grade, onClose }) {
   <button className="dialog-close icon-btn" onClick={onClose} aria-label="Tutup arti kata"><Icon name="close"/></button>
   <span className="tag">{grade} · {entry.category}</span><div className="dictionary-emoji" aria-hidden="true">{entry.emoji}</div><h2 id="source-word-title">{entry.word}</h2><p>{entry.meaning}</p><div className="reading-box">{entry.example}</div>
   <h3>Lihat kata dalam video</h3><p>{entry.video.title}</p><p className="muted">Mulai sekitar {videoTime(entry.start)} untuk melihat konteks kata dan gerakan dalam materi. Gunakan kontrol video untuk menjeda atau mengulang.</p>
-  {playing ? <div className="youtube-frame"><iframe src={youtubeEmbedUrl(entry.videoId, entry.start)} title={`Video kata ${entry.word} untuk ${grade}`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen referrerPolicy="strict-origin-when-cross-origin"/></div> : <button className="btn" onClick={() => setPlaying(true)}><Icon name="play" size={18}/>Putar bagian video</button>}
+  {playing ? localSource ? <video src={localSource} controls playsInline preload={state.settings.dataSaver ? 'none' : 'metadata'} onLoadedMetadata={event => { event.currentTarget.playbackRate = Number(state.settings.speed) }}/> : <div className="youtube-frame"><iframe src={youtubeEmbedUrl(entry.videoId, entry.start)} title={`Video kata ${entry.word} untuk ${grade}`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen referrerPolicy="strict-origin-when-cross-origin"/></div> : <button className="btn" onClick={() => setPlaying(true)}><Icon name="play" size={18}/>Putar bagian video</button>}
  </dialog>
 }
 
 export default function GradeDictionary({ grade, authorized, onOpenChange }) {
- const entries = authorized ? dictionaryForGrade(grade) : []
+ const entries = dictionaryForGrade(grade)
  const [search, setSearch] = useState('')
  const [category, setCategory] = useState('Semua')
  const [videoId, setVideoId] = useState('Semua')

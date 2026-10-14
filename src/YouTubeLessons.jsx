@@ -2,7 +2,6 @@ import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Icon from './components/Icon.jsx'
 import { useStore } from './learning.jsx'
-import { useAccess } from './access.jsx'
 import { videosForGrade, youtubeEmbedUrl, youtubeWatchUrl } from './youtubeMaterials.js'
 
 function GradeVideos({ grade }) {
@@ -30,10 +29,9 @@ function GradeVideos({ grade }) {
 
 export default function YouTubeLessons() {
  const { state } = useStore()
- const { authorized } = useAccess()
- const grade = state.profile?.grade
+ const grade = state.profile?.grade || 'SD'
  return <section className="youtube-section" aria-labelledby="youtube-lessons-title">
-  <div className="section-heading"><div><h2 id="youtube-lessons-title">Video pembelajaran Tuli/tunarungu</h2><p>{authorized && videosForGrade(grade).length ? `Materi ${grade} sesuai jenjang pada profilmu. Amati isyarat dan visualnya, lalu kenali kosakatanya.` : 'Materi dengan dukungan visual atau isyarat dipilih sesuai jenjang belajar pada profilmu.'}</p></div>{authorized && videosForGrade(grade).length > 0 && <span className="dictionary-section-mark"><Icon name="play" size={18}/>{videosForGrade(grade).length} video untukmu</span>}</div>
-  {!authorized ? <div className="notice"><p>Masuk untuk melihat video sesuai jenjang belajarmu.</p><Link className="btn" to="/signin">Masuk</Link></div> : !videosForGrade(grade).length ? <div className="notice"><p>Pilih jenjang SD, SMP, atau SMA pada profil untuk melihat video pembelajaran.</p><Link className="btn" to="/settings">Lengkapi profil</Link></div> : <GradeVideos key={grade} grade={grade}/>}
+  <div className="section-heading"><div><h2 id="youtube-lessons-title">Video pembelajaran Tuli/tunarungu</h2><p>{videosForGrade(grade).length ? `Materi ${grade} sesuai jenjang belajar. Amati isyarat dan visualnya, lalu kenali kosakatanya.` : 'Materi dengan dukungan visual atau isyarat dipilih sesuai jenjang belajar pada profilmu.'}</p></div>{videosForGrade(grade).length > 0 && <span className="dictionary-section-mark"><Icon name="play" size={18}/>{videosForGrade(grade).length} video untukmu</span>}</div>
+  {!videosForGrade(grade).length ? <div className="notice"><p>Pilih jenjang SD, SMP, atau SMA pada profil untuk melihat video pembelajaran.</p><Link className="btn" to="/settings">Lengkapi profil</Link></div> : <GradeVideos key={grade} grade={grade}/>}
  </section>
 }
