@@ -7,7 +7,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev:api": "npm --prefix server run dev",
+    "setup:supabase": "node scripts/setup-supabase.mjs",
+    "check:supabase": "node scripts/check-supabase.mjs",
+    "test:supabase-config": "node scripts/check-supabase-config.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.117.3",

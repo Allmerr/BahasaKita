@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { supabase, accountApi } from './supabase'
+import { supabase, supabaseConfigError, accountApi } from './supabase'
+import { authErrorMessage } from './authErrors'
 const Context = createContext(null)
 export const useAccount = () => useContext(Context)
 export function AccountProvider({ children }) {
@@ -16,17 +17,17 @@ export function AccountProvider({ children }) {
     }).catch(() => { if (active) setLoading(false) })
     return () => { active = false; subscription.unsubscribe() }
   }, [])
-  const requireClient = () => { if (!supabase) throw new Error('Supabase belum dikonfigurasi. Lihat panduan setup.') }
+  const requireClient = () => { if (!supabase) throw new Error(supabaseConfigError || 'Supabase belum dikonfigurasi. Lihat panduan setup.') }
   const login = async (email, password) => {
     requireClient()
     const { error } = await supabase.auth.signInWithPassword({ email: email.trim().toLowerCase(), password })
-    if (error) throw new Error('Login gagal. Periksa email, kata sandi, dan konfirmasi email Anda.')
+    if (error) throw new Error(authErrorMessage(error, 'login'))
   }
   const register = async (email, password, profile) => {
     requireClient()
     const { data, error } = await supabase.auth.signUp({ email: email.trim().toLowerCase(), password,
       options: { data: profile, emailRedirectTo: window.location.origin } })
-    if (error) throw new Error('Pendaftaran gagal. Periksa data atau coba kembali nanti.')
+    if (error) throw new Error(authErrorMessage(error))
     return !!data.session
   }
   const logout = async () => {

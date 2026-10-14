@@ -2,6 +2,10 @@
 
 Website React + Vite untuk prototipe PRD BahasaKita, dengan logo dan palet BahasaKita.
 
+## Koneksi database Supabase
+
+Tahap akun online menyimpan profil dan pengaturan ke Supabase melalui API server. Isi `.env.local`, jalankan `npm run setup:supabase`, siapkan tabel lewat `supabase/migrations/001_accounts.sql`, lalu periksa dengan `npm run check:supabase`. Panduan lengkap: [SETUP-SUPABASE.md](SETUP-SUPABASE.md). Secret key/service role tidak dipakai di frontend. Asesmen dan progres masih lokal per akun.
+
 ## Menjalankan
 
 - `npm install`
@@ -12,7 +16,7 @@ Website React + Vite untuk prototipe PRD BahasaKita, dengan logo dan palet Bahas
 
 ## Alur yang bisa dicoba
 
-1. Setiap buka atau refresh: animasi logo sekitar 2,4 detik → beranda sebagai pengunjung. Tombol lanjut dapat melewati animasi; preferensi pengurangan gerakan mempercepat layar pembuka. Pengunjung dapat memakai navigasi Beranda, Jalur Belajar, Kamus Visual, dan Kemajuan Saya. Interaksi lain mengarahkan ke Login; asesmen, sesi materi, dan pengaturan juga dilindungi pada level rute. Register membuat profil perangkat; Login memeriksa email dan kata sandi profil lokal, lalu membuka asesmen jika belum selesai, kelas dasar jika nilai kurang dari 80, atau beranda jika sudah lulus. Register selalu memulai asesmen baru dan mereset progres profil sebelumnya. Sebelum asesmen selesai, pengguna yang sudah masuk tetap bisa membuka Beranda, Belajar, Kamus Visual, Kemajuan, Profil, dan Pengaturan melalui navigasi. Tombol fitur, input, dan pengiriman form mengarahkan ke asesmen; kontrol di halaman asesmen tetap bisa dipakai. URL sesi materi juga meminta asesmen. Setelah asesmen selesai, aturan nilai minimal 80 dan kelas dasar tetap berlaku.
+1. Setiap buka atau refresh: animasi logo sekitar 2,4 detik → beranda sebagai pengunjung. Tombol lanjut dapat melewati animasi; preferensi pengurangan gerakan mempercepat layar pembuka. Pengunjung dapat memakai navigasi Beranda, Jalur Belajar, Kamus Visual, dan Kemajuan Saya. Interaksi lain mengarahkan ke Login; asesmen, sesi materi, dan pengaturan juga dilindungi pada level rute. Register dan login memakai Supabase Auth setelah koneksi dikonfigurasi; profil dan pengaturan akun dimuat melalui API server. Akses asesmen dan fitur belajar mengikuti status akun serta progres lokal. Register selalu memulai asesmen baru dan mereset progres profil sebelumnya. Sebelum asesmen selesai, pengguna yang sudah masuk tetap bisa membuka Beranda, Belajar, Kamus Visual, Kemajuan, Profil, dan Pengaturan melalui navigasi. Tombol fitur, input, dan pengiriman form mengarahkan ke asesmen; kontrol di halaman asesmen tetap bisa dipakai. URL sesi materi juga meminta asesmen. Setelah asesmen selesai, aturan nilai minimal 80 dan kelas dasar tetap berlaku.
 2. Register memakai desain yang sama dengan Login: nama panggilan, email, kata sandi, dan konfirmasi kata sandi. Bagian Jenjang belajar hanya berisi pilihan SD, SMP, dan SMA. Setelah menyimpan, pengguna langsung masuk ke asesmen awal.
 3. Asesmen 8 soal mengukur empat aspek. Soal kedua setiap aspek menyesuaikan jawaban pertama. Ada opsi belum tahu dan jeda/lanjut. Nilai total dihitung dari jawaban benar dibagi 8 × 100. Nilai minimal 80 membuka seluruh fitur dan materi; nilai di bawah 80 tetap menampilkan beranda dan empat menu utama dengan tambahan menu Kelas Dasar pada sidebar serta navbar ponsel. Menu Kelas Dasar disembunyikan setelah nilai minimal 80. Kelas dasar, asesmen ulang, profil, dan pengaturan bisa diakses sebelum lulus. Rute belajar, kamus, kemajuan, dan materi dilindungi dari URL langsung untuk pengguna yang belum lulus. Nilai kelulusan memakai hasil asesmen terakhir, bukan perubahan skor latihan. Dengan 8 soal, nilai lulus pertama yang mungkin adalah 87,5.
 4. Jalur menampilkan empat materi per jenjang yang memakai kosakata dan video sama dengan Kamus Visual: SD (tumbuhan, kalimat hewan, bacaan hewan, menghitung buah), SMP (percakapan sopan, ungkapan izin, rekreasi ke pelabuhan, perhitungan rencana rekreasi), SMA (kosakata isyarat, kalimat sebab-akibat, teks eksplanasi, membaca data). Jalur diurutkan dari aspek yang perlu penguatan. Seluruh materi terbuka setelah asesmen lulus; urutan rekomendasi tetap dimulai dari aspek yang perlu penguatan.
@@ -26,7 +30,7 @@ Website React + Vite untuk prototipe PRD BahasaKita, dengan logo dan palet Bahas
 
 ## Status dan batas prototipe
 
-- Profil, pilihan, asesmen, dan progres disimpan di `localStorage` browser ini. Ini **belum akun daring**: login lokal memakai email dan kata sandi dengan hash PBKDF2-SHA256 (salt acak, 100.000 iterasi). Tidak ada autentikasi server, pemulihan akun, database, enkripsi profil, atau sinkronisasi antarperangkat. Profil lama perlu dilengkapi lewat Register. Pilihan Ingat email hanya menyimpan email; tidak menyimpan kata sandi atau status login. Google dan Apple belum terhubung. Tidak ada peran guru/orang tua.
+- Akun memakai Supabase Auth; profil dan pengaturan disimpan di database setelah konfigurasi dan migrasi selesai. Asesmen serta progres masih lokal per user ID. Preferensi tamu disimpan di perangkat. Google dan Apple belum terhubung; belum ada reset password atau penghapusan akun online.
 - Latihan adalah konten contoh yang disusun per jenjang, bukan kurikulum tervalidasi. Materi dan soal latihan memakai kosakata video; video menjadi sumber pendukung kosakata dan isyarat, bukan klaim bahwa semua soal diajarkan dalam video. ID materi berbeda per jenjang sehingga penguasaan tidak berpindah saat jenjang diganti. Riwayat lama tetap disimpan; materi generik versi lama tidak dihitung sebagai penguasaan materi baru.
 - Video isyarat belum disediakan. Pemutar menampilkan status belum tersedia, tanpa menirukan bahasa isyarat. Pengaturan dapat menambahkan video lokal per kata dan bahasa untuk pratinjau sesi; pemutar mendukung ulang, kecepatan, layar penuh, dan kontras.
 - Video isyarat instruksi, soal, umpan balik, dan penguncian membutuhkan produksi konten tersendiri dari komunitas Tuli. Video kata tidak menggantikan penjelasan materi penuh.
@@ -37,7 +41,9 @@ Website React + Vite untuk prototipe PRD BahasaKita, dengan logo dan palet Bahas
 ## Struktur implementasi
 
 - `src/App.jsx`: rute aplikasi.
-- `src/auth.js`: hash dan verifikasi kredensial lokal.
+- `src/auth.js`: normalisasi email dan helper prototipe lama. Login aktif memakai Supabase Auth.
+- `src/supabaseConfig.js`: validasi URL/public key dan penolakan privileged key sebelum Vite mengirimnya ke browser.
+- `server/src/index.ts`: API profil/pengaturan dengan JWT pengguna dan RLS.
 - `src/EntryFlow.jsx`: layar pembuka beranimasi, halaman login, dan layout register. Status login hanya disimpan dalam memori sehingga refresh selalu mengulang layar pembuka dan beranda pengunjung. Ini gate prototipe, bukan autentikasi keamanan server.
 - `src/access.jsx`: status akses, daftar halaman publik, dan aturan interaksi pengunjung. Navigasi mobile tetap dapat digunakan tanpa login; tombol, tautan fitur, dan input lainnya meminta login.
 - `src/LearningApp.jsx`: beranda, profil awal, asesmen, jalur, sesi, kamus, kemajuan, pengaturan.
