@@ -1,0 +1,2401 @@
+{
+  "lessons": {
+    "SD": [
+      {
+        "id": "sd-tumbuhan",
+        "aspect": "kosakata",
+        "title": "Kenali tumbuhan dan buah",
+        "description": "Kenali mangga, pepaya, dan jeruk lewat gambar dan isyarat.",
+        "emoji": "🥭",
+        "word": "Mangga",
+        "words": [
+          "Mangga",
+          "Pepaya",
+          "Jeruk"
+        ],
+        "time": 8,
+        "intro": "Kamu akan mengenali tiga buah yang muncul pada video dan Kamus Visual SD.",
+        "explanation": "Mangga tumbuh pada pohon mangga. Pepaya tumbuh pada tanaman pepaya. Jeruk memiliki kulit tebal dan bagian dalam berupa ulas.",
+        "tip": "Perhatikan gambar buah, baca namanya, lalu amati bagian video yang sesuai.",
+        "visual": "🥭 🌱 🍊",
+        "practice": {
+          "prompt": "Buah apa yang ditunjukkan gambar ini?",
+          "visual": "🥭",
+          "options": [
+            "Mangga",
+            "Ayam",
+            "Ikan"
+          ],
+          "correct": 0
+        },
+        "quiz": [
+          {
+            "prompt": "Buah yang tumbuh pada pohon mangga adalah …",
+            "options": [
+              "Jeruk",
+              "Mangga",
+              "Pepaya"
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "Kata yang sesuai gambar 🍊 adalah …",
+            "options": [
+              "Jeruk",
+              "Kambing",
+              "Ikan"
+            ],
+            "correct": 0
+          },
+          {
+            "prompt": "Manakah yang merupakan nama buah?",
+            "options": [
+              "Ayam",
+              "Kambing",
+              "Pepaya"
+            ],
+            "correct": 2
+          },
+          {
+            "prompt": "Mangga, pepaya, dan jeruk termasuk …",
+            "options": [
+              "Hewan",
+              "Buah",
+              "Tempat"
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "Buah dengan bagian dalam berupa beberapa ulas adalah …",
+            "options": [
+              "Jeruk",
+              "Ayam",
+              "Ikan"
+            ],
+            "correct": 0
+          }
+        ],
+        "grade": "SD",
+        "level": "Dasar",
+        "wordEntry": {
+          "word": "Mangga",
+          "emoji": "🥭",
+          "category": "Tumbuhan",
+          "meaning": "Buah yang tumbuh pada pohon mangga.",
+          "example": "Pohon mangga menghasilkan buah mangga.",
+          "videoId": "iDDkYTki6pU",
+          "start": 80,
+          "video": {
+            "id": "iDDkYTki6pU",
+            "title": "Tumbuhan di sekitar kita",
+            "creator": "Direktorat PKPLK",
+            "topic": "Kosakata tumbuhan",
+            "sourceLevel": "SDLB · Kelas 4",
+            "audience": "tunarungu",
+            "accessibility": "Isyarat, gambar & teks",
+            "description": "Kenali tumbuhan melalui pembelajaran Bahasa Indonesia kelas 4 untuk peserta didik tunarungu, dengan isyarat dan gambar.",
+            "sourceTitle": "Pembelajaran Bahasa Indonesia Kelas IV Tunarungu\"Tumbuhan Disekitar Kita\""
+          }
+        },
+        "relatedWords": [
+          {
+            "word": "Mangga",
+            "emoji": "🥭",
+            "category": "Tumbuhan",
+            "meaning": "Buah yang tumbuh pada pohon mangga.",
+            "example": "Pohon mangga menghasilkan buah mangga.",
+            "videoId": "iDDkYTki6pU",
+            "start": 80,
+            "video": {
+              "id": "iDDkYTki6pU",
+              "title": "Tumbuhan di sekitar kita",
+              "creator": "Direktorat PKPLK",
+              "topic": "Kosakata tumbuhan",
+              "sourceLevel": "SDLB · Kelas 4",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat, gambar & teks",
+              "description": "Kenali tumbuhan melalui pembelajaran Bahasa Indonesia kelas 4 untuk peserta didik tunarungu, dengan isyarat dan gambar.",
+              "sourceTitle": "Pembelajaran Bahasa Indonesia Kelas IV Tunarungu\"Tumbuhan Disekitar Kita\""
+            }
+          },
+          {
+            "word": "Pepaya",
+            "emoji": "🌱",
+            "category": "Tumbuhan",
+            "meaning": "Buah yang tumbuh pada tanaman pepaya.",
+            "example": "Kita menghitung buah pepaya pada gambar.",
+            "videoId": "iDDkYTki6pU",
+            "start": 165,
+            "video": {
+              "id": "iDDkYTki6pU",
+              "title": "Tumbuhan di sekitar kita",
+              "creator": "Direktorat PKPLK",
+              "topic": "Kosakata tumbuhan",
+              "sourceLevel": "SDLB · Kelas 4",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat, gambar & teks",
+              "description": "Kenali tumbuhan melalui pembelajaran Bahasa Indonesia kelas 4 untuk peserta didik tunarungu, dengan isyarat dan gambar.",
+              "sourceTitle": "Pembelajaran Bahasa Indonesia Kelas IV Tunarungu\"Tumbuhan Disekitar Kita\""
+            }
+          },
+          {
+            "word": "Jeruk",
+            "emoji": "🍊",
+            "category": "Tumbuhan",
+            "meaning": "Buah berkulit tebal dengan bagian dalam berupa beberapa ulas.",
+            "example": "Ada dua buah jeruk pada gambar.",
+            "videoId": "iDDkYTki6pU",
+            "start": 225,
+            "video": {
+              "id": "iDDkYTki6pU",
+              "title": "Tumbuhan di sekitar kita",
+              "creator": "Direktorat PKPLK",
+              "topic": "Kosakata tumbuhan",
+              "sourceLevel": "SDLB · Kelas 4",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat, gambar & teks",
+              "description": "Kenali tumbuhan melalui pembelajaran Bahasa Indonesia kelas 4 untuk peserta didik tunarungu, dengan isyarat dan gambar.",
+              "sourceTitle": "Pembelajaran Bahasa Indonesia Kelas IV Tunarungu\"Tumbuhan Disekitar Kita\""
+            }
+          }
+        ],
+        "example": "Pohon mangga menghasilkan buah mangga.",
+        "video": {
+          "id": "iDDkYTki6pU",
+          "title": "Tumbuhan di sekitar kita",
+          "creator": "Direktorat PKPLK",
+          "topic": "Kosakata tumbuhan",
+          "sourceLevel": "SDLB · Kelas 4",
+          "audience": "tunarungu",
+          "accessibility": "Isyarat, gambar & teks",
+          "description": "Kenali tumbuhan melalui pembelajaran Bahasa Indonesia kelas 4 untuk peserta didik tunarungu, dengan isyarat dan gambar.",
+          "sourceTitle": "Pembelajaran Bahasa Indonesia Kelas IV Tunarungu\"Tumbuhan Disekitar Kita\""
+        }
+      },
+      {
+        "id": "sd-kalimat",
+        "aspect": "kalimat",
+        "title": "Kalimat tentang hewan",
+        "description": "Susun kalimat sederhana dengan kosakata hewan dari video.",
+        "emoji": "🐔",
+        "word": "Ayam",
+        "words": [
+          "Ayam",
+          "Kambing",
+          "Ikan"
+        ],
+        "time": 10,
+        "intro": "Kamu akan memakai nama hewan untuk menyusun kalimat yang mudah dipahami.",
+        "explanation": "Kalimat “Ayam makan jagung.” menyebutkan hewan, kegiatan, dan makanannya. “Ikan berenang di kolam.” menjelaskan kegiatan ikan dan tempatnya.",
+        "tip": "Mulai dari hewannya, lalu kegiatannya, lalu tambahkan informasi lain.",
+        "visual": "🐔 🌽",
+        "practice": {
+          "prompt": "Susun menjadi kalimat yang benar.",
+          "words": [
+            "jagung",
+            "Ayam",
+            "makan"
+          ],
+          "answer": "Ayam makan jagung"
+        },
+        "quiz": [
+          {
+            "prompt": "Kalimat yang urut adalah …",
+            "options": [
+              "Jagung ayam makan.",
+              "Ayam makan jagung.",
+              "Makan ayam jagung."
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "“Ikan berenang di kolam.” Hewan apa yang berenang?",
+            "options": [
+              "Ikan",
+              "Ayam",
+              "Kambing"
+            ],
+            "correct": 0
+          },
+          {
+            "prompt": "“Kambing makan rumput.” Apa yang dimakan?",
+            "options": [
+              "Air",
+              "Jagung",
+              "Rumput"
+            ],
+            "correct": 2
+          },
+          {
+            "prompt": "“Ayam berada di kandang.” Di mana ayam berada?",
+            "options": [
+              "Kolam",
+              "Kandang",
+              "Sekolah"
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "Kalimat yang sesuai dengan ikan adalah …",
+            "options": [
+              "Ikan berenang di air.",
+              "Ikan tumbuh di pohon.",
+              "Ikan adalah buah."
+            ],
+            "correct": 0
+          }
+        ],
+        "grade": "SD",
+        "level": "Dasar",
+        "wordEntry": {
+          "word": "Ayam",
+          "emoji": "🐔",
+          "category": "Hewan",
+          "meaning": "Hewan unggas yang memiliki paruh, sayap, dan dua kaki.",
+          "example": "Ayam dapat dipelihara di rumah.",
+          "videoId": "3KepM1ycETA",
+          "start": 75,
+          "video": {
+            "id": "3KepM1ycETA",
+            "title": "Mengenal hewan peliharaan",
+            "creator": "Direktorat PKPLK",
+            "topic": "Kosakata hewan",
+            "sourceLevel": "SDLB · Kelas 4",
+            "audience": "tunarungu",
+            "accessibility": "Isyarat, gambar & teks",
+            "description": "Pelajari nama dan ciri hewan peliharaan melalui materi tematik kelas 4 SDLB tunarungu dengan penjelasan isyarat dan gambar.",
+            "sourceTitle": "Pembelajaran tematik kelas IV SDLB Tunarungu \"Hewan Peliharaan\""
+          }
+        },
+        "relatedWords": [
+          {
+            "word": "Ayam",
+            "emoji": "🐔",
+            "category": "Hewan",
+            "meaning": "Hewan unggas yang memiliki paruh, sayap, dan dua kaki.",
+            "example": "Ayam dapat dipelihara di rumah.",
+            "videoId": "3KepM1ycETA",
+            "start": 75,
+            "video": {
+              "id": "3KepM1ycETA",
+              "title": "Mengenal hewan peliharaan",
+              "creator": "Direktorat PKPLK",
+              "topic": "Kosakata hewan",
+              "sourceLevel": "SDLB · Kelas 4",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat, gambar & teks",
+              "description": "Pelajari nama dan ciri hewan peliharaan melalui materi tematik kelas 4 SDLB tunarungu dengan penjelasan isyarat dan gambar.",
+              "sourceTitle": "Pembelajaran tematik kelas IV SDLB Tunarungu \"Hewan Peliharaan\""
+            }
+          },
+          {
+            "word": "Kambing",
+            "emoji": "🐐",
+            "category": "Hewan",
+            "meaning": "Hewan berkaki empat yang biasa dipelihara sebagai ternak.",
+            "example": "Kambing berada di dalam kandang.",
+            "videoId": "3KepM1ycETA",
+            "start": 110,
+            "video": {
+              "id": "3KepM1ycETA",
+              "title": "Mengenal hewan peliharaan",
+              "creator": "Direktorat PKPLK",
+              "topic": "Kosakata hewan",
+              "sourceLevel": "SDLB · Kelas 4",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat, gambar & teks",
+              "description": "Pelajari nama dan ciri hewan peliharaan melalui materi tematik kelas 4 SDLB tunarungu dengan penjelasan isyarat dan gambar.",
+              "sourceTitle": "Pembelajaran tematik kelas IV SDLB Tunarungu \"Hewan Peliharaan\""
+            }
+          },
+          {
+            "word": "Ikan",
+            "emoji": "🐟",
+            "category": "Hewan",
+            "meaning": "Hewan yang hidup di air dan bernapas dengan insang.",
+            "example": "Ikan berenang di kolam.",
+            "videoId": "3KepM1ycETA",
+            "start": 165,
+            "video": {
+              "id": "3KepM1ycETA",
+              "title": "Mengenal hewan peliharaan",
+              "creator": "Direktorat PKPLK",
+              "topic": "Kosakata hewan",
+              "sourceLevel": "SDLB · Kelas 4",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat, gambar & teks",
+              "description": "Pelajari nama dan ciri hewan peliharaan melalui materi tematik kelas 4 SDLB tunarungu dengan penjelasan isyarat dan gambar.",
+              "sourceTitle": "Pembelajaran tematik kelas IV SDLB Tunarungu \"Hewan Peliharaan\""
+            }
+          }
+        ],
+        "example": "Ayam dapat dipelihara di rumah.",
+        "video": {
+          "id": "3KepM1ycETA",
+          "title": "Mengenal hewan peliharaan",
+          "creator": "Direktorat PKPLK",
+          "topic": "Kosakata hewan",
+          "sourceLevel": "SDLB · Kelas 4",
+          "audience": "tunarungu",
+          "accessibility": "Isyarat, gambar & teks",
+          "description": "Pelajari nama dan ciri hewan peliharaan melalui materi tematik kelas 4 SDLB tunarungu dengan penjelasan isyarat dan gambar.",
+          "sourceTitle": "Pembelajaran tematik kelas IV SDLB Tunarungu \"Hewan Peliharaan\""
+        }
+      },
+      {
+        "id": "sd-bacaan",
+        "aspect": "bacaan",
+        "title": "Cerita hewan di rumah",
+        "description": "Baca cerita pendek memakai kosakata di Kamus Visual SD.",
+        "emoji": "🐟",
+        "word": "Ikan",
+        "words": [
+          "Ikan",
+          "Ayam",
+          "Kambing"
+        ],
+        "time": 10,
+        "intro": "Kamu akan mencari siapa, tempat, dan kegiatan dalam cerita tentang hewan peliharaan.",
+        "explanation": "Dina melihat hewan di rumah pagi hari. Ayam berada di kandang. Kambing makan rumput. Ikan berenang di kolam. Dina memberi makan ikan.",
+        "tip": "Cari satu informasi dulu: siapa, kapan, di mana, atau apa kegiatannya.",
+        "visual": "🐔 🐐 🐟",
+        "practice": {
+          "prompt": "Di mana ikan berenang dalam cerita?",
+          "options": [
+            "Kandang",
+            "Kolam",
+            "Pohon"
+          ],
+          "correct": 1
+        },
+        "quiz": [
+          {
+            "prompt": "Siapa yang melihat hewan di rumah?",
+            "options": [
+              "Budi",
+              "Dina",
+              "Ibu"
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "Kapan Dina melihat hewan?",
+            "options": [
+              "Pagi hari",
+              "Malam hari",
+              "Sore hari"
+            ],
+            "correct": 0
+          },
+          {
+            "prompt": "Di mana ayam berada?",
+            "options": [
+              "Kolam",
+              "Pohon",
+              "Kandang"
+            ],
+            "correct": 2
+          },
+          {
+            "prompt": "Apa makanan kambing dalam cerita?",
+            "options": [
+              "Jagung",
+              "Rumput",
+              "Buah"
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "Hewan mana yang diberi makan oleh Dina?",
+            "options": [
+              "Ikan",
+              "Kambing",
+              "Ayam"
+            ],
+            "correct": 0
+          }
+        ],
+        "grade": "SD",
+        "level": "Dasar",
+        "wordEntry": {
+          "word": "Ikan",
+          "emoji": "🐟",
+          "category": "Hewan",
+          "meaning": "Hewan yang hidup di air dan bernapas dengan insang.",
+          "example": "Ikan berenang di kolam.",
+          "videoId": "3KepM1ycETA",
+          "start": 165,
+          "video": {
+            "id": "3KepM1ycETA",
+            "title": "Mengenal hewan peliharaan",
+            "creator": "Direktorat PKPLK",
+            "topic": "Kosakata hewan",
+            "sourceLevel": "SDLB · Kelas 4",
+            "audience": "tunarungu",
+            "accessibility": "Isyarat, gambar & teks",
+            "description": "Pelajari nama dan ciri hewan peliharaan melalui materi tematik kelas 4 SDLB tunarungu dengan penjelasan isyarat dan gambar.",
+            "sourceTitle": "Pembelajaran tematik kelas IV SDLB Tunarungu \"Hewan Peliharaan\""
+          }
+        },
+        "relatedWords": [
+          {
+            "word": "Ikan",
+            "emoji": "🐟",
+            "category": "Hewan",
+            "meaning": "Hewan yang hidup di air dan bernapas dengan insang.",
+            "example": "Ikan berenang di kolam.",
+            "videoId": "3KepM1ycETA",
+            "start": 165,
+            "video": {
+              "id": "3KepM1ycETA",
+              "title": "Mengenal hewan peliharaan",
+              "creator": "Direktorat PKPLK",
+              "topic": "Kosakata hewan",
+              "sourceLevel": "SDLB · Kelas 4",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat, gambar & teks",
+              "description": "Pelajari nama dan ciri hewan peliharaan melalui materi tematik kelas 4 SDLB tunarungu dengan penjelasan isyarat dan gambar.",
+              "sourceTitle": "Pembelajaran tematik kelas IV SDLB Tunarungu \"Hewan Peliharaan\""
+            }
+          },
+          {
+            "word": "Ayam",
+            "emoji": "🐔",
+            "category": "Hewan",
+            "meaning": "Hewan unggas yang memiliki paruh, sayap, dan dua kaki.",
+            "example": "Ayam dapat dipelihara di rumah.",
+            "videoId": "3KepM1ycETA",
+            "start": 75,
+            "video": {
+              "id": "3KepM1ycETA",
+              "title": "Mengenal hewan peliharaan",
+              "creator": "Direktorat PKPLK",
+              "topic": "Kosakata hewan",
+              "sourceLevel": "SDLB · Kelas 4",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat, gambar & teks",
+              "description": "Pelajari nama dan ciri hewan peliharaan melalui materi tematik kelas 4 SDLB tunarungu dengan penjelasan isyarat dan gambar.",
+              "sourceTitle": "Pembelajaran tematik kelas IV SDLB Tunarungu \"Hewan Peliharaan\""
+            }
+          },
+          {
+            "word": "Kambing",
+            "emoji": "🐐",
+            "category": "Hewan",
+            "meaning": "Hewan berkaki empat yang biasa dipelihara sebagai ternak.",
+            "example": "Kambing berada di dalam kandang.",
+            "videoId": "3KepM1ycETA",
+            "start": 110,
+            "video": {
+              "id": "3KepM1ycETA",
+              "title": "Mengenal hewan peliharaan",
+              "creator": "Direktorat PKPLK",
+              "topic": "Kosakata hewan",
+              "sourceLevel": "SDLB · Kelas 4",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat, gambar & teks",
+              "description": "Pelajari nama dan ciri hewan peliharaan melalui materi tematik kelas 4 SDLB tunarungu dengan penjelasan isyarat dan gambar.",
+              "sourceTitle": "Pembelajaran tematik kelas IV SDLB Tunarungu \"Hewan Peliharaan\""
+            }
+          }
+        ],
+        "example": "Ikan berenang di kolam.",
+        "video": {
+          "id": "3KepM1ycETA",
+          "title": "Mengenal hewan peliharaan",
+          "creator": "Direktorat PKPLK",
+          "topic": "Kosakata hewan",
+          "sourceLevel": "SDLB · Kelas 4",
+          "audience": "tunarungu",
+          "accessibility": "Isyarat, gambar & teks",
+          "description": "Pelajari nama dan ciri hewan peliharaan melalui materi tematik kelas 4 SDLB tunarungu dengan penjelasan isyarat dan gambar.",
+          "sourceTitle": "Pembelajaran tematik kelas IV SDLB Tunarungu \"Hewan Peliharaan\""
+        }
+      },
+      {
+        "id": "sd-hitung",
+        "aspect": "akademik",
+        "title": "Menghitung buah",
+        "description": "Latih penjumlahan dan pengurangan dengan mangga dan jeruk.",
+        "emoji": "🍊",
+        "word": "Jeruk",
+        "words": [
+          "Jeruk",
+          "Mangga",
+          "Pepaya"
+        ],
+        "time": 8,
+        "intro": "Kamu akan menghitung jumlah buah yang namanya sudah kamu kenal di Kamus Visual.",
+        "explanation": "Ada 2 jeruk dan 1 jeruk lagi. Jumlahnya 3 jeruk: 2 + 1 = 3. Jika 1 jeruk diberikan kepada teman, tersisa 2 jeruk: 3 − 1 = 2.",
+        "tip": "Hitung satu per satu. Tambah berarti digabungkan; kurang berarti diambil sebagian.",
+        "visual": "🍊🍊 + 🍊",
+        "practice": {
+          "prompt": "Dua jeruk ditambah satu jeruk berjumlah …",
+          "options": [
+            "2 jeruk",
+            "3 jeruk",
+            "4 jeruk"
+          ],
+          "correct": 1
+        },
+        "quiz": [
+          {
+            "prompt": "1 mangga + 1 mangga = …",
+            "options": [
+              "1 mangga",
+              "2 mangga",
+              "3 mangga"
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "2 jeruk + 1 jeruk = …",
+            "options": [
+              "3 jeruk",
+              "2 jeruk",
+              "4 jeruk"
+            ],
+            "correct": 0
+          },
+          {
+            "prompt": "4 pepaya − 1 pepaya = …",
+            "options": [
+              "4 pepaya",
+              "2 pepaya",
+              "3 pepaya"
+            ],
+            "correct": 2
+          },
+          {
+            "prompt": "2 mangga + 2 mangga = …",
+            "options": [
+              "2 mangga",
+              "4 mangga",
+              "3 mangga"
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "3 jeruk − 2 jeruk = …",
+            "options": [
+              "1 jeruk",
+              "2 jeruk",
+              "5 jeruk"
+            ],
+            "correct": 0
+          }
+        ],
+        "grade": "SD",
+        "level": "Dasar",
+        "wordEntry": {
+          "word": "Jeruk",
+          "emoji": "🍊",
+          "category": "Tumbuhan",
+          "meaning": "Buah berkulit tebal dengan bagian dalam berupa beberapa ulas.",
+          "example": "Ada dua buah jeruk pada gambar.",
+          "videoId": "iDDkYTki6pU",
+          "start": 225,
+          "video": {
+            "id": "iDDkYTki6pU",
+            "title": "Tumbuhan di sekitar kita",
+            "creator": "Direktorat PKPLK",
+            "topic": "Kosakata tumbuhan",
+            "sourceLevel": "SDLB · Kelas 4",
+            "audience": "tunarungu",
+            "accessibility": "Isyarat, gambar & teks",
+            "description": "Kenali tumbuhan melalui pembelajaran Bahasa Indonesia kelas 4 untuk peserta didik tunarungu, dengan isyarat dan gambar.",
+            "sourceTitle": "Pembelajaran Bahasa Indonesia Kelas IV Tunarungu\"Tumbuhan Disekitar Kita\""
+          }
+        },
+        "relatedWords": [
+          {
+            "word": "Jeruk",
+            "emoji": "🍊",
+            "category": "Tumbuhan",
+            "meaning": "Buah berkulit tebal dengan bagian dalam berupa beberapa ulas.",
+            "example": "Ada dua buah jeruk pada gambar.",
+            "videoId": "iDDkYTki6pU",
+            "start": 225,
+            "video": {
+              "id": "iDDkYTki6pU",
+              "title": "Tumbuhan di sekitar kita",
+              "creator": "Direktorat PKPLK",
+              "topic": "Kosakata tumbuhan",
+              "sourceLevel": "SDLB · Kelas 4",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat, gambar & teks",
+              "description": "Kenali tumbuhan melalui pembelajaran Bahasa Indonesia kelas 4 untuk peserta didik tunarungu, dengan isyarat dan gambar.",
+              "sourceTitle": "Pembelajaran Bahasa Indonesia Kelas IV Tunarungu\"Tumbuhan Disekitar Kita\""
+            }
+          },
+          {
+            "word": "Mangga",
+            "emoji": "🥭",
+            "category": "Tumbuhan",
+            "meaning": "Buah yang tumbuh pada pohon mangga.",
+            "example": "Pohon mangga menghasilkan buah mangga.",
+            "videoId": "iDDkYTki6pU",
+            "start": 80,
+            "video": {
+              "id": "iDDkYTki6pU",
+              "title": "Tumbuhan di sekitar kita",
+              "creator": "Direktorat PKPLK",
+              "topic": "Kosakata tumbuhan",
+              "sourceLevel": "SDLB · Kelas 4",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat, gambar & teks",
+              "description": "Kenali tumbuhan melalui pembelajaran Bahasa Indonesia kelas 4 untuk peserta didik tunarungu, dengan isyarat dan gambar.",
+              "sourceTitle": "Pembelajaran Bahasa Indonesia Kelas IV Tunarungu\"Tumbuhan Disekitar Kita\""
+            }
+          },
+          {
+            "word": "Pepaya",
+            "emoji": "🌱",
+            "category": "Tumbuhan",
+            "meaning": "Buah yang tumbuh pada tanaman pepaya.",
+            "example": "Kita menghitung buah pepaya pada gambar.",
+            "videoId": "iDDkYTki6pU",
+            "start": 165,
+            "video": {
+              "id": "iDDkYTki6pU",
+              "title": "Tumbuhan di sekitar kita",
+              "creator": "Direktorat PKPLK",
+              "topic": "Kosakata tumbuhan",
+              "sourceLevel": "SDLB · Kelas 4",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat, gambar & teks",
+              "description": "Kenali tumbuhan melalui pembelajaran Bahasa Indonesia kelas 4 untuk peserta didik tunarungu, dengan isyarat dan gambar.",
+              "sourceTitle": "Pembelajaran Bahasa Indonesia Kelas IV Tunarungu\"Tumbuhan Disekitar Kita\""
+            }
+          }
+        ],
+        "example": "Ada dua buah jeruk pada gambar.",
+        "video": {
+          "id": "iDDkYTki6pU",
+          "title": "Tumbuhan di sekitar kita",
+          "creator": "Direktorat PKPLK",
+          "topic": "Kosakata tumbuhan",
+          "sourceLevel": "SDLB · Kelas 4",
+          "audience": "tunarungu",
+          "accessibility": "Isyarat, gambar & teks",
+          "description": "Kenali tumbuhan melalui pembelajaran Bahasa Indonesia kelas 4 untuk peserta didik tunarungu, dengan isyarat dan gambar.",
+          "sourceTitle": "Pembelajaran Bahasa Indonesia Kelas IV Tunarungu\"Tumbuhan Disekitar Kita\""
+        }
+      }
+    ],
+    "SMP": [
+      {
+        "id": "smp-percakapan",
+        "aspect": "kosakata",
+        "title": "Kosakata percakapan sopan",
+        "description": "Pahami sekolah, sopan, dan permisi dari video SMPLB.",
+        "emoji": "🏫",
+        "word": "Sekolah",
+        "words": [
+          "Sekolah",
+          "Sopan",
+          "Permisi"
+        ],
+        "time": 8,
+        "intro": "Kamu akan memahami kosakata percakapan yang muncul pada video dan Kamus Visual SMP.",
+        "explanation": "Sekolah adalah tempat belajar. Sopan berarti menghargai orang lain dalam perilaku dan ucapan. Permisi digunakan saat meminta izin atau perhatian dengan sopan.",
+        "tip": "Perhatikan situasinya: di mana kamu berada, kepada siapa kamu berbicara, dan apa yang ingin kamu sampaikan.",
+        "visual": "🏫 🤝 🙋",
+        "practice": {
+          "prompt": "Saat ingin melewati seseorang, ungkapan yang sesuai adalah …",
+          "options": [
+            "Permisi.",
+            "Cepat pergi!",
+            "Diam!"
+          ],
+          "correct": 0
+        },
+        "quiz": [
+          {
+            "prompt": "Tempat peserta didik belajar bersama guru disebut …",
+            "options": [
+              "Pelabuhan",
+              "Sekolah",
+              "Kolam"
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "“Sopan” berarti …",
+            "options": [
+              "Menghargai orang lain",
+              "Memaksa orang lain",
+              "Mengabaikan orang lain"
+            ],
+            "correct": 0
+          },
+          {
+            "prompt": "Ungkapan untuk meminta izin lewat adalah …",
+            "options": [
+              "Pindah!",
+              "Diam!",
+              "Permisi."
+            ],
+            "correct": 2
+          },
+          {
+            "prompt": "Contoh perilaku sopan adalah …",
+            "options": [
+              "Memotong pembicaraan",
+              "Meminta izin sebelum lewat",
+              "Mendorong teman"
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "Kata “sekolah” termasuk nama …",
+            "options": [
+              "Tempat",
+              "Buah",
+              "Hewan"
+            ],
+            "correct": 0
+          }
+        ],
+        "grade": "SMP",
+        "level": "Menengah",
+        "wordEntry": {
+          "word": "Sekolah",
+          "emoji": "🏫",
+          "category": "Tempat",
+          "meaning": "Tempat peserta didik belajar bersama guru.",
+          "example": "Kita bersikap sopan di lingkungan sekolah.",
+          "videoId": "5TJG1D3OG1Y",
+          "start": 285,
+          "video": {
+            "id": "5TJG1D3OG1Y",
+            "title": "Bahasa Indonesia melalui percakapan",
+            "creator": "Rapusa",
+            "topic": "Percakapan dan bacaan",
+            "sourceLevel": "SMPLB · Kelas 7",
+            "audience": "tunarungu",
+            "accessibility": "Komunikasi visual & teks",
+            "description": "Ikuti rekaman pembelajaran Bahasa Indonesia kelas 7 SMPLB tunarungu dengan percakapan, komunikasi visual, dan teks di papan.",
+            "sourceTitle": "Praktik Pembelajaran Bahasa Indonesia  - Kelas VII SMPLB Tunarungu"
+          }
+        },
+        "relatedWords": [
+          {
+            "word": "Sekolah",
+            "emoji": "🏫",
+            "category": "Tempat",
+            "meaning": "Tempat peserta didik belajar bersama guru.",
+            "example": "Kita bersikap sopan di lingkungan sekolah.",
+            "videoId": "5TJG1D3OG1Y",
+            "start": 285,
+            "video": {
+              "id": "5TJG1D3OG1Y",
+              "title": "Bahasa Indonesia melalui percakapan",
+              "creator": "Rapusa",
+              "topic": "Percakapan dan bacaan",
+              "sourceLevel": "SMPLB · Kelas 7",
+              "audience": "tunarungu",
+              "accessibility": "Komunikasi visual & teks",
+              "description": "Ikuti rekaman pembelajaran Bahasa Indonesia kelas 7 SMPLB tunarungu dengan percakapan, komunikasi visual, dan teks di papan.",
+              "sourceTitle": "Praktik Pembelajaran Bahasa Indonesia  - Kelas VII SMPLB Tunarungu"
+            }
+          },
+          {
+            "word": "Sopan",
+            "emoji": "🤝",
+            "category": "Sikap",
+            "meaning": "Berperilaku baik dan menghargai orang lain.",
+            "example": "Kita berbicara dengan sopan kepada guru.",
+            "videoId": "5TJG1D3OG1Y",
+            "start": 405,
+            "video": {
+              "id": "5TJG1D3OG1Y",
+              "title": "Bahasa Indonesia melalui percakapan",
+              "creator": "Rapusa",
+              "topic": "Percakapan dan bacaan",
+              "sourceLevel": "SMPLB · Kelas 7",
+              "audience": "tunarungu",
+              "accessibility": "Komunikasi visual & teks",
+              "description": "Ikuti rekaman pembelajaran Bahasa Indonesia kelas 7 SMPLB tunarungu dengan percakapan, komunikasi visual, dan teks di papan.",
+              "sourceTitle": "Praktik Pembelajaran Bahasa Indonesia  - Kelas VII SMPLB Tunarungu"
+            }
+          },
+          {
+            "word": "Permisi",
+            "emoji": "🙋",
+            "category": "Ungkapan",
+            "meaning": "Ungkapan untuk meminta izin atau perhatian dengan sopan.",
+            "example": "Permisi, saya ingin lewat.",
+            "videoId": "5TJG1D3OG1Y",
+            "start": 410,
+            "video": {
+              "id": "5TJG1D3OG1Y",
+              "title": "Bahasa Indonesia melalui percakapan",
+              "creator": "Rapusa",
+              "topic": "Percakapan dan bacaan",
+              "sourceLevel": "SMPLB · Kelas 7",
+              "audience": "tunarungu",
+              "accessibility": "Komunikasi visual & teks",
+              "description": "Ikuti rekaman pembelajaran Bahasa Indonesia kelas 7 SMPLB tunarungu dengan percakapan, komunikasi visual, dan teks di papan.",
+              "sourceTitle": "Praktik Pembelajaran Bahasa Indonesia  - Kelas VII SMPLB Tunarungu"
+            }
+          }
+        ],
+        "example": "Kita bersikap sopan di lingkungan sekolah.",
+        "video": {
+          "id": "5TJG1D3OG1Y",
+          "title": "Bahasa Indonesia melalui percakapan",
+          "creator": "Rapusa",
+          "topic": "Percakapan dan bacaan",
+          "sourceLevel": "SMPLB · Kelas 7",
+          "audience": "tunarungu",
+          "accessibility": "Komunikasi visual & teks",
+          "description": "Ikuti rekaman pembelajaran Bahasa Indonesia kelas 7 SMPLB tunarungu dengan percakapan, komunikasi visual, dan teks di papan.",
+          "sourceTitle": "Praktik Pembelajaran Bahasa Indonesia  - Kelas VII SMPLB Tunarungu"
+        }
+      },
+      {
+        "id": "smp-kalimat",
+        "aspect": "kalimat",
+        "title": "Menyampaikan izin dengan santun",
+        "description": "Pilih kalimat yang tepat untuk percakapan di sekolah.",
+        "emoji": "🙋",
+        "word": "Permisi",
+        "words": [
+          "Permisi",
+          "Sopan",
+          "Sekolah"
+        ],
+        "time": 10,
+        "intro": "Kamu akan menyusun ungkapan izin dan memilih kalimat yang sesuai dengan situasi.",
+        "explanation": "Kalimat “Permisi, saya ingin lewat.” menyampaikan tujuan dengan sopan. Saat ingin bertanya kepada guru, gunakan “Permisi, boleh saya bertanya?”",
+        "tip": "Gunakan ungkapan sopan, sebutkan dirimu, lalu sampaikan tujuanmu dengan jelas.",
+        "visual": "🙋 🏫",
+        "practice": {
+          "prompt": "Susun ungkapan untuk meminta izin lewat.",
+          "words": [
+            "lewat.",
+            "Permisi,",
+            "saya ingin"
+          ],
+          "answer": "Permisi, saya ingin lewat."
+        },
+        "quiz": [
+          {
+            "prompt": "Kalimat untuk meminta izin lewat adalah …",
+            "options": [
+              "Cepat minggir!",
+              "Permisi, saya ingin lewat.",
+              "Saya tidak peduli."
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "Kalimat yang santun untuk bertanya kepada guru adalah …",
+            "options": [
+              "Permisi, boleh saya bertanya?",
+              "Jawab sekarang!",
+              "Diam dulu!"
+            ],
+            "correct": 0
+          },
+          {
+            "prompt": "Dalam “Permisi, saya ingin lewat.”, tujuan pembicara adalah …",
+            "options": [
+              "Makan buah",
+              "Pergi berlayar",
+              "Meminta izin lewat"
+            ],
+            "correct": 2
+          },
+          {
+            "prompt": "Kalimat yang tersusun jelas adalah …",
+            "options": [
+              "Saya lewat permisi ingin.",
+              "Permisi, saya ingin lewat.",
+              "Ingin permisi lewat saya."
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "Mengapa ungkapan permisi digunakan?",
+            "options": [
+              "Untuk menghargai orang lain",
+              "Untuk memaksa teman",
+              "Untuk mengejek guru"
+            ],
+            "correct": 0
+          }
+        ],
+        "grade": "SMP",
+        "level": "Menengah",
+        "wordEntry": {
+          "word": "Permisi",
+          "emoji": "🙋",
+          "category": "Ungkapan",
+          "meaning": "Ungkapan untuk meminta izin atau perhatian dengan sopan.",
+          "example": "Permisi, saya ingin lewat.",
+          "videoId": "5TJG1D3OG1Y",
+          "start": 410,
+          "video": {
+            "id": "5TJG1D3OG1Y",
+            "title": "Bahasa Indonesia melalui percakapan",
+            "creator": "Rapusa",
+            "topic": "Percakapan dan bacaan",
+            "sourceLevel": "SMPLB · Kelas 7",
+            "audience": "tunarungu",
+            "accessibility": "Komunikasi visual & teks",
+            "description": "Ikuti rekaman pembelajaran Bahasa Indonesia kelas 7 SMPLB tunarungu dengan percakapan, komunikasi visual, dan teks di papan.",
+            "sourceTitle": "Praktik Pembelajaran Bahasa Indonesia  - Kelas VII SMPLB Tunarungu"
+          }
+        },
+        "relatedWords": [
+          {
+            "word": "Permisi",
+            "emoji": "🙋",
+            "category": "Ungkapan",
+            "meaning": "Ungkapan untuk meminta izin atau perhatian dengan sopan.",
+            "example": "Permisi, saya ingin lewat.",
+            "videoId": "5TJG1D3OG1Y",
+            "start": 410,
+            "video": {
+              "id": "5TJG1D3OG1Y",
+              "title": "Bahasa Indonesia melalui percakapan",
+              "creator": "Rapusa",
+              "topic": "Percakapan dan bacaan",
+              "sourceLevel": "SMPLB · Kelas 7",
+              "audience": "tunarungu",
+              "accessibility": "Komunikasi visual & teks",
+              "description": "Ikuti rekaman pembelajaran Bahasa Indonesia kelas 7 SMPLB tunarungu dengan percakapan, komunikasi visual, dan teks di papan.",
+              "sourceTitle": "Praktik Pembelajaran Bahasa Indonesia  - Kelas VII SMPLB Tunarungu"
+            }
+          },
+          {
+            "word": "Sopan",
+            "emoji": "🤝",
+            "category": "Sikap",
+            "meaning": "Berperilaku baik dan menghargai orang lain.",
+            "example": "Kita berbicara dengan sopan kepada guru.",
+            "videoId": "5TJG1D3OG1Y",
+            "start": 405,
+            "video": {
+              "id": "5TJG1D3OG1Y",
+              "title": "Bahasa Indonesia melalui percakapan",
+              "creator": "Rapusa",
+              "topic": "Percakapan dan bacaan",
+              "sourceLevel": "SMPLB · Kelas 7",
+              "audience": "tunarungu",
+              "accessibility": "Komunikasi visual & teks",
+              "description": "Ikuti rekaman pembelajaran Bahasa Indonesia kelas 7 SMPLB tunarungu dengan percakapan, komunikasi visual, dan teks di papan.",
+              "sourceTitle": "Praktik Pembelajaran Bahasa Indonesia  - Kelas VII SMPLB Tunarungu"
+            }
+          },
+          {
+            "word": "Sekolah",
+            "emoji": "🏫",
+            "category": "Tempat",
+            "meaning": "Tempat peserta didik belajar bersama guru.",
+            "example": "Kita bersikap sopan di lingkungan sekolah.",
+            "videoId": "5TJG1D3OG1Y",
+            "start": 285,
+            "video": {
+              "id": "5TJG1D3OG1Y",
+              "title": "Bahasa Indonesia melalui percakapan",
+              "creator": "Rapusa",
+              "topic": "Percakapan dan bacaan",
+              "sourceLevel": "SMPLB · Kelas 7",
+              "audience": "tunarungu",
+              "accessibility": "Komunikasi visual & teks",
+              "description": "Ikuti rekaman pembelajaran Bahasa Indonesia kelas 7 SMPLB tunarungu dengan percakapan, komunikasi visual, dan teks di papan.",
+              "sourceTitle": "Praktik Pembelajaran Bahasa Indonesia  - Kelas VII SMPLB Tunarungu"
+            }
+          }
+        ],
+        "example": "Permisi, saya ingin lewat.",
+        "video": {
+          "id": "5TJG1D3OG1Y",
+          "title": "Bahasa Indonesia melalui percakapan",
+          "creator": "Rapusa",
+          "topic": "Percakapan dan bacaan",
+          "sourceLevel": "SMPLB · Kelas 7",
+          "audience": "tunarungu",
+          "accessibility": "Komunikasi visual & teks",
+          "description": "Ikuti rekaman pembelajaran Bahasa Indonesia kelas 7 SMPLB tunarungu dengan percakapan, komunikasi visual, dan teks di papan.",
+          "sourceTitle": "Praktik Pembelajaran Bahasa Indonesia  - Kelas VII SMPLB Tunarungu"
+        }
+      },
+      {
+        "id": "smp-bacaan",
+        "aspect": "bacaan",
+        "title": "Rekreasi ke pelabuhan",
+        "description": "Temukan informasi penting dalam paragraf tentang rekreasi.",
+        "emoji": "🚢",
+        "word": "Pelabuhan",
+        "words": [
+          "Pelabuhan",
+          "Rekreasi"
+        ],
+        "time": 10,
+        "intro": "Kamu akan membaca paragraf baru dengan kosakata dari video pemahaman bacaan SMP.",
+        "explanation": "Pada hari Minggu, Rani berekreasi bersama keluarga ke pelabuhan. Mereka melihat kapal berlabuh. Kapal menaikkan penumpang. Rani mencatat kegiatan di pelabuhan untuk diceritakan di sekolah.",
+        "tip": "Cari siapa, kapan, tempat, dan kegiatan. Gunakan informasi dalam paragraf untuk menjawab.",
+        "visual": "🚢 🏖️",
+        "practice": {
+          "prompt": "Ke mana Rani berekreasi?",
+          "options": [
+            "Kebun",
+            "Pelabuhan",
+            "Kolam"
+          ],
+          "correct": 1
+        },
+        "quiz": [
+          {
+            "prompt": "Siapa yang berekreasi dalam paragraf?",
+            "options": [
+              "Dina",
+              "Rani",
+              "Budi"
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "Kapan Rani berekreasi?",
+            "options": [
+              "Hari Minggu",
+              "Hari Senin",
+              "Hari Jumat"
+            ],
+            "correct": 0
+          },
+          {
+            "prompt": "Rani berekreasi bersama …",
+            "options": [
+              "Guru",
+              "Teman sekolah",
+              "Keluarga"
+            ],
+            "correct": 2
+          },
+          {
+            "prompt": "Apa kegiatan kapal dalam paragraf?",
+            "options": [
+              "Menanam buah",
+              "Menaikkan penumpang",
+              "Memberi makan ikan"
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "Mengapa Rani mencatat kegiatan di pelabuhan?",
+            "options": [
+              "Untuk diceritakan di sekolah",
+              "Untuk menjual kapal",
+              "Untuk menghitung buah"
+            ],
+            "correct": 0
+          }
+        ],
+        "grade": "SMP",
+        "level": "Menengah",
+        "wordEntry": {
+          "word": "Pelabuhan",
+          "emoji": "🚢",
+          "category": "Tempat",
+          "meaning": "Tempat kapal berlabuh untuk menaikkan atau menurunkan penumpang dan barang.",
+          "example": "Kapal berhenti di pelabuhan.",
+          "videoId": "XmiXc0YUrXY",
+          "start": 585,
+          "video": {
+            "id": "XmiXc0YUrXY",
+            "title": "Memahami isi paragraf sederhana",
+            "creator": "Melalita Anggraeni",
+            "topic": "Pemahaman bacaan",
+            "sourceLevel": "SMPLB · Kelas 9",
+            "audience": "tunarungu",
+            "accessibility": "Isyarat & media visual",
+            "description": "Amati rekaman pembelajaran kelas 9 tunarungu untuk memahami paragraf sederhana dengan interaksi isyarat dan media visual.",
+            "sourceTitle": "VIDEO PEMBELAJARAN SISWA TUNARUNGU KELAS IX BAHASA INDONESIA"
+          }
+        },
+        "relatedWords": [
+          {
+            "word": "Pelabuhan",
+            "emoji": "🚢",
+            "category": "Tempat",
+            "meaning": "Tempat kapal berlabuh untuk menaikkan atau menurunkan penumpang dan barang.",
+            "example": "Kapal berhenti di pelabuhan.",
+            "videoId": "XmiXc0YUrXY",
+            "start": 585,
+            "video": {
+              "id": "XmiXc0YUrXY",
+              "title": "Memahami isi paragraf sederhana",
+              "creator": "Melalita Anggraeni",
+              "topic": "Pemahaman bacaan",
+              "sourceLevel": "SMPLB · Kelas 9",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat & media visual",
+              "description": "Amati rekaman pembelajaran kelas 9 tunarungu untuk memahami paragraf sederhana dengan interaksi isyarat dan media visual.",
+              "sourceTitle": "VIDEO PEMBELAJARAN SISWA TUNARUNGU KELAS IX BAHASA INDONESIA"
+            }
+          },
+          {
+            "word": "Rekreasi",
+            "emoji": "🏖️",
+            "category": "Kegiatan",
+            "meaning": "Kegiatan untuk menyegarkan pikiran atau bersenang-senang.",
+            "example": "Kita berekreasi bersama keluarga.",
+            "videoId": "XmiXc0YUrXY",
+            "start": 285,
+            "video": {
+              "id": "XmiXc0YUrXY",
+              "title": "Memahami isi paragraf sederhana",
+              "creator": "Melalita Anggraeni",
+              "topic": "Pemahaman bacaan",
+              "sourceLevel": "SMPLB · Kelas 9",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat & media visual",
+              "description": "Amati rekaman pembelajaran kelas 9 tunarungu untuk memahami paragraf sederhana dengan interaksi isyarat dan media visual.",
+              "sourceTitle": "VIDEO PEMBELAJARAN SISWA TUNARUNGU KELAS IX BAHASA INDONESIA"
+            }
+          }
+        ],
+        "example": "Kapal berhenti di pelabuhan.",
+        "video": {
+          "id": "XmiXc0YUrXY",
+          "title": "Memahami isi paragraf sederhana",
+          "creator": "Melalita Anggraeni",
+          "topic": "Pemahaman bacaan",
+          "sourceLevel": "SMPLB · Kelas 9",
+          "audience": "tunarungu",
+          "accessibility": "Isyarat & media visual",
+          "description": "Amati rekaman pembelajaran kelas 9 tunarungu untuk memahami paragraf sederhana dengan interaksi isyarat dan media visual.",
+          "sourceTitle": "VIDEO PEMBELAJARAN SISWA TUNARUNGU KELAS IX BAHASA INDONESIA"
+        }
+      },
+      {
+        "id": "smp-rencana",
+        "aspect": "akademik",
+        "title": "Menghitung rencana rekreasi",
+        "description": "Gunakan waktu dan jumlah orang dalam konteks rekreasi.",
+        "emoji": "🏖️",
+        "word": "Rekreasi",
+        "words": [
+          "Rekreasi",
+          "Pelabuhan"
+        ],
+        "time": 10,
+        "intro": "Kamu akan memakai kosakata rekreasi dan pelabuhan untuk berlatih menghitung waktu serta jumlah orang.",
+        "explanation": "Keluarga berangkat pukul 08.00 dan tiba di pelabuhan pukul 09.00. Perjalanan berlangsung 1 jam atau 60 menit. Ada 3 orang dewasa dan 2 anak; jumlahnya 5 orang.",
+        "tip": "Pisahkan informasi waktu dan jumlah orang. Tulis perhitungannya sebelum memilih jawaban.",
+        "visual": "🕗 → 🕘 🚢",
+        "practice": {
+          "prompt": "Berangkat pukul 08.00 dan tiba pukul 09.00. Berapa lama perjalanan?",
+          "options": [
+            "30 menit",
+            "60 menit",
+            "120 menit"
+          ],
+          "correct": 1
+        },
+        "quiz": [
+          {
+            "prompt": "3 orang dewasa dan 2 anak berjumlah …",
+            "options": [
+              "4 orang",
+              "5 orang",
+              "6 orang"
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "Perjalanan pukul 08.00 sampai 09.00 berlangsung …",
+            "options": [
+              "1 jam",
+              "2 jam",
+              "3 jam"
+            ],
+            "correct": 0
+          },
+          {
+            "prompt": "Satu jam sama dengan …",
+            "options": [
+              "30 menit",
+              "90 menit",
+              "60 menit"
+            ],
+            "correct": 2
+          },
+          {
+            "prompt": "Ada 8 orang. Dua orang pulang lebih dulu. Tersisa …",
+            "options": [
+              "10 orang",
+              "6 orang",
+              "4 orang"
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "Perjalanan berlangsung 45 menit, lalu istirahat 15 menit. Total waktu …",
+            "options": [
+              "60 menit",
+              "30 menit",
+              "90 menit"
+            ],
+            "correct": 0
+          }
+        ],
+        "grade": "SMP",
+        "level": "Menengah",
+        "wordEntry": {
+          "word": "Rekreasi",
+          "emoji": "🏖️",
+          "category": "Kegiatan",
+          "meaning": "Kegiatan untuk menyegarkan pikiran atau bersenang-senang.",
+          "example": "Kita berekreasi bersama keluarga.",
+          "videoId": "XmiXc0YUrXY",
+          "start": 285,
+          "video": {
+            "id": "XmiXc0YUrXY",
+            "title": "Memahami isi paragraf sederhana",
+            "creator": "Melalita Anggraeni",
+            "topic": "Pemahaman bacaan",
+            "sourceLevel": "SMPLB · Kelas 9",
+            "audience": "tunarungu",
+            "accessibility": "Isyarat & media visual",
+            "description": "Amati rekaman pembelajaran kelas 9 tunarungu untuk memahami paragraf sederhana dengan interaksi isyarat dan media visual.",
+            "sourceTitle": "VIDEO PEMBELAJARAN SISWA TUNARUNGU KELAS IX BAHASA INDONESIA"
+          }
+        },
+        "relatedWords": [
+          {
+            "word": "Rekreasi",
+            "emoji": "🏖️",
+            "category": "Kegiatan",
+            "meaning": "Kegiatan untuk menyegarkan pikiran atau bersenang-senang.",
+            "example": "Kita berekreasi bersama keluarga.",
+            "videoId": "XmiXc0YUrXY",
+            "start": 285,
+            "video": {
+              "id": "XmiXc0YUrXY",
+              "title": "Memahami isi paragraf sederhana",
+              "creator": "Melalita Anggraeni",
+              "topic": "Pemahaman bacaan",
+              "sourceLevel": "SMPLB · Kelas 9",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat & media visual",
+              "description": "Amati rekaman pembelajaran kelas 9 tunarungu untuk memahami paragraf sederhana dengan interaksi isyarat dan media visual.",
+              "sourceTitle": "VIDEO PEMBELAJARAN SISWA TUNARUNGU KELAS IX BAHASA INDONESIA"
+            }
+          },
+          {
+            "word": "Pelabuhan",
+            "emoji": "🚢",
+            "category": "Tempat",
+            "meaning": "Tempat kapal berlabuh untuk menaikkan atau menurunkan penumpang dan barang.",
+            "example": "Kapal berhenti di pelabuhan.",
+            "videoId": "XmiXc0YUrXY",
+            "start": 585,
+            "video": {
+              "id": "XmiXc0YUrXY",
+              "title": "Memahami isi paragraf sederhana",
+              "creator": "Melalita Anggraeni",
+              "topic": "Pemahaman bacaan",
+              "sourceLevel": "SMPLB · Kelas 9",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat & media visual",
+              "description": "Amati rekaman pembelajaran kelas 9 tunarungu untuk memahami paragraf sederhana dengan interaksi isyarat dan media visual.",
+              "sourceTitle": "VIDEO PEMBELAJARAN SISWA TUNARUNGU KELAS IX BAHASA INDONESIA"
+            }
+          }
+        ],
+        "example": "Kita berekreasi bersama keluarga.",
+        "video": {
+          "id": "XmiXc0YUrXY",
+          "title": "Memahami isi paragraf sederhana",
+          "creator": "Melalita Anggraeni",
+          "topic": "Pemahaman bacaan",
+          "sourceLevel": "SMPLB · Kelas 9",
+          "audience": "tunarungu",
+          "accessibility": "Isyarat & media visual",
+          "description": "Amati rekaman pembelajaran kelas 9 tunarungu untuk memahami paragraf sederhana dengan interaksi isyarat dan media visual.",
+          "sourceTitle": "VIDEO PEMBELAJARAN SISWA TUNARUNGU KELAS IX BAHASA INDONESIA"
+        }
+      }
+    ],
+    "SMA": [
+      {
+        "id": "sma-kosakata",
+        "aspect": "kosakata",
+        "title": "Kosakata isyarat dalam konteks",
+        "description": "Bedakan kosakata tempat dan buah pada video SMALB-B.",
+        "emoji": "📍",
+        "word": "Purwakarta",
+        "words": [
+          "Purwakarta",
+          "Jambu",
+          "Inggris"
+        ],
+        "time": 8,
+        "intro": "Kamu akan mengamati kosakata isyarat dan membedakan maknanya berdasarkan konteks serta kategori.",
+        "explanation": "Purwakarta adalah nama kabupaten di Jawa Barat. Inggris adalah nama negara yang merupakan bagian dari Britania Raya. Jambu adalah nama buah; gambar pada video menunjukkan jambu air.",
+        "tip": "Cocokkan kata, gambar, dan kategori. Nama tempat dan nama buah memiliki konteks yang berbeda.",
+        "visual": "📍 🍎 🇬🇧",
+        "practice": {
+          "prompt": "Kata yang termasuk nama buah adalah …",
+          "options": [
+            "Purwakarta",
+            "Jambu",
+            "Inggris"
+          ],
+          "correct": 1
+        },
+        "quiz": [
+          {
+            "prompt": "Purwakarta merupakan nama …",
+            "options": [
+              "Buah",
+              "Kabupaten",
+              "Peristiwa alam"
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "Kata yang termasuk nama buah adalah …",
+            "options": [
+              "Jambu",
+              "Inggris",
+              "Purwakarta"
+            ],
+            "correct": 0
+          },
+          {
+            "prompt": "Nama negara pada materi kosakata isyarat adalah …",
+            "options": [
+              "Jambu",
+              "Purwakarta",
+              "Inggris"
+            ],
+            "correct": 2
+          },
+          {
+            "prompt": "Pasangan kata yang termasuk kategori tempat adalah …",
+            "options": [
+              "Jambu dan hujan",
+              "Purwakarta dan Inggris",
+              "Banjir dan jambu"
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "Untuk memahami makna kata dalam video, kita mencocokkan …",
+            "options": [
+              "Kata, gambar, dan konteks",
+              "Suara saja",
+              "Urutan warna saja"
+            ],
+            "correct": 0
+          }
+        ],
+        "grade": "SMA",
+        "level": "Lanjutan",
+        "wordEntry": {
+          "word": "Purwakarta",
+          "emoji": "📍",
+          "category": "Tempat",
+          "meaning": "Nama kabupaten di Provinsi Jawa Barat.",
+          "example": "Purwakarta diperagakan dalam video kosakata isyarat.",
+          "videoId": "EBTZFitRSEc",
+          "start": 80,
+          "video": {
+            "id": "EBTZFitRSEc",
+            "title": "Kosakata sehari-hari dalam bahasa isyarat",
+            "creator": "SLBN BOGOR",
+            "topic": "Kosakata dan komunikasi",
+            "sourceLevel": "SMALB-B",
+            "audience": "tunarungu",
+            "accessibility": "Isyarat, gambar & teks",
+            "description": "Belajar kosakata tempat dan buah melalui gambar dan peragaan isyarat bersama peserta didik SMALB-B tunarungu dari SLBN Bogor.",
+            "sourceTitle": "#05_GURLING | BELAJAR BAHASA ISYARAT ALA PESERTA DIDIK SLBN BOGOR - SMALB B (TUNARUNGU) - SLBN BOGOR"
+          }
+        },
+        "relatedWords": [
+          {
+            "word": "Purwakarta",
+            "emoji": "📍",
+            "category": "Tempat",
+            "meaning": "Nama kabupaten di Provinsi Jawa Barat.",
+            "example": "Purwakarta diperagakan dalam video kosakata isyarat.",
+            "videoId": "EBTZFitRSEc",
+            "start": 80,
+            "video": {
+              "id": "EBTZFitRSEc",
+              "title": "Kosakata sehari-hari dalam bahasa isyarat",
+              "creator": "SLBN BOGOR",
+              "topic": "Kosakata dan komunikasi",
+              "sourceLevel": "SMALB-B",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat, gambar & teks",
+              "description": "Belajar kosakata tempat dan buah melalui gambar dan peragaan isyarat bersama peserta didik SMALB-B tunarungu dari SLBN Bogor.",
+              "sourceTitle": "#05_GURLING | BELAJAR BAHASA ISYARAT ALA PESERTA DIDIK SLBN BOGOR - SMALB B (TUNARUNGU) - SLBN BOGOR"
+            }
+          },
+          {
+            "word": "Jambu",
+            "emoji": "🍎",
+            "category": "Buah",
+            "meaning": "Nama kelompok buah; pada video ditunjukkan gambar jambu air.",
+            "example": "Gambar jambu membantu mengenali kata yang diperagakan.",
+            "videoId": "EBTZFitRSEc",
+            "start": 110,
+            "video": {
+              "id": "EBTZFitRSEc",
+              "title": "Kosakata sehari-hari dalam bahasa isyarat",
+              "creator": "SLBN BOGOR",
+              "topic": "Kosakata dan komunikasi",
+              "sourceLevel": "SMALB-B",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat, gambar & teks",
+              "description": "Belajar kosakata tempat dan buah melalui gambar dan peragaan isyarat bersama peserta didik SMALB-B tunarungu dari SLBN Bogor.",
+              "sourceTitle": "#05_GURLING | BELAJAR BAHASA ISYARAT ALA PESERTA DIDIK SLBN BOGOR - SMALB B (TUNARUNGU) - SLBN BOGOR"
+            }
+          },
+          {
+            "word": "Inggris",
+            "emoji": "🇬🇧",
+            "category": "Tempat",
+            "meaning": "Nama negara yang merupakan bagian dari Britania Raya.",
+            "example": "Kata Inggris diperagakan bersama gambar bendera dalam video.",
+            "videoId": "EBTZFitRSEc",
+            "start": 170,
+            "video": {
+              "id": "EBTZFitRSEc",
+              "title": "Kosakata sehari-hari dalam bahasa isyarat",
+              "creator": "SLBN BOGOR",
+              "topic": "Kosakata dan komunikasi",
+              "sourceLevel": "SMALB-B",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat, gambar & teks",
+              "description": "Belajar kosakata tempat dan buah melalui gambar dan peragaan isyarat bersama peserta didik SMALB-B tunarungu dari SLBN Bogor.",
+              "sourceTitle": "#05_GURLING | BELAJAR BAHASA ISYARAT ALA PESERTA DIDIK SLBN BOGOR - SMALB B (TUNARUNGU) - SLBN BOGOR"
+            }
+          }
+        ],
+        "example": "Purwakarta diperagakan dalam video kosakata isyarat.",
+        "video": {
+          "id": "EBTZFitRSEc",
+          "title": "Kosakata sehari-hari dalam bahasa isyarat",
+          "creator": "SLBN BOGOR",
+          "topic": "Kosakata dan komunikasi",
+          "sourceLevel": "SMALB-B",
+          "audience": "tunarungu",
+          "accessibility": "Isyarat, gambar & teks",
+          "description": "Belajar kosakata tempat dan buah melalui gambar dan peragaan isyarat bersama peserta didik SMALB-B tunarungu dari SLBN Bogor.",
+          "sourceTitle": "#05_GURLING | BELAJAR BAHASA ISYARAT ALA PESERTA DIDIK SLBN BOGOR - SMALB B (TUNARUNGU) - SLBN BOGOR"
+        }
+      },
+      {
+        "id": "sma-kalimat",
+        "aspect": "kalimat",
+        "title": "Kalimat sebab dan akibat",
+        "description": "Hubungkan hujan dan banjir dalam kalimat yang logis.",
+        "emoji": "🌧️",
+        "word": "Hujan",
+        "words": [
+          "Hujan",
+          "Banjir",
+          "Eksplanasi"
+        ],
+        "time": 10,
+        "intro": "Kamu akan membedakan penyebab dan akibat menggunakan kosakata pada materi eksplanasi.",
+        "explanation": "“Air sulit mengalir karena saluran tersumbat.” menyatakan penyebab. “Hujan deras membuat air bertambah sehingga jalan tergenang.” menunjukkan hubungan sebab dan akibat.",
+        "tip": "Cari kata “karena” untuk penyebab dan “sehingga” untuk akibat. Baca seluruh kalimat agar hubungan informasinya jelas.",
+        "visual": "🌧️ → 🌊",
+        "practice": {
+          "prompt": "Kata penghubung untuk melengkapi “Air sulit mengalir … saluran tersumbat.” adalah …",
+          "options": [
+            "karena",
+            "tetapi",
+            "atau"
+          ],
+          "correct": 0
+        },
+        "quiz": [
+          {
+            "prompt": "Kata penghubung yang menyatakan penyebab adalah …",
+            "options": [
+              "Dan",
+              "Karena",
+              "Atau"
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "Dalam “Air sulit mengalir karena saluran tersumbat.”, penyebabnya adalah …",
+            "options": [
+              "Saluran tersumbat",
+              "Air sulit mengalir",
+              "Langit cerah"
+            ],
+            "correct": 0
+          },
+          {
+            "prompt": "Dalam “Hujan deras turun sehingga jalan tergenang.”, akibatnya adalah …",
+            "options": [
+              "Hujan turun",
+              "Langit cerah",
+              "Jalan tergenang"
+            ],
+            "correct": 2
+          },
+          {
+            "prompt": "Kalimat yang menunjukkan hubungan sebab dan akibat adalah …",
+            "options": [
+              "Jambu berada di meja.",
+              "Saluran tersumbat sehingga air sulit mengalir.",
+              "Rani melihat gambar."
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "Kata “sehingga” pada kalimat tersebut membantu menjelaskan …",
+            "options": [
+              "Akibat",
+              "Nama tempat",
+              "Pilihan buah"
+            ],
+            "correct": 0
+          }
+        ],
+        "grade": "SMA",
+        "level": "Lanjutan",
+        "wordEntry": {
+          "word": "Hujan",
+          "emoji": "🌧️",
+          "category": "Peristiwa",
+          "meaning": "Air yang jatuh dari awan ke permukaan bumi dalam bentuk titik-titik air.",
+          "example": "Hujan merupakan salah satu peristiwa alam.",
+          "videoId": "cvwI6-6lfGY",
+          "start": 165,
+          "video": {
+            "id": "cvwI6-6lfGY",
+            "title": "Memahami teks eksplanasi",
+            "creator": "SMALB KM",
+            "topic": "Teks eksplanasi",
+            "sourceLevel": "SMALB-B",
+            "audience": "tunarungu",
+            "accessibility": "Isyarat & teks pada layar",
+            "description": "Pelajari teks eksplanasi dari SMALB-B Karya Mulia Surabaya melalui penjelasan isyarat dan teks yang tampil di layar.",
+            "sourceTitle": "Video Bahasa Indonesia SMALB_B Karya Mulia Surabaya"
+          }
+        },
+        "relatedWords": [
+          {
+            "word": "Hujan",
+            "emoji": "🌧️",
+            "category": "Peristiwa",
+            "meaning": "Air yang jatuh dari awan ke permukaan bumi dalam bentuk titik-titik air.",
+            "example": "Hujan merupakan salah satu peristiwa alam.",
+            "videoId": "cvwI6-6lfGY",
+            "start": 165,
+            "video": {
+              "id": "cvwI6-6lfGY",
+              "title": "Memahami teks eksplanasi",
+              "creator": "SMALB KM",
+              "topic": "Teks eksplanasi",
+              "sourceLevel": "SMALB-B",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat & teks pada layar",
+              "description": "Pelajari teks eksplanasi dari SMALB-B Karya Mulia Surabaya melalui penjelasan isyarat dan teks yang tampil di layar.",
+              "sourceTitle": "Video Bahasa Indonesia SMALB_B Karya Mulia Surabaya"
+            }
+          },
+          {
+            "word": "Banjir",
+            "emoji": "🌊",
+            "category": "Peristiwa",
+            "meaning": "Peristiwa meluapnya air sehingga menggenangi wilayah yang biasanya kering.",
+            "example": "Air yang meluap dapat menyebabkan banjir.",
+            "videoId": "cvwI6-6lfGY",
+            "start": 165,
+            "video": {
+              "id": "cvwI6-6lfGY",
+              "title": "Memahami teks eksplanasi",
+              "creator": "SMALB KM",
+              "topic": "Teks eksplanasi",
+              "sourceLevel": "SMALB-B",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat & teks pada layar",
+              "description": "Pelajari teks eksplanasi dari SMALB-B Karya Mulia Surabaya melalui penjelasan isyarat dan teks yang tampil di layar.",
+              "sourceTitle": "Video Bahasa Indonesia SMALB_B Karya Mulia Surabaya"
+            }
+          },
+          {
+            "word": "Eksplanasi",
+            "emoji": "📝",
+            "category": "Teks",
+            "meaning": "Penjelasan tentang bagaimana atau mengapa suatu peristiwa terjadi.",
+            "example": "Teks eksplanasi menjelaskan proses terjadinya hujan.",
+            "videoId": "cvwI6-6lfGY",
+            "start": 75,
+            "video": {
+              "id": "cvwI6-6lfGY",
+              "title": "Memahami teks eksplanasi",
+              "creator": "SMALB KM",
+              "topic": "Teks eksplanasi",
+              "sourceLevel": "SMALB-B",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat & teks pada layar",
+              "description": "Pelajari teks eksplanasi dari SMALB-B Karya Mulia Surabaya melalui penjelasan isyarat dan teks yang tampil di layar.",
+              "sourceTitle": "Video Bahasa Indonesia SMALB_B Karya Mulia Surabaya"
+            }
+          }
+        ],
+        "example": "Hujan merupakan salah satu peristiwa alam.",
+        "video": {
+          "id": "cvwI6-6lfGY",
+          "title": "Memahami teks eksplanasi",
+          "creator": "SMALB KM",
+          "topic": "Teks eksplanasi",
+          "sourceLevel": "SMALB-B",
+          "audience": "tunarungu",
+          "accessibility": "Isyarat & teks pada layar",
+          "description": "Pelajari teks eksplanasi dari SMALB-B Karya Mulia Surabaya melalui penjelasan isyarat dan teks yang tampil di layar.",
+          "sourceTitle": "Video Bahasa Indonesia SMALB_B Karya Mulia Surabaya"
+        }
+      },
+      {
+        "id": "sma-eksplanasi",
+        "aspect": "bacaan",
+        "title": "Memahami teks eksplanasi",
+        "description": "Temukan proses dan sebab peristiwa dalam bacaan sederhana.",
+        "emoji": "📝",
+        "word": "Eksplanasi",
+        "words": [
+          "Eksplanasi",
+          "Hujan",
+          "Banjir"
+        ],
+        "time": 12,
+        "intro": "Kamu akan membaca contoh eksplanasi yang dibuat untuk latihan dengan kosakata dari video dan Kamus Visual SMA.",
+        "explanation": "Hujan deras menambah jumlah air di suatu wilayah. Air biasanya mengalir melalui saluran. Jika saluran tersumbat, air sulit mengalir dan dapat meluap. Luapan air menggenangi jalan yang biasanya kering. Peristiwa ini disebut banjir.",
+        "tip": "Temukan peristiwa yang dibahas, lalu urutkan prosesnya. Bedakan penyebab dengan akibat.",
+        "visual": "🌧️ 📝 🌊",
+        "practice": {
+          "prompt": "Peristiwa yang dijelaskan pada bacaan adalah …",
+          "options": [
+            "Panen jambu",
+            "Banjir",
+            "Rekreasi"
+          ],
+          "correct": 1
+        },
+        "quiz": [
+          {
+            "prompt": "Tujuan contoh teks tersebut adalah …",
+            "options": [
+              "Menceritakan liburan",
+              "Menjelaskan proses banjir",
+              "Menjual buah"
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "Apa yang menambah jumlah air menurut bacaan?",
+            "options": [
+              "Hujan deras",
+              "Panen jambu",
+              "Kapal berlabuh"
+            ],
+            "correct": 0
+          },
+          {
+            "prompt": "Mengapa air sulit mengalir dalam bacaan?",
+            "options": [
+              "Udara dingin",
+              "Langit cerah",
+              "Saluran tersumbat"
+            ],
+            "correct": 2
+          },
+          {
+            "prompt": "Akibat air meluap pada bacaan adalah …",
+            "options": [
+              "Buah tumbuh",
+              "Jalan tergenang",
+              "Kapal berlayar"
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "Teks eksplanasi menjelaskan …",
+            "options": [
+              "Bagaimana atau mengapa peristiwa terjadi",
+              "Daftar nama buah saja",
+              "Perintah meminta izin saja"
+            ],
+            "correct": 0
+          }
+        ],
+        "grade": "SMA",
+        "level": "Lanjutan",
+        "wordEntry": {
+          "word": "Eksplanasi",
+          "emoji": "📝",
+          "category": "Teks",
+          "meaning": "Penjelasan tentang bagaimana atau mengapa suatu peristiwa terjadi.",
+          "example": "Teks eksplanasi menjelaskan proses terjadinya hujan.",
+          "videoId": "cvwI6-6lfGY",
+          "start": 75,
+          "video": {
+            "id": "cvwI6-6lfGY",
+            "title": "Memahami teks eksplanasi",
+            "creator": "SMALB KM",
+            "topic": "Teks eksplanasi",
+            "sourceLevel": "SMALB-B",
+            "audience": "tunarungu",
+            "accessibility": "Isyarat & teks pada layar",
+            "description": "Pelajari teks eksplanasi dari SMALB-B Karya Mulia Surabaya melalui penjelasan isyarat dan teks yang tampil di layar.",
+            "sourceTitle": "Video Bahasa Indonesia SMALB_B Karya Mulia Surabaya"
+          }
+        },
+        "relatedWords": [
+          {
+            "word": "Eksplanasi",
+            "emoji": "📝",
+            "category": "Teks",
+            "meaning": "Penjelasan tentang bagaimana atau mengapa suatu peristiwa terjadi.",
+            "example": "Teks eksplanasi menjelaskan proses terjadinya hujan.",
+            "videoId": "cvwI6-6lfGY",
+            "start": 75,
+            "video": {
+              "id": "cvwI6-6lfGY",
+              "title": "Memahami teks eksplanasi",
+              "creator": "SMALB KM",
+              "topic": "Teks eksplanasi",
+              "sourceLevel": "SMALB-B",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat & teks pada layar",
+              "description": "Pelajari teks eksplanasi dari SMALB-B Karya Mulia Surabaya melalui penjelasan isyarat dan teks yang tampil di layar.",
+              "sourceTitle": "Video Bahasa Indonesia SMALB_B Karya Mulia Surabaya"
+            }
+          },
+          {
+            "word": "Hujan",
+            "emoji": "🌧️",
+            "category": "Peristiwa",
+            "meaning": "Air yang jatuh dari awan ke permukaan bumi dalam bentuk titik-titik air.",
+            "example": "Hujan merupakan salah satu peristiwa alam.",
+            "videoId": "cvwI6-6lfGY",
+            "start": 165,
+            "video": {
+              "id": "cvwI6-6lfGY",
+              "title": "Memahami teks eksplanasi",
+              "creator": "SMALB KM",
+              "topic": "Teks eksplanasi",
+              "sourceLevel": "SMALB-B",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat & teks pada layar",
+              "description": "Pelajari teks eksplanasi dari SMALB-B Karya Mulia Surabaya melalui penjelasan isyarat dan teks yang tampil di layar.",
+              "sourceTitle": "Video Bahasa Indonesia SMALB_B Karya Mulia Surabaya"
+            }
+          },
+          {
+            "word": "Banjir",
+            "emoji": "🌊",
+            "category": "Peristiwa",
+            "meaning": "Peristiwa meluapnya air sehingga menggenangi wilayah yang biasanya kering.",
+            "example": "Air yang meluap dapat menyebabkan banjir.",
+            "videoId": "cvwI6-6lfGY",
+            "start": 165,
+            "video": {
+              "id": "cvwI6-6lfGY",
+              "title": "Memahami teks eksplanasi",
+              "creator": "SMALB KM",
+              "topic": "Teks eksplanasi",
+              "sourceLevel": "SMALB-B",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat & teks pada layar",
+              "description": "Pelajari teks eksplanasi dari SMALB-B Karya Mulia Surabaya melalui penjelasan isyarat dan teks yang tampil di layar.",
+              "sourceTitle": "Video Bahasa Indonesia SMALB_B Karya Mulia Surabaya"
+            }
+          }
+        ],
+        "example": "Teks eksplanasi menjelaskan proses terjadinya hujan.",
+        "video": {
+          "id": "cvwI6-6lfGY",
+          "title": "Memahami teks eksplanasi",
+          "creator": "SMALB KM",
+          "topic": "Teks eksplanasi",
+          "sourceLevel": "SMALB-B",
+          "audience": "tunarungu",
+          "accessibility": "Isyarat & teks pada layar",
+          "description": "Pelajari teks eksplanasi dari SMALB-B Karya Mulia Surabaya melalui penjelasan isyarat dan teks yang tampil di layar.",
+          "sourceTitle": "Video Bahasa Indonesia SMALB_B Karya Mulia Surabaya"
+        }
+      },
+      {
+        "id": "sma-data",
+        "aspect": "akademik",
+        "title": "Membaca data dalam laporan",
+        "description": "Hitung dan bandingkan data contoh dalam konteks hujan.",
+        "emoji": "📊",
+        "word": "Hujan",
+        "words": [
+          "Hujan",
+          "Banjir",
+          "Eksplanasi"
+        ],
+        "time": 12,
+        "intro": "Kamu akan membandingkan angka pada data contoh dan menulis kesimpulan yang sesuai.",
+        "explanation": "Data latihan: Senin 10 mm, Selasa 20 mm, Rabu 30 mm. Totalnya 60 mm. Rata-rata tiga hari adalah 60 ÷ 3 = 20 mm. Data ini hanya untuk latihan dan tidak dipakai untuk memprediksi banjir.",
+        "tip": "Jumlahkan semua nilai untuk total. Bagi total dengan jumlah hari untuk rata-rata. Kesimpulan harus sesuai data.",
+        "visual": "📊 🌧️",
+        "practice": {
+          "prompt": "Total data 10 mm, 20 mm, dan 30 mm adalah …",
+          "options": [
+            "30 mm",
+            "60 mm",
+            "90 mm"
+          ],
+          "correct": 1
+        },
+        "quiz": [
+          {
+            "prompt": "Nilai tertinggi pada data latihan terjadi pada …",
+            "options": [
+              "Senin",
+              "Rabu",
+              "Selasa"
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "Selisih nilai Rabu dan Senin adalah …",
+            "options": [
+              "20 mm",
+              "10 mm",
+              "40 mm"
+            ],
+            "correct": 0
+          },
+          {
+            "prompt": "Total data ketiga hari adalah …",
+            "options": [
+              "30 mm",
+              "50 mm",
+              "60 mm"
+            ],
+            "correct": 2
+          },
+          {
+            "prompt": "Rata-rata data ketiga hari adalah …",
+            "options": [
+              "10 mm",
+              "20 mm",
+              "30 mm"
+            ],
+            "correct": 1
+          },
+          {
+            "prompt": "Kesimpulan yang sesuai dengan data latihan adalah …",
+            "options": [
+              "Nilai Rabu lebih besar daripada Senin.",
+              "Senin memiliki nilai terbesar.",
+              "Semua hari memiliki nilai sama."
+            ],
+            "correct": 0
+          }
+        ],
+        "grade": "SMA",
+        "level": "Lanjutan",
+        "wordEntry": {
+          "word": "Hujan",
+          "emoji": "🌧️",
+          "category": "Peristiwa",
+          "meaning": "Air yang jatuh dari awan ke permukaan bumi dalam bentuk titik-titik air.",
+          "example": "Hujan merupakan salah satu peristiwa alam.",
+          "videoId": "cvwI6-6lfGY",
+          "start": 165,
+          "video": {
+            "id": "cvwI6-6lfGY",
+            "title": "Memahami teks eksplanasi",
+            "creator": "SMALB KM",
+            "topic": "Teks eksplanasi",
+            "sourceLevel": "SMALB-B",
+            "audience": "tunarungu",
+            "accessibility": "Isyarat & teks pada layar",
+            "description": "Pelajari teks eksplanasi dari SMALB-B Karya Mulia Surabaya melalui penjelasan isyarat dan teks yang tampil di layar.",
+            "sourceTitle": "Video Bahasa Indonesia SMALB_B Karya Mulia Surabaya"
+          }
+        },
+        "relatedWords": [
+          {
+            "word": "Hujan",
+            "emoji": "🌧️",
+            "category": "Peristiwa",
+            "meaning": "Air yang jatuh dari awan ke permukaan bumi dalam bentuk titik-titik air.",
+            "example": "Hujan merupakan salah satu peristiwa alam.",
+            "videoId": "cvwI6-6lfGY",
+            "start": 165,
+            "video": {
+              "id": "cvwI6-6lfGY",
+              "title": "Memahami teks eksplanasi",
+              "creator": "SMALB KM",
+              "topic": "Teks eksplanasi",
+              "sourceLevel": "SMALB-B",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat & teks pada layar",
+              "description": "Pelajari teks eksplanasi dari SMALB-B Karya Mulia Surabaya melalui penjelasan isyarat dan teks yang tampil di layar.",
+              "sourceTitle": "Video Bahasa Indonesia SMALB_B Karya Mulia Surabaya"
+            }
+          },
+          {
+            "word": "Banjir",
+            "emoji": "🌊",
+            "category": "Peristiwa",
+            "meaning": "Peristiwa meluapnya air sehingga menggenangi wilayah yang biasanya kering.",
+            "example": "Air yang meluap dapat menyebabkan banjir.",
+            "videoId": "cvwI6-6lfGY",
+            "start": 165,
+            "video": {
+              "id": "cvwI6-6lfGY",
+              "title": "Memahami teks eksplanasi",
+              "creator": "SMALB KM",
+              "topic": "Teks eksplanasi",
+              "sourceLevel": "SMALB-B",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat & teks pada layar",
+              "description": "Pelajari teks eksplanasi dari SMALB-B Karya Mulia Surabaya melalui penjelasan isyarat dan teks yang tampil di layar.",
+              "sourceTitle": "Video Bahasa Indonesia SMALB_B Karya Mulia Surabaya"
+            }
+          },
+          {
+            "word": "Eksplanasi",
+            "emoji": "📝",
+            "category": "Teks",
+            "meaning": "Penjelasan tentang bagaimana atau mengapa suatu peristiwa terjadi.",
+            "example": "Teks eksplanasi menjelaskan proses terjadinya hujan.",
+            "videoId": "cvwI6-6lfGY",
+            "start": 75,
+            "video": {
+              "id": "cvwI6-6lfGY",
+              "title": "Memahami teks eksplanasi",
+              "creator": "SMALB KM",
+              "topic": "Teks eksplanasi",
+              "sourceLevel": "SMALB-B",
+              "audience": "tunarungu",
+              "accessibility": "Isyarat & teks pada layar",
+              "description": "Pelajari teks eksplanasi dari SMALB-B Karya Mulia Surabaya melalui penjelasan isyarat dan teks yang tampil di layar.",
+              "sourceTitle": "Video Bahasa Indonesia SMALB_B Karya Mulia Surabaya"
+            }
+          }
+        ],
+        "example": "Hujan merupakan salah satu peristiwa alam.",
+        "video": {
+          "id": "cvwI6-6lfGY",
+          "title": "Memahami teks eksplanasi",
+          "creator": "SMALB KM",
+          "topic": "Teks eksplanasi",
+          "sourceLevel": "SMALB-B",
+          "audience": "tunarungu",
+          "accessibility": "Isyarat & teks pada layar",
+          "description": "Pelajari teks eksplanasi dari SMALB-B Karya Mulia Surabaya melalui penjelasan isyarat dan teks yang tampil di layar.",
+          "sourceTitle": "Video Bahasa Indonesia SMALB_B Karya Mulia Surabaya"
+        }
+      }
+    ]
+  },
+  "bank": {
+    "SD": {
+      "kosakata": [
+        {
+          "prompt": "Pilih kata yang sesuai dengan gambar ini.",
+          "visual": "🥭",
+          "options": [
+            "Mangga",
+            "Sepatu",
+            "Buku"
+          ],
+          "correct": 0
+        },
+        {
+          "prompt": "Apa arti “menyiram”?",
+          "visual": "🪴💧",
+          "options": [
+            "Memetik bunga",
+            "Memberi air pada tanaman",
+            "Membaca buku"
+          ],
+          "correct": 1
+        },
+        {
+          "prompt": "Pilih nama benda ini.",
+          "visual": "✏️",
+          "options": [
+            "Tas",
+            "Pensil",
+            "Kursi"
+          ],
+          "correct": 1
+        }
+      ],
+      "kalimat": [
+        {
+          "prompt": "“Ayam makan jagung.” Siapa yang makan?",
+          "visual": "🐔 🌽",
+          "options": [
+            "Jagung",
+            "Ayam",
+            "Kandang"
+          ],
+          "correct": 1
+        },
+        {
+          "prompt": "“Sebelum makan, Budi mencuci tangan.” Apa yang dilakukan lebih dulu?",
+          "visual": "🧼 → 🍽️",
+          "options": [
+            "Makan",
+            "Tidur",
+            "Mencuci tangan"
+          ],
+          "correct": 2
+        },
+        {
+          "prompt": "Pilih susunan kalimat yang benar.",
+          "visual": "🐟 🌊",
+          "options": [
+            "Ikan berenang di kolam.",
+            "Kolam ikan berenang.",
+            "Berenang di ikan kolam."
+          ],
+          "correct": 0
+        }
+      ],
+      "bacaan": [
+        {
+          "prompt": "Dina pergi ke kebun. Ia melihat pohon mangga berbuah lebat. Di mana Dina berada?",
+          "visual": "👧 🌳 🥭",
+          "options": [
+            "Pasar",
+            "Kebun",
+            "Sekolah"
+          ],
+          "correct": 1
+        },
+        {
+          "prompt": "Bunga layu karena tanahnya kering. Dina memberi air agar bunga kembali segar. Mengapa Dina memberi air?",
+          "visual": "🌷 💧",
+          "options": [
+            "Agar bunga segar",
+            "Agar tanah kering",
+            "Untuk dibuang"
+          ],
+          "correct": 0
+        },
+        {
+          "prompt": "Budi memelihara dua ekor kelinci di rumah. Hewan apa yang dipelihara Budi?",
+          "visual": "👦 🐰",
+          "options": [
+            "Kucing",
+            "Burung",
+            "Kelinci"
+          ],
+          "correct": 2
+        }
+      ],
+      "akademik": [
+        {
+          "prompt": "Dua jeruk ditambah satu jeruk. Berapa jumlahnya?",
+          "visual": "🍊🍊 + 🍊",
+          "options": [
+            "2",
+            "3",
+            "4"
+          ],
+          "correct": 1
+        },
+        {
+          "prompt": "Ada 6 buah mangga. Tiga mangga dibagikan kepada teman. Berapa sisa mangga?",
+          "visual": "🥭🥭🥭🥭🥭🥭 − 3",
+          "options": [
+            "2",
+            "4",
+            "3"
+          ],
+          "correct": 2
+        },
+        {
+          "prompt": "Satu buah apel ditambah satu buah apel. Berapa jumlahnya?",
+          "visual": "🍎 + 🍎",
+          "options": [
+            "2",
+            "3",
+            "1"
+          ],
+          "correct": 0
+        }
+      ]
+    },
+    "SMP": {
+      "kosakata": [
+        {
+          "prompt": "Kata yang berarti “berperilaku baik dan menghargai orang lain” adalah …",
+          "visual": "🤝 🏫",
+          "options": [
+            "Sopan",
+            "Sombong",
+            "Marah"
+          ],
+          "correct": 0
+        },
+        {
+          "prompt": "Kata “pelabuhan” bermakna tempat untuk …",
+          "visual": "🚢 ⚓",
+          "options": [
+            "Membeli buku sekolah",
+            "Kapal bersandar dan menaikkan penumpang",
+            "Menanam bibit padi"
+          ],
+          "correct": 1
+        },
+        {
+          "prompt": "Saat membutuhkan bantuan orang lain dengan santun, kita mengucapkan …",
+          "visual": "🙋 💬",
+          "options": [
+            "Tolong",
+            "Pergi",
+            "Awas"
+          ],
+          "correct": 0
+        }
+      ],
+      "kalimat": [
+        {
+          "prompt": "“Rani meminjam buku kamus di perpustakaan.” Benda apa yang dipinjam Rani?",
+          "visual": "👧 📚 🏛️",
+          "options": [
+            "Perpustakaan",
+            "Buku kamus",
+            "Rani"
+          ],
+          "correct": 1
+        },
+        {
+          "prompt": "Manakah kalimat berpola Subjek – Predikat – Objek – Keterangan (S-P-O-K)?",
+          "visual": "📝 🏫",
+          "options": [
+            "Siswa menulis cerita di kelas.",
+            "Di kelas siswa cerita.",
+            "Menulis cerita siswa di kelas."
+          ],
+          "correct": 0
+        },
+        {
+          "prompt": "Pilih kalimat tanya yang tepat untuk menanyakan tempat.",
+          "visual": "❓ 📍",
+          "options": [
+            "Di mana sekolah barumu?",
+            "Siapa namamu?",
+            "Berapa harga bukumu?"
+          ],
+          "correct": 0
+        }
+      ],
+      "bacaan": [
+        {
+          "prompt": "Pada hari Minggu, Rani berekreasi bersama keluarga ke pantai. Mereka berangkat pagi hari agar udara masih sejuk. Kapan Rani berekreasi?",
+          "visual": "🏖️ ☀️",
+          "options": [
+            "Hari Senin siang",
+            "Hari Minggu pagi",
+            "Hari Jumat malam"
+          ],
+          "correct": 1
+        },
+        {
+          "prompt": "Nelayan di pesisir mencari ikan pada malam hari dan kembali ke pelabuhan saat fajar. Mengapa nelayan kembali saat fajar?",
+          "visual": "🚢 🌅 🐟",
+          "options": [
+            "Karena sudah selesai mencari ikan dan menjual hasilnya",
+            "Karena ingin berenang di pantai",
+            "Karena tersesat di tengah laut"
+          ],
+          "correct": 0
+        },
+        {
+          "prompt": "Andi mencatat jadwal piket kebersihan di papan kelas. Apa tujuan Andi mencatat jadwal tersebut?",
+          "visual": "📋 🧹",
+          "options": [
+            "Agar kelas tetap bersih dan rapi",
+            "Untuk membeli makanan",
+            "Agar bisa tidur di kelas"
+          ],
+          "correct": 0
+        }
+      ],
+      "akademik": [
+        {
+          "prompt": "Perjalanan dari sekolah ke pelabuhan berangkat pukul 08.00 dan tiba pukul 09.30. Berapa lama perjalanan?",
+          "visual": "🕗 → 🕤",
+          "options": [
+            "1 jam",
+            "1 jam 30 menit",
+            "2 jam"
+          ],
+          "correct": 1
+        },
+        {
+          "prompt": "Sebuah kotak berisi 12 pensil warna. Jika ada 3 kotak yang sama, berapa total pensil warna?",
+          "visual": "📦 12 × 3",
+          "options": [
+            "24 pensil",
+            "36 pensil",
+            "48 pensil"
+          ],
+          "correct": 1
+        },
+        {
+          "prompt": "Ibu membeli 15 buah apel, lalu dibagikan sama rata kepada 3 anak. Berapa apel yang diterima tiap anak?",
+          "visual": "🍎 15 ÷ 3",
+          "options": [
+            "5 apel",
+            "4 apel",
+            "6 apel"
+          ],
+          "correct": 0
+        }
+      ]
+    },
+    "SMA": {
+      "kosakata": [
+        {
+          "prompt": "Teks yang menjelaskan proses terjadinya suatu fenomena alam atau sosial disebut …",
+          "visual": "📝 🌧️",
+          "options": [
+            "Teks narasi fiksi",
+            "Teks eksplanasi",
+            "Teks puisi"
+          ],
+          "correct": 1
+        },
+        {
+          "prompt": "Dalam dunia publikasi dan bisnis, media “iklan komersial” bertujuan untuk …",
+          "visual": "📢 💼",
+          "options": [
+            "Menghibur diri sendiri",
+            "Mempromosikan produk atau jasa kepada khalayak",
+            "Menyimpan berkas pribadi"
+          ],
+          "correct": 1
+        },
+        {
+          "prompt": "Kerangka bentuk atau rancangan visual suatu karya media cetak disebut …",
+          "visual": "🎨 📐",
+          "options": [
+            "Desain",
+            "Suara",
+            "Piknik"
+          ],
+          "correct": 0
+        }
+      ],
+      "kalimat": [
+        {
+          "prompt": "“Curah hujan tinggi menyebabkan air sungai meluap sehingga wilayah pemukiman tergenang banjir.” Kalimat tersebut menunjukkan hubungan …",
+          "visual": "🌧️ 🌊 🏠",
+          "options": [
+            "Sebab dan akibat",
+            "Perbandingan harga",
+            "Ungkapan salam"
+          ],
+          "correct": 0
+        },
+        {
+          "prompt": "Manakah kalimat yang menyatakan fakta secara objektif?",
+          "visual": "📊 📑",
+          "options": [
+            "Pameran karya siswa berlangsung pada tanggal 10 hingga 12 November.",
+            "Menurut saya lukisan itu paling hebat di dunia.",
+            "Mungkin esok hari semua orang akan datang."
+          ],
+          "correct": 0
+        },
+        {
+          "prompt": "Pilihlah kalimat ajakan yang efektif dalam poster promosi kegiatan sekolah.",
+          "visual": "📢 🎨",
+          "options": [
+            "Ayo kunjungi bazar karya siswa kreatif di aula sekolah!",
+            "Kemarin mereka tidak datang ke aula.",
+            "Buku itu tertinggal di atas meja."
+          ],
+          "correct": 0
+        }
+      ],
+      "bacaan": [
+        {
+          "prompt": "Daur air dimulai dari penguapan air permukaan karena panas matahari. Uap air naik ke atmosfer, membentuk awan, lalu turun kembali sebagai hujan. Apa faktor utama penguapan air?",
+          "visual": "☀️ 🌊 ☁️ 🌧️",
+          "options": [
+            "Tiupan angin malam",
+            "Panas sinar matahari",
+            "Tekanan air tanah"
+          ],
+          "correct": 1
+        },
+        {
+          "prompt": "Desain kemasan produk harus memuat informasi komposisi, tanggal kedaluwarsa, dan identitas produsen agar konsumen terlindungi. Mengapa informasi kedaluwarsa sangat penting?",
+          "visual": "🏷️ 📅",
+          "options": [
+            "Mengetahui batas waktu keamanan konsumsi produk",
+            "Menghias tampilan warna wadah kemasan",
+            "Menambah bobot timbangan barang"
+          ],
+          "correct": 0
+        },
+        {
+          "prompt": "Pelatihan bahasa isyarat di lingkungan kerja membantu menciptakan komunikasi yang inklusif dan setara bagi rekan kerja Tuli. Apa dampak positif pelatihan tersebut?",
+          "visual": "🤝 🏢",
+          "options": [
+            "Menumbuhkan lingkungan kerja yang inklusif dan saling memahami",
+            "Menghapus jam istirahat kerja",
+            "Membatasi pergaulan antarkaryawan"
+          ],
+          "correct": 0
+        }
+      ],
+      "akademik": [
+        {
+          "prompt": "Harga sebuah buku adalah Rp20.000. Toko memberikan potongan harga 10%. Berapa jumlah potongan harganya?",
+          "visual": "🏷️ Rp20.000 × 10%",
+          "options": [
+            "Rp1.000",
+            "Rp2.000",
+            "Rp5.000"
+          ],
+          "correct": 1
+        },
+        {
+          "prompt": "Seorang desainer grafis membutuhkan waktu 45 menit untuk membuat 1 halaman menu. Berapa lama waktu yang dibutuhkan untuk menyelesaikan 4 halaman?",
+          "visual": "⏱️ 45 menit × 4",
+          "options": [
+            "2 jam",
+            "3 jam (180 menit)",
+            "4 jam 30 menit"
+          ],
+          "correct": 1
+        },
+        {
+          "prompt": "Modal awal pembuatan suvenir adalah Rp50.000. Setelah dijual, diperoleh pendapatan Rp75.000. Berapa keuntungan yang didapat?",
+          "visual": "💰 Rp75.000 − Rp50.000",
+          "options": [
+            "Rp25.000",
+            "Rp15.000",
+            "Rp30.000"
+          ],
+          "correct": 0
+        }
+      ]
+    }
+  }
+}

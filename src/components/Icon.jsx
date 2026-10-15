@@ -16,6 +16,7 @@ export default function Icon({ name = 'book', size = 22, ...props }) {
  settings: <><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="8" cy="6" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="10" cy="18" r="2"/></>,
  arrow: <><path d="M4 12h16m-6-6 6 6-6 6"/></>,
  arrowLeft: <><path d="m10 18-6-6 6-6M4 12h16"/></>,
+ chevronDown: <path d="m6 9 6 6 6-6"/>,
  chevron: <path d="m9 5 7 7-7 7"/>,
  check: <path d="m5 12 4 4L19 6"/>,
  clock: <><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></>,

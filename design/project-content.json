@@ -1,0 +1,260 @@
+{
+  "SD": {
+    "words": [
+      {
+        "word": "Mangga",
+        "meaning": "Buah yang tumbuh pada pohon mangga.",
+        "category": "Tumbuhan",
+        "example": "Pohon mangga menghasilkan buah mangga.",
+        "start": 80,
+        "videoTitle": "Tumbuhan di sekitar kita"
+      },
+      {
+        "word": "Pepaya",
+        "meaning": "Buah yang tumbuh pada tanaman pepaya.",
+        "category": "Tumbuhan",
+        "example": "Kita menghitung buah pepaya pada gambar.",
+        "start": 165,
+        "videoTitle": "Tumbuhan di sekitar kita"
+      },
+      {
+        "word": "Jeruk",
+        "meaning": "Buah berkulit tebal dengan bagian dalam berupa beberapa ulas.",
+        "category": "Tumbuhan",
+        "example": "Ada dua buah jeruk pada gambar.",
+        "start": 225,
+        "videoTitle": "Tumbuhan di sekitar kita"
+      },
+      {
+        "word": "Ayam",
+        "meaning": "Hewan unggas yang memiliki paruh, sayap, dan dua kaki.",
+        "category": "Hewan",
+        "example": "Ayam dapat dipelihara di rumah.",
+        "start": 75,
+        "videoTitle": "Mengenal hewan peliharaan"
+      },
+      {
+        "word": "Kambing",
+        "meaning": "Hewan berkaki empat yang biasa dipelihara sebagai ternak.",
+        "category": "Hewan",
+        "example": "Kambing berada di dalam kandang.",
+        "start": 110,
+        "videoTitle": "Mengenal hewan peliharaan"
+      },
+      {
+        "word": "Ikan",
+        "meaning": "Hewan yang hidup di air dan bernapas dengan insang.",
+        "category": "Hewan",
+        "example": "Ikan berenang di kolam.",
+        "start": 165,
+        "videoTitle": "Mengenal hewan peliharaan"
+      },
+      {
+        "word": "Keluarga",
+        "meaning": "Unit terkecil dalam masyarakat yang terdiri atas ayah, ibu, dan anak.",
+        "category": "Keluarga",
+        "example": "Keluarga berkumpul bersama di rumah.",
+        "start": 60,
+        "videoTitle": "Mengenal anggota keluarga"
+      },
+      {
+        "word": "Ibu",
+        "meaning": "Wanita yang melahirkan atau merawat kita dengan penuh kasih.",
+        "category": "Keluarga",
+        "example": "Ibu membimbing belajar di rumah.",
+        "start": 120,
+        "videoTitle": "Mengenal anggota keluarga"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Tumbuhan di sekitar kita",
+        "sourceLevel": "SDLB · Kelas 4"
+      },
+      {
+        "title": "Mengenal hewan peliharaan",
+        "sourceLevel": "SDLB · Kelas 4"
+      },
+      {
+        "title": "Mengenal anggota keluarga",
+        "sourceLevel": "SDLB · Kelas 2"
+      },
+      {
+        "title": "Simbol perubahan cuaca",
+        "sourceLevel": "SDLB · Kelas 6"
+      }
+    ]
+  },
+  "SMP": {
+    "words": [
+      {
+        "word": "Sekolah",
+        "meaning": "Tempat peserta didik belajar bersama guru.",
+        "category": "Tempat",
+        "example": "Kita bersikap sopan di lingkungan sekolah.",
+        "start": 285,
+        "videoTitle": "Bahasa Indonesia melalui percakapan"
+      },
+      {
+        "word": "Sopan",
+        "meaning": "Berperilaku baik dan menghargai orang lain.",
+        "category": "Sikap",
+        "example": "Kita berbicara dengan sopan kepada guru.",
+        "start": 405,
+        "videoTitle": "Bahasa Indonesia melalui percakapan"
+      },
+      {
+        "word": "Permisi",
+        "meaning": "Ungkapan untuk meminta izin atau perhatian dengan sopan.",
+        "category": "Ungkapan",
+        "example": "Permisi, saya ingin lewat.",
+        "start": 410,
+        "videoTitle": "Bahasa Indonesia melalui percakapan"
+      },
+      {
+        "word": "Rekreasi",
+        "meaning": "Kegiatan untuk menyegarkan pikiran atau bersenang-senang.",
+        "category": "Kegiatan",
+        "example": "Kita berekreasi bersama keluarga.",
+        "start": 285,
+        "videoTitle": "Memahami isi paragraf sederhana"
+      },
+      {
+        "word": "Pelabuhan",
+        "meaning": "Tempat kapal berlabuh untuk menaikkan atau menurunkan penumpang dan barang.",
+        "category": "Tempat",
+        "example": "Kapal berhenti di pelabuhan.",
+        "start": 585,
+        "videoTitle": "Memahami isi paragraf sederhana"
+      },
+      {
+        "word": "Kalimat",
+        "meaning": "Kesatuan ujar yang mengungkapkan suatu konsep pikiran dan perasaan.",
+        "category": "Bahasa",
+        "example": "Kita menyusun kalimat berpola subjek dan predikat.",
+        "start": 85,
+        "videoTitle": "Mengenal struktur kalimat"
+      },
+      {
+        "word": "Membaca",
+        "meaning": "Melihat serta memahami isi dari apa yang tertulis.",
+        "category": "Kegiatan",
+        "example": "Peserta didik membaca teks dengan cermat.",
+        "start": 150,
+        "videoTitle": "Mengenal struktur kalimat"
+      },
+      {
+        "word": "Gunung",
+        "meaning": "Bukit yang sangat besar dan tinggi.",
+        "category": "Geografi",
+        "example": "Masyarakat beraktivitas di daerah lereng gunung.",
+        "start": 70,
+        "videoTitle": "Aktivitas manusia dan kondisi geografis"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Bahasa Indonesia melalui percakapan",
+        "sourceLevel": "SMPLB · Kelas 7"
+      },
+      {
+        "title": "Memahami isi paragraf sederhana",
+        "sourceLevel": "SMPLB · Kelas 9"
+      },
+      {
+        "title": "Mengenal struktur kalimat",
+        "sourceLevel": "SMPLB · Kelas 9"
+      },
+      {
+        "title": "Aktivitas manusia dan kondisi geografis",
+        "sourceLevel": "SMPLB · Kelas 8"
+      }
+    ]
+  },
+  "SMA": {
+    "words": [
+      {
+        "word": "Eksplanasi",
+        "meaning": "Penjelasan tentang bagaimana atau mengapa suatu peristiwa terjadi.",
+        "category": "Teks",
+        "example": "Teks eksplanasi menjelaskan proses terjadinya hujan.",
+        "start": 75,
+        "videoTitle": "Memahami teks eksplanasi"
+      },
+      {
+        "word": "Hujan",
+        "meaning": "Air yang jatuh dari awan ke permukaan bumi dalam bentuk titik-titik air.",
+        "category": "Peristiwa",
+        "example": "Hujan merupakan salah satu peristiwa alam.",
+        "start": 165,
+        "videoTitle": "Memahami teks eksplanasi"
+      },
+      {
+        "word": "Banjir",
+        "meaning": "Peristiwa meluapnya air sehingga menggenangi wilayah yang biasanya kering.",
+        "category": "Peristiwa",
+        "example": "Air yang meluap dapat menyebabkan banjir.",
+        "start": 165,
+        "videoTitle": "Memahami teks eksplanasi"
+      },
+      {
+        "word": "Purwakarta",
+        "meaning": "Nama kabupaten di Provinsi Jawa Barat.",
+        "category": "Tempat",
+        "example": "Purwakarta diperagakan dalam video kosakata isyarat.",
+        "start": 80,
+        "videoTitle": "Kosakata sehari-hari dalam bahasa isyarat"
+      },
+      {
+        "word": "Jambu",
+        "meaning": "Nama kelompok buah; pada video ditunjukkan gambar jambu air.",
+        "category": "Buah",
+        "example": "Gambar jambu membantu mengenali kata yang diperagakan.",
+        "start": 110,
+        "videoTitle": "Kosakata sehari-hari dalam bahasa isyarat"
+      },
+      {
+        "word": "Inggris",
+        "meaning": "Nama negara yang merupakan bagian dari Britania Raya.",
+        "category": "Tempat",
+        "example": "Kata Inggris diperagakan bersama gambar bendera dalam video.",
+        "start": 170,
+        "videoTitle": "Kosakata sehari-hari dalam bahasa isyarat"
+      },
+      {
+        "word": "Iklan",
+        "meaning": "Pemberitahuan kepada khalayak mengenai barang atau jasa yang ditawarkan.",
+        "category": "Media",
+        "example": "Iklan komersial mempromosikan produk kepada masyarakat.",
+        "start": 80,
+        "videoTitle": "Mengenal jenis-jenis iklan"
+      },
+      {
+        "word": "Informasi",
+        "meaning": "Pemberitahuan, kabar, atau berita tentang sesuatu hal.",
+        "category": "Media",
+        "example": "Iklan layanan masyarakat menyajikan informasi edukatif.",
+        "start": 160,
+        "videoTitle": "Mengenal jenis-jenis iklan"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Memahami teks eksplanasi",
+        "sourceLevel": "SMALB-B"
+      },
+      {
+        "title": "Kosakata sehari-hari dalam bahasa isyarat",
+        "sourceLevel": "SMALB-B"
+      },
+      {
+        "title": "Mengenal jenis-jenis iklan",
+        "sourceLevel": "SMALB Tunarungu"
+      },
+      {
+        "title": "Keterampilan desain menu makanan",
+        "sourceLevel": "SMALB · Kelas 11"
+      }
+    ]
+  }
+}
