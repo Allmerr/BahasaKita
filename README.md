@@ -25,6 +25,8 @@ Akun admin membuka **Kelola konten** (`/admin`) untuk membuat/mengedit materi, v
 
 Bank awal berisi 12 materi, 4 kelas dasar, 36 soal asesmen, 12 latihan, serta 60 soal evaluasi. Sumber seed ada di `content/legacy-*.js`; jalankan `npm run seed:learning` untuk menyusun SQL awal dan skrip deploy gabungan. Berkas seed tidak dimuat oleh frontend. Kunci disimpan di schema privat, sementara katalog publik hanya berisi materi, pertanyaan, serta pilihan.
 
+Admin langsung masuk ke `/admin` setelah izin akun terverifikasi. Navigasi belajar disembunyikan pada mode admin. Tombol **Lihat sebagai siswa** membuka sesi pratinjau dengan penilaian server, pilihan jenjang, dan progres uji tersendiri. Jawaban, nilai, penguasaan, serta perubahan profil/pengaturan pratinjau disimpan sementara pada server; foto dan video uji tetap lokal di browser. **Kembali ke admin** mengakhiri sesi tersebut. Sesi dapat dilanjutkan setelah refresh pada tab yang sama selama server masih aktif, dan berakhir setelah 60 menit tanpa aktivitas. Login siswa tetap memakai alur belajar biasa.
+
 Kamus Visual dan katalog video referensi masih dikelola dalam `src/gradeDictionary.js` dan `src/youtubeMaterials.js`. Aturan penilaian/rekomendasi (ambang 80, empat aspek, jumlah soal) tetap aturan aplikasi. Konten contoh belum menjadi instrumen asesmen atau kurikulum yang tervalidasi; materi/video instruksi perlu tinjauan pendidik dan komunitas Tuli. Video lokal pada Pengaturan hanya pratinjau sesi. Fitur unduh luring, reset password, dan penghapusan akun belum tersedia.
 
 ## Verifikasi
