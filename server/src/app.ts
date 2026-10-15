@@ -5,6 +5,7 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 import { profileInput, preferencesInput } from './validation.js'
 import { AVATAR_BUCKET, AVATAR_LIMIT, avatarExtension, ownsAvatar } from './avatar.js'
 import { installLearningRoutes } from './learning-routes.js'
+import { installSupportRoutes } from './support-routes.js'
 
 export function createApp(clientForToken: (token: string) => SupabaseClient) {
   const app = express()
@@ -88,6 +89,7 @@ export function createApp(clientForToken: (token: string) => SupabaseClient) {
     res.json({ avatar_path: null, avatar_url: null })
   })
   installLearningRoutes(app, clientForToken)
+  installSupportRoutes(app)
   app.use((error: { status?: number }, req: express.Request, res: express.Response, _next: express.NextFunction) => {
     const status = error.status === 400 || error.status === 413 ? error.status : 500
     res.status(status).json({ error: status === 413 ? req.path.endsWith('/avatar')?'Berkas terlalu besar. Foto profil maksimal 2 MB.':'Permintaan terlalu besar.' : 'Permintaan belum dapat diproses.' })

@@ -12,7 +12,7 @@ export function ProfileAvatar({ profile, size = 24 }) {
 }
 
 export function ProfileEditor() {
- const { state, saveProfile } = useStore()
+ const { state, saveProfile,isSupporter } = useStore()
  const profile = state.profile
  const [fields, setFields] = useState(() => ({ name: profile?.name || '', grade: profile?.grade || 'SD', goal: profile?.goal || 'Mengenal kata' }))
  const [saving, setSaving] = useState(false)
@@ -33,12 +33,12 @@ export function ProfileEditor() {
   } catch (error) { setError(error.message) }
   finally { setSaving(false) }
  }
- return <section className="panel"><h2>Profil belajarmu</h2><form onSubmit={submit}>
+ return <section className="panel"><h2>{isSupporter?'Profil pendamping':'Profil belajarmu'}</h2><form onSubmit={submit}>
   <label className="field">Nama panggilan<input name="name" required maxLength={30} value={fields.name} onChange={change} autoComplete="nickname" disabled={saving}/></label>
-  <label className="field">Jenjang<select name="grade" value={fields.grade} onChange={change} disabled={saving}><option>SD</option><option>SMP</option><option>SMA</option></select></label>
-  <label className="field">Tujuan belajar<select name="goal" value={fields.goal} onChange={change} disabled={saving}><option>Mengenal kata</option><option>Memahami cerita</option><option>Belajar matematika</option></select></label>
+  {!isSupporter&&<><label className="field">Jenjang<select name="grade" value={fields.grade} onChange={change} disabled={saving}><option>SD</option><option>SMP</option><option>SMA</option></select></label>
+  <label className="field">Tujuan belajar<select name="goal" value={fields.goal} onChange={change} disabled={saving}><option>Mengenal kata</option><option>Memahami cerita</option><option>Belajar matematika</option></select></label></>}
   <button className="btn" type="submit" disabled={saving}>{saving ? 'Menyimpan…' : 'Simpan profil'}<Icon name="check" size={17}/></button>
-  <p className="muted">Materi dan kamus mengikuti jenjang belajarmu.</p>
+  {!isSupporter&&<p className="muted">Materi dan kamus mengikuti jenjang belajarmu.</p>}
   {notice && <p role="status" className="save-notice">{notice}</p>}{error && <p role="alert" className="profile-error">{error}</p>}
  </form></section>
 }

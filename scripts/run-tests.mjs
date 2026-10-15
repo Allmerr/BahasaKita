@@ -12,7 +12,7 @@ if(mode==='unit')steps.push(['Server unit validation',['server/node_modules/tsx/
 if(['all','e2e'].includes(mode)){
  steps.push(['Compile API',['server/node_modules/typescript/bin/tsc','--project','server/tsconfig.json'],root])
  if(mode==='all')steps.push(['Production frontend build',['node_modules/vite/bin/vite.js','build'],root])
- for(const [label,file] of [['Profile and photo browser flow','check-profile-flow.mjs'],['Learning and admin browser flow','check-learning-flow.mjs'],['All lesson visuals','check-lesson-visuals.mjs'],['Admin workspace and isolated preview','check-admin-preview.mjs']])steps.push([label,['scripts/'+file],root])
+ for(const [label,file] of [['Profile and photo browser flow','check-profile-flow.mjs'],['Learning and admin browser flow','check-learning-flow.mjs'],['All lesson visuals','check-lesson-visuals.mjs'],['Admin workspace and isolated preview','check-admin-preview.mjs'],['Teacher, parent and student support','check-support-flow.mjs']])steps.push([label,['scripts/'+file],root])
 }
 if(!steps.length)throw new Error('Unknown test group: '+mode)
 for(const [name,args,cwd] of steps){
