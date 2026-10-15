@@ -7,16 +7,17 @@ const { PGlite }=require('@electric-sql/pglite')
 export async function learningFixture() {
  const db=new PGlite()
  const preferences={textSize:'normal',theme:'light',speed:'1',comfortable:true,contrast:false,language:'default',dataSaver:false}
- const users=['Siswa','Siswa B','kevin'].map((name,i)=>({id:`${i+1}${i+1}${i+1}${i+1}${i+1}${i+1}${i+1}${i+1}-${i+1}${i+1}${i+1}${i+1}-4${i+1}${i+1}${i+1}-8${i+1}${i+1}${i+1}-${String(i+1).repeat(12)}`,email:i===2?'kevinalmer@apps.ipb.ac.id':`student${i}@example.test`,aud:'authenticated',role:'authenticated',app_metadata:{provider:'email',providers:['email']},user_metadata:{name,grade:'SD',goal:'Mengenal kata'},created_at:new Date().toISOString()}))
+ const users=['Siswa','Siswa B','kevin','Bu Guru','Orang Tua','Guru Lain'].map((name,i)=>({id:`${i+1}${i+1}${i+1}${i+1}${i+1}${i+1}${i+1}${i+1}-${i+1}${i+1}${i+1}${i+1}-4${i+1}${i+1}${i+1}-8${i+1}${i+1}${i+1}-${String(i+1).repeat(12)}`,email:i===2?'kevinalmer@apps.ipb.ac.id':`student${i}@example.test`,aud:'authenticated',role:'authenticated',app_metadata:{provider:'email',providers:['email']},user_metadata:{name,grade:'SD',goal:'Mengenal kata'},created_at:new Date().toISOString()}))
  const encoded=value=>Buffer.from(JSON.stringify(value)).toString('base64url')
  const sessions=users.map(user=>({user,access_token:encoded({alg:'HS256',typ:'JWT'})+'.'+encoded({sub:user.id,aud:'authenticated',exp:Math.floor(Date.now()/1000)+3600})+'.fixture',refresh_token:'fixture-'+user.id,token_type:'bearer',expires_in:3600}))
  await db.exec(`create role anon;create role authenticated;create schema auth;
- create table auth.users(id uuid primary key,email text);
+ create table auth.users(id uuid primary key,email text,raw_user_meta_data jsonb default '{}');
  create function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;
  grant usage on schema auth to anon,authenticated;grant execute on function auth.uid() to anon,authenticated;
  create table learner_profiles(user_id uuid primary key references auth.users,name text,grade text,goal text,preferences jsonb,avatar_path text);`)
- for(const user of users){await db.query('insert into auth.users values($1,$2)',[user.id,user.email]);await db.query('insert into learner_profiles values($1,$2,$3,$4,$5,null)',[user.id,user.user_metadata.name,'SD','Mengenal kata',JSON.stringify(preferences)])}
- for(const name of ['004_learning_platform.sql','004b_admin_content.sql','005_learning_seed.sql','006_first_admin.sql'])await db.exec(readFileSync(new URL('../supabase/migrations/'+name,import.meta.url),'utf8'))
+ for(const user of users){await db.query('insert into auth.users(id,email) values($1,$2)',[user.id,user.email]);await db.query('insert into learner_profiles values($1,$2,$3,$4,$5,null)',[user.id,user.user_metadata.name,'SD','Mengenal kata',JSON.stringify(preferences)])}
+ for(const name of ['004_learning_platform.sql','004b_admin_content.sql','005_learning_seed.sql','006_first_admin.sql','007_support_dashboards.sql'])await db.exec(readFileSync(new URL('../supabase/migrations/'+name,import.meta.url),'utf8'))
+ for(const [index,role] of [[3,'teacher'],[4,'parent'],[5,'teacher']])await db.query('insert into user_roles(user_id,role) values($1,$2)',[users[index].id,role]);
  const keys=new Map((await db.query('select * from private.answer_keys')).rows.map(q=>[q.question_id,q.answer]))
  let queue=Promise.resolve()
  const run=(uid,fn)=>{const pending=queue.then(async()=>{await db.exec('reset role');await db.query("select set_config('request.jwt.claim.sub',$1,false)",[uid||'']);await db.exec(uid?'set role authenticated':'set role anon');try{return await fn()}finally{await db.exec('reset role')}});queue=pending.catch(()=>{});return pending}

@@ -6,7 +6,7 @@ Aplikasi React + Vite dengan Supabase Auth dan API Express. Mendukung siswa SD, 
 
 1. Jalankan `npm install` dan `npm --prefix server install`.
 2. Isi Project URL dan publishable key pada `.env.local`, lalu `npm run setup:supabase`. Secret/service-role key tidak diperlukan.
-3. Siapkan Supabase mengikuti [SETUP-SUPABASE.md](SETUP-SUPABASE.md). Proyek yang sudah menjalankan migrasi 001–003 cukup menjalankan [DEPLOY-LEARNING.sql](supabase/DEPLOY-LEARNING.sql). Akun `kevinalmer@apps.ipb.ac.id` menjadi admin pertama.
+3. Siapkan Supabase mengikuti [SETUP-SUPABASE.md](SETUP-SUPABASE.md). Proyek yang sudah menjalankan migrasi 001–003 cukup menjalankan [DEPLOY-LEARNING.sql](supabase/DEPLOY-LEARNING.sql). Akun `kevinalmer@apps.ipb.ac.id` menjadi admin pertama. Untuk dashboard pendamping, lanjutkan dengan [migrasi 007](supabase/migrations/007_support_dashboards.sql).
 4. Jalankan `npm run dev:api` dan `npm run dev` pada dua terminal. Frontend meneruskan `/api` ke port 3001.
 
 `npm run build` menghasilkan frontend pada `dist`; `npm run preview` menyediakan pratinjau hasil build. Pada produksi, layani frontend dan API di origin HTTPS yang sama. Ngrok untuk preview harus menunjuk frontend yang meneruskan API.
@@ -28,6 +28,12 @@ Bank awal berisi 12 materi, 4 kelas dasar, 36 soal asesmen, 12 latihan, serta 60
 Admin langsung masuk ke `/admin` setelah izin akun terverifikasi. Navigasi belajar disembunyikan pada mode admin. Tombol **Lihat sebagai siswa** membuka sesi pratinjau dengan penilaian server, pilihan jenjang, dan progres uji tersendiri. Jawaban, nilai, penguasaan, serta perubahan profil/pengaturan pratinjau disimpan sementara pada server; foto dan video uji tetap lokal di browser. **Kembali ke admin** mengakhiri sesi tersebut. Sesi dapat dilanjutkan setelah refresh pada tab yang sama selama server masih aktif, dan berakhir setelah 60 menit tanpa aktivitas. Login siswa tetap memakai alur belajar biasa.
 
 Kamus Visual dan katalog video referensi masih dikelola dalam `src/gradeDictionary.js` dan `src/youtubeMaterials.js`. Aturan penilaian/rekomendasi (ambang 80, empat aspek, jumlah soal) tetap aturan aplikasi. Konten contoh belum menjadi instrumen asesmen atau kurikulum yang tervalidasi; materi/video instruksi perlu tinjauan pendidik dan komunitas Tuli. Video lokal pada Pengaturan hanya pratinjau sesi. Fitur unduh luring, reset password, dan penghapusan akun belum tersedia.
+
+## Guru dan orang tua
+
+Setelah migrasi 007, registrasi mendukung siswa, guru, dan orang tua. Akun lama dapat diatur oleh admin melalui **Akun pendamping**. Guru/orang tua langsung masuk dashboard di `/support`, tanpa asesmen atau menu belajar siswa.
+
+Siswa membuat kode undangan sekali pakai (24 jam) di **Pendamping**. Hanya akun yang menerima undangan sesuai perannya yang dapat melihat progres siswa. Guru melihat empat aspek, riwayat dan ringkasan kesulitan, memberi tugas dari materi terbit sesuai jenjang, serta catatan. Orang tua melihat perkembangan anak, tugas/catatan guru, dan saran kegiatan di rumah. Status tugas ditentukan oleh penguasaan evaluasi yang dinilai server sejak tugas diberikan. Siswa tetap dapat belajar mandiri. Kedua pihak dapat memutuskan hubungan dan akses langsung dihentikan. Panduan aktivasi dan pengujian akun tersedia di [SETUP-SUPABASE.md](SETUP-SUPABASE.md).
 
 ## Verifikasi
 

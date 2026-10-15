@@ -10,7 +10,7 @@ Gunakan Node.js 22.12+ atau Node.js 24+, lalu jalankan `npm ci` dan `npm --prefi
 | `npm run test:unit` | Unit/komponen React dan unit validasi backend |
 | `npm run test:watch` | Unit frontend dalam mode watch |
 | `npm run test:coverage` | Unit frontend dengan laporan V8 di `coverage/index.html` dan `coverage/coverage-summary.json` |
-| `npm run test:e2e` | Kompilasi API dan empat alur browser: profil/foto, belajar/admin, visual semua materi, serta pratinjau admin |
+| `npm run test:e2e` | Kompilasi API dan lima alur browser: profil/foto, belajar/admin, visual semua materi, pratinjau admin, serta guru–orang tua–siswa |
 | `npm run test:all` | Unit, integrasi, laporan coverage frontend, build produksi, dan seluruh alur browser |
 | `node scripts/check-learning.mjs` | Pemeriksaan tambahan integritas seed dan render rute setiap jenjang |
 
@@ -31,6 +31,7 @@ Untuk tes browser, jalankan `npx playwright install chromium` satu kali. Skrip m
 | Beranda, jalur, profil, kemajuan | `pages`, `learning-logic`: rekomendasi, batas jenjang, mastery, jejak belajar, arsip lama dan rute privat | Penguasaan/riwayat sesudah sesi belajar |
 | Admin | `admin`, `learning-validation`, `learning-routes`: editor, pilihan/kunci, draft, simpan sebelum terbit, penolakan siswa | PostgreSQL memeriksa peran, draft tersembunyi, publikasi, versi tetap, sesi aktif dan penguasaan antarversi |
 | Admin dan pratinjau siswa | `pages`, `learning-store`, `preview`, `preview-routes`: pengalihan admin, menu terpisah, izin yang belum terverifikasi, sesi sementara, kepemilikan, TTL, grade/profil/pengaturan uji, serta pengakhiran sesi | Paritas penilaian pratinjau dengan PostgreSQL; browser memeriksa asesmen/mastery, refresh/resume, pergantian jenjang, dan tidak berubahnya profil/progres asli |
+| Guru, orang tua, dan siswa | `support`, `support-routes`, `support.test.ts`: role dari database, kode sekali pakai/kedaluwarsa/batal, relasi aktif, progres terhubung, tugas sesuai jenjang, catatan guru, retry idempoten dan pencabutan akses | Browser tiga akun: hubungkan guru/orang tua, beri tugas/catatan, respons hilang lalu retry, status selesai dari grading PostgreSQL, batas orang tua, pemutusan hubungan dan mobile |
 | Keamanan data dan kegagalan API | `api`, `auth-config`, `app`, `learning-routes`: JWT, key browser, tipe input, JSON rusak, ukuran berlebih, nilai/peran palsu dan error terkontrol | RLS/permission pemilik; kunci privat; larangan promosi admin; arsip lokal tidak membuka materi; migrasi/seed bisa dijalankan ulang |
 
 Nama berkas unit frontend berada di `tests/unit/`. Tes backend berada di `server/src/*.test.ts`. `learning.test.ts` menjalankan banyak skenario berurutan pada database yang sama; jumlah test case runner bukan jumlah assertion atau variasi inputnya.

@@ -19,7 +19,10 @@ export function installLearningRoutes(app:Express,clientForToken:(token:string)=
  app.get('/api/v1/me/access',async (_req,res)=>{
   const {data,error}=await res.locals.client.rpc('bk_is_admin')
   if (error) {res.status(503).json({error:'Hak akses akun belum dapat dimuat. Coba lagi.'});return}
-  res.json({isAdmin:data===true})
+  const role=await res.locals.client.rpc('bk_support_role')
+  if(role.error&&!['PGRST202','42883','42P01'].includes(role.error.code)){res.status(503).json({error:'Hak akses akun belum dapat dimuat. Coba lagi.'});return}
+  if(!role.error&&!['student','teacher','parent','admin'].includes(role.data)){res.status(503).json({error:'Hak akses akun belum dapat dimuat. Coba lagi.'});return}
+  res.json({isAdmin:data===true,role:data===true?'admin':role.error?'student':role.data,supportReady:!role.error})
  })
  app.get('/api/v1/me/learning',async (_req,res)=>{await run(res,'bk_learning_state')})
  app.post('/api/v1/me/learning/import',async(req,res)=>{

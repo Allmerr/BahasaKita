@@ -22,6 +22,7 @@ export function Provider({ children }) {
  const [accountReady,setAccountReady] = useState(false)
  const [learningError,setLearningError] = useState('')
  const [isAdmin,setIsAdmin] = useState(false)
+ const [role,setRole] = useState('student'),[supportReady,setSupportReady] = useState(false)
  const [accessReady,setAccessReady] = useState(false),[accessError,setAccessError] = useState('')
  const [preview,setPreview] = useState(null),[previewError,setPreviewError] = useState('')
  const previewId=useRef(null),previewPhoto=useRef(null)
@@ -35,6 +36,9 @@ export function Provider({ children }) {
   if(typeof data?.isAdmin!=='boolean')throw new Error('Hak akses akun belum dapat dimuat. Coba lagi.')
   if(!active())return
   setIsAdmin(data.isAdmin)
+  const nextRole=data.role||(data.isAdmin?'admin':'student')
+  if(!['student','admin','teacher','parent'].includes(nextRole))throw new Error('Peran akun belum valid.')
+  setRole(nextRole);setSupportReady(data.supportReady===true)
   if(data.isAdmin){
    let saved;try{saved=sessionStorage.getItem(previewKey)}catch{}
    if(saved&&!previewId.current){try{const restored=await account.accountApi('/admin/preview/'+saved);if(active())rememberPreview(restored)}catch{if(active())clearPreview()}}
@@ -56,7 +60,7 @@ export function Provider({ children }) {
  useEffect(()=>{let active=true;fetchCatalog().then(data=>{if(active){setContent(data);setContentError('')}}).catch(error=>{if(active)setContentError(error.message)});return()=>{active=false}},[])
  useEffect(()=>{
   let active=true
-  setAccountReady(false);setAccountError('');setLearningError('');setIsAdmin(false);setAccessReady(false);setAccessError('');setClips({});previewId.current=null;setPreview(null)
+  setAccountReady(false);setAccountError('');setLearningError('');setIsAdmin(false);setRole('student');setSupportReady(false);setAccessReady(false);setAccessError('');setClips({});previewId.current=null;setPreview(null)
   setState(previous=>({...structuredClone(initialState),settings:previous.settings}))
   if(!userId)return()=>{active=false}
   account.accountApi().then(async data=>{
@@ -70,7 +74,7 @@ export function Provider({ children }) {
     let learning=results[1].value
     let legacy=null
     try{legacy=JSON.parse(localStorage.getItem('bahasakita-learning-'+userId)||'null')}catch{}
-    if(results[0].status==='fulfilled'&&!results[0].value.isAdmin&&!learning.legacy&&legacy&&(legacy.assessment||legacy.attempts?.length||legacy.mastered?.length)){
+    if(results[0].status==='fulfilled'&&!results[0].value.isAdmin&&(!results[0].value.role||results[0].value.role==='student')&&!learning.legacy&&legacy&&(legacy.assessment||legacy.attempts?.length||legacy.mastered?.length)){
      try{await account.accountApi('/learning/import',legacy,{method:'POST'});learning=await account.accountApi('/learning')}catch{}
     }
     if(active)setState(previous=>({...previous,...learning,learningReady:true}))
@@ -124,7 +128,7 @@ export function Provider({ children }) {
  const masteredLessons=visibleState.mastered.filter(id=>activeIds.has(id))
  const lessonAttempts=visibleState.attempts.filter(attempt=>attempt.type==='lesson'&&activeIds.has(attempt.lesson))
  const path=buildPath(visibleState,catalog),next=path.find(lesson=>!visibleState.mastered.includes(lesson.id))
- return <Store.Provider value={{state:visibleState,setState:setVisibleState,update,setting,path,next,clips:visibleClips,setClips:setVisibleClips,saveProfile,savePreferences,uploadAvatar,removeAvatar,accountError,accountReady,isAdmin,accessReady,accessError,reloadAccess,studentPreview:!!preview,startPreview,stopPreview,learningError:preview?previewError:learningError,contentError:preview?'':contentError,reloadCatalog,reloadLearning,startAttempt,answerAttempt,setStage,getAttempt,lessons:catalog,basicMaterials:visibleContent.basicMaterials,dictionary:dictionaryForGrade(visibleState.profile?.grade),masteredLessons,lessonAttempts}}>{children}</Store.Provider>
+ return <Store.Provider value={{state:visibleState,setState:setVisibleState,update,setting,path,next,clips:visibleClips,setClips:setVisibleClips,saveProfile,savePreferences,uploadAvatar,removeAvatar,accountError,accountReady,isAdmin,role,supportReady,isSupporter:!preview&&['teacher','parent'].includes(role),accessReady,accessError,reloadAccess,studentPreview:!!preview,startPreview,stopPreview,learningError:preview?previewError:learningError,contentError:preview?'':contentError,reloadCatalog,reloadLearning,startAttempt,answerAttempt,setStage,getAttempt,lessons:catalog,allLessons:visibleContent.lessons,basicMaterials:visibleContent.basicMaterials,dictionary:dictionaryForGrade(visibleState.profile?.grade),masteredLessons,lessonAttempts}}>{children}</Store.Provider>
 }
 export const useStore = () => useContext(Store)
 export function buildPath(state, lessons = []) {
