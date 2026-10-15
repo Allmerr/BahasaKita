@@ -12,7 +12,16 @@
     "setup:supabase": "node scripts/setup-supabase.mjs",
     "check:supabase": "node scripts/check-supabase.mjs",
     "test:supabase-config": "node scripts/check-supabase-config.mjs",
-    "test:profile": "node scripts/check-profile-flow.mjs"
+    "test:profile": "node scripts/check-profile-flow.mjs",
+    "seed:learning": "node scripts/generate-learning-seed.mjs",
+    "test:learning": "node scripts/check-learning-flow.mjs",
+    "test:visuals": "node scripts/check-lesson-visuals.mjs",
+    "test": "node scripts/run-tests.mjs",
+    "test:unit": "node scripts/run-tests.mjs unit",
+    "test:coverage": "node scripts/run-tests.mjs coverage",
+    "test:e2e": "node scripts/run-tests.mjs e2e",
+    "test:all": "node scripts/run-tests.mjs all",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.117.3",
@@ -21,10 +30,17 @@
     "react-router-dom": "^6.26.2"
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "@vitejs/plugin-react": "^4.3.2",
+    "@vitest/coverage-v8": "^4.1.11",
     "autoprefixer": "^10.4.20",
+    "jsdom": "^26.1.0",
+    "playwright": "^1.64.1",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.13",
-    "vite": "^5.4.8"
+    "vite": "^5.4.8",
+    "vitest": "^4.1.11"
   }
 }

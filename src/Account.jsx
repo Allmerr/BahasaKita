@@ -34,6 +34,7 @@ export function AccountProvider({ children }) {
     requireClient()
     const { error } = await supabase.auth.signOut()
     if (error) throw new Error('Belum berhasil keluar. Coba lagi.')
+    try { if(session?.user.id)sessionStorage.removeItem('bahasakita-preview-'+session.user.id) } catch {}
   }
   return <Context.Provider value={{ session, loading, login, register, logout, accountApi }}>{children}</Context.Provider>
 }

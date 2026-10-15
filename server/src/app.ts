@@ -4,11 +4,12 @@ import { randomUUID } from 'node:crypto'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { profileInput, preferencesInput } from './validation.js'
 import { AVATAR_BUCKET, AVATAR_LIMIT, avatarExtension, ownsAvatar } from './avatar.js'
+import { installLearningRoutes } from './learning-routes.js'
 
 export function createApp(clientForToken: (token: string) => SupabaseClient) {
   const app = express()
   app.use(helmet())
-  app.use(express.json({ limit: '16kb' }))
+  app.use(express.json({ limit: '128kb' }))
   app.get('/api/health', (_req, res) => res.json({ status: 'ok' }))
   app.use('/api/v1/me', async (req, res, next) => {
     res.setHeader('Cache-Control', 'no-store')
@@ -83,9 +84,10 @@ export function createApp(clientForToken: (token: string) => SupabaseClient) {
     await discardAvatar(res, current.data.avatar_path)
     res.json({ avatar_path: null, avatar_url: null })
   })
-  app.use((error: { status?: number }, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
+  installLearningRoutes(app, clientForToken)
+  app.use((error: { status?: number }, req: express.Request, res: express.Response, _next: express.NextFunction) => {
     const status = error.status === 400 || error.status === 413 ? error.status : 500
-    res.status(status).json({ error: status === 413 ? 'Berkas terlalu besar. Foto profil maksimal 2 MB.' : 'Permintaan belum dapat diproses.' })
+    res.status(status).json({ error: status === 413 ? req.path.endsWith('/avatar')?'Berkas terlalu besar. Foto profil maksimal 2 MB.':'Permintaan terlalu besar.' : 'Permintaan belum dapat diproses.' })
   })
   return app
 }
