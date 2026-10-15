@@ -37,7 +37,7 @@ function useSubmission() {
  return {busy,error,submit,uncertain:!!pending.current}
 }
 export function Assessment() {
- const { state, startAttempt } = useStore()
+ const { state, startAttempt,studentPreview } = useStore()
  const [attempt,setAttempt] = useState(state.activeAssessment)
  const [selected,setSelected] = useState(null),[starting,setStarting] = useState(false),[startError,setStartError] = useState('')
  const submission=useSubmission()
@@ -47,7 +47,7 @@ export function Assessment() {
  if(!state.learningReady)return <LearningStatus/>
  if(attempt?.status==='completed'){
   const passed=attempt.score>=80
-  return <><Heading title={passed?'Semua fitur belajar terbuka ✨':'Mulai dari kelas belajar dasar 🌱'} text={`Nilai asesmenmu ${attempt.score}/100. Batas kelulusan adalah 80.`}/><ProfileGrid scores={attempt.scores}/><div className="panel result-summary"><Icon name={passed?'trophy':'book'} size={35}/><div><h2>{passed?'Kamu siap melanjutkan belajar':'Kita kuatkan dasar bersama'}</h2><p>Hasil dan jawabanmu sudah tersimpan di akunmu.</p></div><Link className="btn" to={passed?'/learning':'/basic-class'}>{passed?'Lanjut belajar':'Masuk kelas belajar dasar'}</Link></div></>
+  return <><Heading title={passed?'Semua fitur belajar terbuka ✨':'Mulai dari kelas belajar dasar 🌱'} text={`Nilai asesmenmu ${attempt.score}/100. Batas kelulusan adalah 80.`}/><ProfileGrid scores={attempt.scores}/><div className="panel result-summary"><Icon name={passed?'trophy':'book'} size={35}/><div><h2>{passed?'Kamu siap melanjutkan belajar':'Kita kuatkan dasar bersama'}</h2><p>{studentPreview?'Hasil uji tersimpan sementara selama pratinjau.':'Hasil dan jawabanmu sudah tersimpan di akunmu.'}</p></div><Link className="btn" to={passed?'/learning':'/basic-class'}>{passed?'Lanjut belajar':'Masuk kelas belajar dasar'}</Link></div></>
  }
  if(!attempt)return <><Heading title="Bukan ujian. Ini titik awalmu." text="Jawab sesuai yang kamu pahami. Tidak perlu terburu-buru."/><div className="panel assessment-intro"><div className="large-icon"><Icon name="shapes" size={48}/></div><h2>8 soal, 4 aspek kemampuan ({state.profile.grade})</h2><p>Kosakata, kalimat, bacaan, dan matematika dasar.<br/>Soal berikutnya menyesuaikan jawabanmu. Kamu bisa jeda dan melanjutkan di perangkat lain.</p>{startError&&<p role="alert">{startError}</p>}<Button disabled={starting} onClick={start}>{starting?'Menyiapkan…':'Mulai asesmen'}</Button></div></>
  const aspect=aspects.find(a=>a.id===attempt.question?.aspect)
@@ -59,7 +59,7 @@ export function Lesson() {
  return <LessonSession key={id} id={id}/>
 }
 function LessonSession({ id }) {
- const { state,startAttempt,setStage,learningError }=useStore()
+ const { state,startAttempt,setStage,learningError,studentPreview }=useStore()
  const [attempt,setAttempt]=useState(null),[error,setError]=useState(''),[busy,setBusy]=useState(false)
  const [answer,setAnswer]=useState(null),[words,setWords]=useState([]),[feedback,setFeedback]=useState(null),[heldQuestion,setHeldQuestion]=useState(null),[showResult,setShowResult]=useState(false),[alternative,setAlternative]=useState(false),[wordOpen,setWordOpen]=useState(null)
  const submission=useSubmission()
@@ -73,7 +73,7 @@ function LessonSession({ id }) {
  const q=heldQuestion|| (stage===2?attempt.practice:attempt.question)
  const lessonVisual=visualText(lesson.visual)||visualText(lesson.emoji)
  const disabled=busy||submission.busy
- return <><Link className="back-link" to="/learning">← Kembali ke jalur belajar</Link><Heading title={lesson.title} text={lesson.description}/><div className="inline-tags"><span className="tag">{lesson.grade} · Versi {lesson.version}</span><span className="muted">Sesi tersimpan di akunmu</span></div><div className="stage-nav" aria-label="Tahap belajar">{['Pengantar','Isyarat & visual','Latihan','Evaluasi'].map((s,i)=><span key={s} className={stage===i?'active':i<stage?'done':''}><b>{i+1}</b>{s}</span>)}</div>{(error||submission.error||learningError)&&<p className="notice" role="alert">{error||submission.error||learningError}</p>}
+ return <><Link className="back-link" to="/learning">← Kembali ke jalur belajar</Link><Heading title={lesson.title} text={lesson.description}/><div className="inline-tags"><span className="tag">{lesson.grade} · Versi {lesson.version}</span><span className="muted">{studentPreview?'Sesi uji sementara':'Sesi tersimpan di akunmu'}</span></div><div className="stage-nav" aria-label="Tahap belajar">{['Pengantar','Isyarat & visual','Latihan','Evaluasi'].map((s,i)=><span key={s} className={stage===i?'active':i<stage?'done':''}><b>{i+1}</b>{s}</span>)}</div>{(error||submission.error||learningError)&&<p className="notice" role="alert">{error||submission.error||learningError}</p>}
  {showResult?<div className="panel result-summary"><Icon name={attempt.mastered?'trophy':'leaf'} size={40}/><div><h2>{attempt.mastered?'Materi sudah kamu kuasai!':'Kita coba penguatan lagi.'}</h2><p>Nilai evaluasi: {attempt.score}%. {attempt.mastered?'Langkahmu sudah tercatat.':'Target: minimal 80% dan tidak mengulang kesalahan pada soal yang sama.'}</p></div><Link className="btn" to="/learning">Lanjut ke jalur belajar</Link><Button secondary disabled={busy} onClick={retry}>Latihan lagi</Button></div>:<div className="lesson-layout"><section className="panel lesson-main">
  {stage===0&&<><div className="lesson-big-visual" role="img" aria-label="Visual materi">{lessonVisual}</div><h2>Hari ini, kita belajar…</h2><p>{lesson.intro}</p><Button disabled={disabled} onClick={()=>move(1)}>Mulai belajar</Button></>}
  {stage===1&&<><h2>Amati, baca, dan pahami</h2>{lesson.wordEntry&&<LessonVideo entry={lesson.wordEntry} paused={!!wordOpen}/>}<div className="visual-explanation">{lessonVisual&&<span role="img" aria-label="Visual materi">{lessonVisual}</span>}<div>{lesson.wordEntry&&<button className="word-link" onClick={()=>setWordOpen(lesson.wordEntry)}>{lesson.wordEntry.word}<Icon name="hand" size={17}/></button>}<p>{lesson.explanation}</p>{lesson.example&&<p className="example">“{lesson.example}”</p>}</div></div>{alternative&&<div className="feedback"><p>{lesson.tip}</p></div>}<div className="quiz-actions"><Button secondary disabled={disabled} onClick={()=>move(0)}>Kembali</Button><Button disabled={disabled} onClick={()=>move(2)}>Lanjut ke latihan</Button></div></>}

@@ -25,8 +25,9 @@ export function Provider({ children }) {
  const [accessReady,setAccessReady] = useState(false),[accessError,setAccessError] = useState('')
  const [preview,setPreview] = useState(null),[previewError,setPreviewError] = useState('')
  const previewId=useRef(null),previewPhoto=useRef(null)
+ const previewClips=useRef({})
  const previewKey='bahasakita-preview-'+userId
- const clearPreview=()=>{previewId.current=null;setPreview(null);setPreviewError('');if(previewPhoto.current)URL.revokeObjectURL(previewPhoto.current);previewPhoto.current=null;try{sessionStorage.removeItem(previewKey)}catch{}}
+ const clearPreview=()=>{previewId.current=null;setPreview(null);setPreviewError('');if(previewPhoto.current)URL.revokeObjectURL(previewPhoto.current);previewPhoto.current=null;Object.values(previewClips.current).forEach(url=>URL.revokeObjectURL(url));previewClips.current={};try{sessionStorage.removeItem(previewKey)}catch{}}
  const rememberPreview=data=>{if(!data?.id||!data.state?.profile||!Array.isArray(data.catalog?.lessons))throw new Error('Pratinjau belum dapat dimuat.');previewId.current=data.id;setPreview(data);setPreviewError('');try{sessionStorage.setItem(previewKey,data.id)}catch{}}
  const previewRequest=async(path='',body,options={})=>{const id=previewId.current;if(!id)throw new Error('Pratinjau sudah berakhir.');const data=await account.accountApi('/admin/preview/'+id+path,body,options);if(previewId.current!==id)throw new Error('Pratinjau sudah berakhir.');return {data,id}}
  const applyPreviewState=(id,data)=>setPreview(previous=>previous?.id===id?{...previous,state:data}:previous)
@@ -75,7 +76,7 @@ export function Provider({ children }) {
     if(active)setState(previous=>({...previous,...learning,learningReady:true}))
    }else if(active){setLearningError(results[1].status==='rejected'?results[1].reason.message:'Data belajar belum dapat dimuat.')}
   }).catch(error=>{if(active)setAccountError(error.message)})
-  return()=>{active=false;if(previewPhoto.current)URL.revokeObjectURL(previewPhoto.current);previewPhoto.current=null}
+  return()=>{active=false;if(previewPhoto.current)URL.revokeObjectURL(previewPhoto.current);previewPhoto.current=null;Object.values(previewClips.current).forEach(url=>URL.revokeObjectURL(url));previewClips.current={}}
  },[userId])
  useEffect(()=>{try{localStorage.setItem('bahasakita-preferences',JSON.stringify(state.settings))}catch{}},[state.settings])
  const saveProfile=async profile=>{
@@ -116,12 +117,14 @@ export function Provider({ children }) {
  const update=patch=>setVisibleState(previous=>({...previous,...patch}))
  const setting=(key,value)=>setVisibleState(previous=>({...previous,settings:{...previous.settings,[key]:value}}))
  const visibleContent=preview?.catalog||content
+ const visibleClips=preview?previewClips.current:clips
+ const setVisibleClips=next=>{if(previewId.current){previewClips.current=typeof next==='function'?next(previewClips.current):next;setPreview(p=>p?{...p}:p)}else setClips(next)}
  const catalog=visibleContent.lessons.filter(lesson=>lesson.grade===visibleState.profile?.grade)
  const activeIds=new Set(catalog.map(lesson=>lesson.id))
  const masteredLessons=visibleState.mastered.filter(id=>activeIds.has(id))
  const lessonAttempts=visibleState.attempts.filter(attempt=>attempt.type==='lesson'&&activeIds.has(attempt.lesson))
  const path=buildPath(visibleState,catalog),next=path.find(lesson=>!visibleState.mastered.includes(lesson.id))
- return <Store.Provider value={{state:visibleState,setState:setVisibleState,update,setting,path,next,clips,setClips,saveProfile,savePreferences,uploadAvatar,removeAvatar,accountError,accountReady,isAdmin,accessReady,accessError,reloadAccess,studentPreview:!!preview,startPreview,stopPreview,learningError:preview?previewError:learningError,contentError:preview?'':contentError,reloadCatalog,reloadLearning,startAttempt,answerAttempt,setStage,getAttempt,lessons:catalog,basicMaterials:visibleContent.basicMaterials,dictionary:dictionaryForGrade(visibleState.profile?.grade),masteredLessons,lessonAttempts}}>{children}</Store.Provider>
+ return <Store.Provider value={{state:visibleState,setState:setVisibleState,update,setting,path,next,clips:visibleClips,setClips:setVisibleClips,saveProfile,savePreferences,uploadAvatar,removeAvatar,accountError,accountReady,isAdmin,accessReady,accessError,reloadAccess,studentPreview:!!preview,startPreview,stopPreview,learningError:preview?previewError:learningError,contentError:preview?'':contentError,reloadCatalog,reloadLearning,startAttempt,answerAttempt,setStage,getAttempt,lessons:catalog,basicMaterials:visibleContent.basicMaterials,dictionary:dictionaryForGrade(visibleState.profile?.grade),masteredLessons,lessonAttempts}}>{children}</Store.Provider>
 }
 export const useStore = () => useContext(Store)
 export function buildPath(state, lessons = []) {

@@ -74,7 +74,7 @@ export class PreviewSession {
  }
  get(id:string){return this.view(this.owned(id))}
  stage(id:string,stage:unknown){if(!Number.isInteger(stage)||Number(stage)<0||Number(stage)>3)throw new PreviewError('Tahap tidak valid.');const a=this.owned(id);if(a.kind!=='lesson'||a.status!=='active')throw new PreviewError('Sesi belajar sudah selesai atau tidak tersedia.');a.stage=Number(stage);return this.view(a)}
- answer(id:string,questionId:string,value:unknown,requestId:string,practice=false){
+ answer(id:string,questionId:string,value:unknown,requestId:string,practice=false):Row{
   const a=this.owned(id),prior=a.requests.get(requestId)
   if(prior){if(prior.questionId!==questionId||prior.answer!==value||prior.practice!==practice)throw new PreviewError('Permintaan jawaban sudah digunakan.');return {...this.view(a),feedback:{correct:prior.correct}}}
   if(a.status!=='active')throw new PreviewError('Sesi ini sudah selesai.')
