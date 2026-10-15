@@ -1,6 +1,6 @@
 import { createRequire } from 'node:module'
 import { mkdirSync, writeFileSync } from 'node:fs'
-import { basicMaterials } from '../src/basicMaterials.js'
+import { basicMaterials } from '../content/legacy-basic.js'
 const require = createRequire(import.meta.url)
 const { chromium } = require('C:/Users/Faris Daffa/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright')
 const browser = await chromium.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: true })

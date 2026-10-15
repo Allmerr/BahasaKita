@@ -112,3 +112,19 @@ test('avatar validation rejects mismatched types, empty files and foreign/traver
   assert.throws(() => avatarExtension('image/jpeg', png)); assert.throws(() => avatarExtension('image/png', Buffer.alloc(0)))
   assert.equal(ownsAvatar(`${otherId}/photo.png`, userId), false); assert.equal(ownsAvatar(`${userId}/../photo.png`, userId), false)
 })
+
+test('preferences persist all accessibility options and reject forged/partial settings',async t=>{
+ const f=await fixture(t),saved={...preferences,theme:'dark',textSize:'extra',speed:'0.5',comfortable:true,contrast:true,language:'bisindo',dataSaver:true}
+ const response=await f.request('/preferences',{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify(saved)})
+ assert.equal(response.status,200);assert.deepEqual((await (await f.request()).json()).preferences,saved)
+ for(const body of [{theme:'light'},{...saved,score:100},{...saved,contrast:'true'}])assert.equal((await f.request('/preferences',{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})).status,400)
+ assert.deepEqual((await (await f.request()).json()).preferences,saved)
+})
+test('storage upload failures leave the existing photo intact',async t=>{
+ const f=await fixture(t);f.state.profile.avatar_path=userId+'/old.png';f.state.files.add(f.state.profile.avatar_path);f.state.failUpload=true
+ assert.equal((await f.upload()).status,503);assert.equal(f.state.profile.avatar_path,userId+'/old.png');assert.deepEqual(f.state.deleted,[])
+})
+test('avatar refresh signs only the owned saved path without mutating profile fields',async t=>{
+ const f=await fixture(t);f.state.profile.avatar_path=userId+'/photo.png'
+ const response=await f.request('/avatar');assert.equal(response.status,200);assert.equal((await response.json()).avatar_path,userId+'/photo.png');assert.deepEqual(f.state.signed,[userId+'/photo.png']);assert.equal(f.state.profile.name,'Dina')
+})

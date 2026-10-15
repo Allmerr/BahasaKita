@@ -1,4 +1,4 @@
-import { dictionaryForGrade } from './gradeDictionary.js'
+import { dictionaryForGrade } from '../src/gradeDictionary.js'
 
 const q = (prompt, options, correct) => ({ prompt, options, correct })
 const catalog = {

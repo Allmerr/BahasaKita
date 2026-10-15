@@ -32,6 +32,7 @@ try {
   return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(path.endsWith('/token') ? session : path.endsWith('/user') ? user : {}) })
  })
  await page.route('**/__profile-photo.png', route => route.fulfill({ contentType: 'image/png', body: photo }))
+ await page.route('**/api/catalog', route => route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({lessons:[],basicMaterials:[]})}))
  await page.route('**/api/v1/me**', async route => {
   const request = route.request()
   assert.equal(request.headers().authorization, 'Bearer ' + token)
@@ -50,7 +51,9 @@ try {
     profile.avatar_url = 'http://127.0.0.1:5190/__profile-photo.png'
    } else if (request.method() === 'DELETE') { profile.avatar_path = null; profile.avatar_url = null }
    response = { avatar_path: profile.avatar_path, avatar_url: profile.avatar_url }
-  } else response = { profile, preferences }
+  } else if(path.endsWith('/access')) response={isAdmin:false}
+  else if(path.endsWith('/learning')) response={assessment:{kosakata:100,kalimat:100,bacaan:100,akademik:100},attempts:[{type:'assessment',grade:profile.grade,scores:{kosakata:100,kalimat:100,bacaan:100,akademik:100}}],mastered:[],legacy:{archived:true},activeAssessment:null,assessmentDraft:null}
+  else response = { profile, preferences }
   await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(response) })
  })
  await page.addInitScript(({ preferences, userId }) => {

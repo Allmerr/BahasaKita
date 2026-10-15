@@ -1,0 +1,16 @@
+import { beforeEach,it,expect,vi } from 'vitest'
+const sdk=vi.hoisted(()=>({auth:{getSession:vi.fn()}}))
+vi.mock('@supabase/supabase-js',()=>({createClient:()=>sdk}))
+import { accountApi,fetchCatalog } from '../../src/supabase.js'
+beforeEach(()=>{sdk.auth.getSession.mockResolvedValue({data:{session:{access_token:'unit-token'}}})})
+const response=(body,ok=true)=>({ok,json:vi.fn().mockResolvedValue(body)})
+it('sends authenticated GET without a request body',async()=>{fetch.mockResolvedValue(response({profile:{name:'Dina'}}));await accountApi();expect(fetch).toHaveBeenCalledWith('/api/v1/me',expect.objectContaining({method:'GET',headers:expect.objectContaining({Authorization:'Bearer unit-token'})}));expect(fetch.mock.calls[0][1]).not.toHaveProperty('body')})
+it('sends JSON updates and forwards abort signals',async()=>{fetch.mockResolvedValue(response({saved:true}));const signal=new AbortController().signal;await accountApi('/profile',{name:'Dina'},{signal});expect(fetch).toHaveBeenCalledWith('/api/v1/me/profile',expect.objectContaining({method:'PATCH',body:JSON.stringify({name:'Dina'}),signal}))})
+it('sends photo bytes with explicit content type and PUT',async()=>{fetch.mockResolvedValue(response({avatar_path:'photo'}));const file=new Blob(['photo'],{type:'image/png'});await accountApi('/avatar',file,{method:'PUT'});expect(fetch).toHaveBeenCalledWith('/api/v1/me/avatar',expect.objectContaining({method:'PUT',body:file,headers:expect.objectContaining({'Content-Type':'image/png'})}))})
+it('supports POST and DELETE independently of defaults',async()=>{fetch.mockResolvedValue(response({ok:true}));await accountApi('/learning/attempts',{kind:'assessment'},{method:'POST'});await accountApi('/avatar',undefined,{method:'DELETE'});expect(fetch.mock.calls.map(([,init])=>init.method)).toEqual(['POST','DELETE'])})
+it('rejects expired/missing sessions before sending data',async()=>{sdk.auth.getSession.mockResolvedValue({data:{session:null}});await expect(accountApi('/profile',{})).rejects.toThrow(/masuk kembali/);expect(fetch).not.toHaveBeenCalled()})
+it('shows API errors instead of treating failures as success',async()=>{fetch.mockResolvedValue(response({error:'Akses ditolak'},false));await expect(accountApi('/admin/content')).rejects.toThrow('Akses ditolak')})
+it('handles HTML/offline API responses',async()=>{fetch.mockResolvedValue({ok:false,json:()=>Promise.reject(new Error('HTML'))});await expect(accountApi()).rejects.toThrow(/API server belum dapat diakses/)})
+it('loads catalog without requesting an auth session',async()=>{const catalog={lessons:[],basicMaterials:[]};fetch.mockResolvedValue(response(catalog));expect(await fetchCatalog()).toEqual(catalog);expect(sdk.auth.getSession).not.toHaveBeenCalled()})
+it.each([null,{lessons:[]},{lessons:{},basicMaterials:[]}])('rejects malformed catalog %j',async body=>{fetch.mockResolvedValue(response(body));await expect(fetchCatalog()).rejects.toThrow(/Materi belajar/)})
+it('preserves a catalog setup error message',async()=>{fetch.mockResolvedValue(response({error:'Migrasi diperlukan'},false));await expect(fetchCatalog()).rejects.toThrow('Migrasi diperlukan')})
