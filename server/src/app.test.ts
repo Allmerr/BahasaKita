@@ -9,6 +9,16 @@ const otherId = '22222222-2222-4222-8222-222222222222'
 const preferences = { textSize: 'normal', theme: 'light', speed: '1', comfortable: false, contrast: false, language: 'default', dataSaver: false }
 const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Y9ZlS8AAAAASUVORK5CYII=', 'base64')
 
+test('temporary auth-service failures return 503 without treating the session as invalid', async t => {
+  const client = { auth: { getUser: async () => ({ data: { user: null }, error: { status: 503, name: 'AuthRetryableFetchError' } }) } }
+  const server = createApp(() => client as unknown as SupabaseClient).listen(0, '127.0.0.1')
+  await new Promise<void>(resolve => server.once('listening', resolve))
+  t.after(() => new Promise<void>(resolve => server.close(() => resolve())))
+  const address = server.address(); assert.ok(address && typeof address !== 'string')
+  const response = await fetch(`http://127.0.0.1:${address.port}/api/v1/me`, { headers: { Authorization: 'Bearer valid-but-service-offline' } })
+  assert.equal(response.status, 503); assert.match((await response.json() as { error: string }).error, /Layanan akun/)
+})
+
 async function fixture(t: { after: (fn: () => Promise<void>) => void }) {
   const state = { profile: { name: 'Dina', grade: 'SD', goal: 'Mengenal kata', preferences, avatar_path: null as string | null }, failSave: false, failUpload: false, failSign: false, oldSchema: false, files: new Set<string>(), deleted: [] as string[], signed: [] as string[], scopes: [] as unknown[] }
   const client = {

@@ -1,5 +1,5 @@
 import { lazy, Suspense, useCallback, useState } from 'react'
-import { Routes, Route, Navigate, Outlet, useNavigate, useLocation } from 'react-router-dom'
+import { Routes, Route, Navigate, Outlet, Link, useNavigate, useLocation } from 'react-router-dom'
 import { AccountProvider, useAccount } from './Account.jsx'
 import { Provider, useStore, learningDestination } from './learning.jsx'
 import { AccessContext, publicPages } from './access.jsx'
@@ -11,7 +11,7 @@ import BasicClass from './BasicClass.jsx'
 function Protected({ authorized }) { return authorized ? <Outlet/> : <Navigate to="/signin" replace/> }
 function WorkspaceGate({authorized}){
  const {accountReady,accountError,accessReady,accessError,reloadAccess,isAdmin,studentPreview}=useStore(),{pathname}=useLocation()
- if(authorized&&(!accountReady||accessReady===false))return <main className="workspace-loading panel" role="status"><p>{accountError||accessError||'Menyiapkan ruang akun…'}</p>{(accountError||accessError)&&<button className="btn" onClick={()=>accountError?window.location.reload():reloadAccess().catch(()=>{})}>Coba lagi</button>}</main>
+ if(authorized&&(!accountReady||accessReady===false))return <main className="workspace-loading panel" role="status"><p>{accountError||accessError||'Menyiapkan ruang akun…'}</p>{(accountError||accessError)&&(/sesi|masuk kembali/i.test(accountError||accessError)?<Link className="btn" to="/signin" state={{loginRequired:true}}>Masuk kembali</Link>:<button className="btn" onClick={()=>accountError?window.location.reload():reloadAccess().catch(()=>{})}>Coba lagi</button>)}</main>
  if(authorized&&isAdmin&&!studentPreview&&!['/admin','/profile','/settings'].includes(pathname))return <Navigate to="/admin" replace/>
  if(authorized&&studentPreview&&pathname==='/admin')return <Navigate to="/" replace/>
  return <Outlet/>
