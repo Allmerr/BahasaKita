@@ -38,4 +38,8 @@ test('basic editor normalizes grade and rejects missing slides or unsafe video p
  assert.equal(lessonPayload(basic).grade,'ALL');assert.equal(lessonPayload({...basic,data:{...basic.data,videoSrc:'https://example.test/video.webm'}}).kind,'basic')
  for(const videoSrc of ['javascript:alert(1)','http://example.test/video','file:///private',''])assert.throws(()=>lessonPayload({...basic,data:{...basic.data,videoSrc}}))
  for(const slides of [null,[],Array(21).fill(['Judul','Isi'])])assert.throws(()=>lessonPayload({...basic,data:{...basic.data,slides}}))
+ const youtube={...basic,data:{...basic.data,targetGrade:'SMP',videoSrc:'https://www.youtube.com/watch?v=XmiXc0YUrXY',start:285}}
+ assert.equal((lessonPayload(youtube).data as any).targetGrade,'SMP')
+ for(const targetGrade of ['TK',null,{}])assert.throws(()=>lessonPayload({...youtube,data:{...youtube.data,targetGrade}}))
+ for(const start of [-1,1.5,'285',null])assert.throws(()=>lessonPayload({...youtube,data:{...youtube.data,start}}))
 })

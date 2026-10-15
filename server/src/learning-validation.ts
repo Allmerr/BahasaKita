@@ -31,6 +31,10 @@ export function lessonPayload(value: unknown) {
   text(data.intro,6000); text(data.explanation,12000)
   if (!Array.isArray(p.quiz)||p.quiz.length!==5) throw new Error('Materi perlu lima soal evaluasi.')
   result.practice=question(p.practice,true); result.quiz=p.quiz.map((v:unknown)=>question(v))
- } else if (!Array.isArray(data.slides)||!data.slides.length||data.slides.length>20||typeof data.videoSrc!=='string'||! /^(https:\/\/|\/videos\/)/.test(data.videoSrc)) throw new Error('Isi video dan bagian penjelasan kelas dasar.')
+ } else {
+  if (!Array.isArray(data.slides)||!data.slides.length||data.slides.length>20||typeof data.videoSrc!=='string'||! /^(https:\/\/|\/videos\/)/.test(data.videoSrc)) throw new Error('Isi video dan bagian penjelasan kelas dasar.')
+  if (data.targetGrade !== undefined && !['ALL','SD','SMP','SMA'].includes(data.targetGrade)) throw new Error('Pilih jenjang kelas dasar yang valid.')
+  if (data.start !== undefined && (!Number.isInteger(data.start)||data.start<0)) throw new Error('Waktu mulai video harus berupa detik bulat, minimal 0.')
+ }
  return result
 }

@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto'
 import { questionBank } from '../content/legacy-assessment.js'
 import { allGradeLessons } from '../content/legacy-lessons.js'
 import { basicMaterials } from '../content/legacy-basic.js'
+import './generate-basic-youtube.mjs'
 const uuid = value => { const hex = createHash('sha256').update(value).digest('hex').slice(0,32); return `${hex.slice(0,8)}-${hex.slice(8,12)}-4${hex.slice(13,16)}-8${hex.slice(17,20)}-${hex.slice(20)}` }
 const sql = value => value === null ? 'null' : `'${String(value).replaceAll("'", "''")}'`
 const json = value => sql(JSON.stringify(value)) + '::jsonb'
@@ -38,6 +39,6 @@ statements.push('commit;')
 writeFileSync('supabase/migrations/005_learning_seed.sql', statements.join('\n') + '\n')
 console.log(`Seed prepared: ${allGradeLessons().length} lessons, ${basicMaterials.length} basic materials, ${questionCount} questions. Keys stay in private.answer_keys.`)
 
-const files=['004_learning_platform.sql','004b_admin_content.sql','005_learning_seed.sql','006_first_admin.sql']
+const files=['004_learning_platform.sql','004b_admin_content.sql','005_learning_seed.sql','006_first_admin.sql','008_basic_youtube.sql']
 writeFileSync('supabase/DEPLOY-LEARNING.sql', '-- BahasaKita: run once in Supabase SQL Editor after migrations 001-003.\n-- Bootstrap admin: kevinalmer@apps.ipb.ac.id (must already be registered).\nbegin;\n'+files.map(name=>'\n-- '+name+'\n'+readFileSync('supabase/migrations/'+name,'utf8').replace(/^begin;\r?$/gm,'').replace(/^commit;\r?$/gm,'')).join('\n')+'\ncommit;\n')
 console.log('Combined deployment: supabase/DEPLOY-LEARNING.sql (one atomic transaction).')

@@ -2,6 +2,7 @@ import { useAccount } from './Account.jsx'
 import { createContext, useContext, useEffect, useRef, useState } from 'react'
 import { fetchCatalog } from './supabase.js'
 import { dictionaryForGrade } from './gradeDictionary.js'
+import { orderedLessons, unlockedInPath } from '../shared/lesson-path.js'
 
 export const aspects = [
   { id: 'kosakata', name: 'Kosakata', icon: 'book', color: 'purple', description: 'Kenali kata dan artinya.' },
@@ -132,13 +133,7 @@ export function Provider({ children }) {
 }
 export const useStore = () => useContext(Store)
 export function buildPath(state, lessons = []) {
- const last = state.attempts.filter(a => a.type === 'lesson' && lessons.some(l => l.id === a.lesson)).at(-1)
- const reinforcement = last && !last.mastered && !state.mastered.includes(last.lesson) ? last.lesson : null
- return [...lessons.filter(l => state.mastered.includes(l.id)), ...lessons.filter(l => !state.mastered.includes(l.id)).sort((a, b) => {
-   if (a.id === reinforcement) return -1
-   if (b.id === reinforcement) return 1
-   return (state.assessment?.[a.aspect] ?? 0) - (state.assessment?.[b.aspect] ?? 0)
- })]
+ return orderedLessons(state, lessons)
 }
 export const ASSESSMENT_PASS_SCORE = 80
 export function assessmentScore(state) {
@@ -153,5 +148,5 @@ export function learningDestination(state) {
  const score = assessmentScore(state)
  return score === null ? '/assessment' : score >= ASSESSMENT_PASS_SCORE ? '/' : '/basic-class'
 }
-export function canOpen(id, state, path) { return learningDestination(state) === '/' && path.some(l => l.id === id && l.grade === state.profile?.grade) }
+export function canOpen(id, state, path) { return learningDestination(state) === '/' && path.some(l => l.id === id && l.grade === state.profile?.grade) && unlockedInPath(id, state.mastered, path) }
 export function level(score) { return score >= 80 ? 'Baik' : score >= 50 ? 'Cukup' : 'Perlu penguatan' }

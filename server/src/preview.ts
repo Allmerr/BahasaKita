@@ -1,5 +1,6 @@
 import { randomUUID } from 'node:crypto'
 import { profileInput,preferencesInput } from './validation.js'
+import { orderedLessons, unlockedInPath } from '../../shared/lesson-path.js'
 
 const aspects=['kosakata','kalimat','bacaan','akademik']
 const defaults={textSize:'normal',theme:'light',speed:'1',comfortable:false,contrast:false,language:'default',dataSaver:false}
@@ -65,6 +66,8 @@ export class PreviewSession {
    if(!last||last.score!<80)throw new PreviewError('Selesaikan asesmen dengan nilai minimal 80 sebelum membuka materi.',403)
    lesson=this.lessons.find(l=>l.slug===slug&&l.kind==='lesson'&&l.grade===grade)
    if(!lesson)throw new PreviewError('Materi tidak tersedia untuk jenjang ini.')
+   const state=this.state(),path=orderedLessons(state,this.catalog().lessons.filter(l=>l.grade===grade))
+   if(!unlockedInPath(lesson.slug,state.mastered,path))throw new PreviewError('Materi masih terkunci. Selesaikan materi sebelumnya terlebih dahulu.',403)
    if(lesson.questions.filter((q:Row)=>q.kind==='quiz').length!==5||!lesson.questions.some((q:Row)=>q.kind==='practice'))throw new PreviewError('Latihan dan evaluasi materi belum lengkap.')
   }
   const existing=this.attempts.find(a=>a.kind===kind&&a.grade===grade&&a.lessonId===(lesson?.id||null)&&a.status==='active')

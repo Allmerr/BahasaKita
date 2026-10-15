@@ -11,6 +11,14 @@ describe('assessment score and access',()=>{
  it('uses the actual eight answers before skill averages',()=>{const s=state();s.attempts=[{type:'assessment',grade:'SD',scores,answers:Array.from({length:8},(_,i)=>({correct:i<7}))}];expect(assessmentScore(s)).toBe(87.5)})
  it('uses current-grade latest assessment, excluding lesson scores and other grades',()=>{const s=state();s.attempts=[{type:'assessment',grade:'SD',scores},{type:'assessment',grade:'SMA',scores:{...scores,kosakata:0}},{type:'lesson',score:0}];expect(assessmentScore(s)).toBe(100)})
  it('rejects foreign-grade and unknown lesson access',()=>{const s=state();expect(canOpen(lesson.id,s,[lesson])).toBe(true);expect(canOpen('unknown',s,[lesson])).toBe(false);expect(canOpen('smp-buah',s,[{...lesson,id:'smp-buah',grade:'SMP'}])).toBe(false)})
+ it('only unlocks the first unfinished lesson and allows completed lessons to be replayed',()=>{
+  const s=state(),path=[lesson,{...lesson,id:'second'},{...lesson,id:'third'}]
+  expect(path.map(l=>canOpen(l.id,s,path))).toEqual([true,false,false])
+  s.attempts=[{type:'lesson',lesson:lesson.id,mastered:false}]
+  expect(canOpen('second',s,path)).toBe(false)
+  s.mastered=[lesson.id];expect(path.map(l=>canOpen(l.id,s,path))).toEqual([true,true,false])
+  s.mastered.push('second');expect(canOpen('third',s,path)).toBe(true)
+ })
  it.each([[49,'Perlu penguatan'],[50,'Cukup'],[79,'Cukup'],[80,'Baik']])('labels score %s',(score,label)=>expect(level(score)).toBe(label))
 })
 describe('recommendations',()=>{

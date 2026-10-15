@@ -4,6 +4,25 @@
 .profile-photo-preview p { margin: 0; color: var(--muted); }
 .profile-photo-editor input[type="file"] { width: 100%; min-width: 0; }
 .profile-photo-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.settings-profile-panels { display: grid; gap: 25px; align-content: start; }
+.settings-profile-panels > .video-upload { margin-top: 0; }
+.settings-grid { margin-bottom: 25px; }
+.account-menu { position: relative; flex-shrink: 0; }
+.account-menu-trigger { padding: 0; border: 0; cursor: pointer; font: inherit; }
+.account-menu-trigger:focus-visible { outline: 3px solid var(--primary); outline-offset: 4px; }
+.account-dropdown { position: absolute; top: calc(100% + 12px); right: 0; z-index: 80; width: 200px; max-width: calc(100vw - 32px); padding: 8px; border: 1px solid var(--border); border-radius: 14px; background: var(--panel); box-shadow: 0 12px 32px #0002; }
+.account-dropdown > a,.account-dropdown > button { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 44px; padding: 10px 12px; border: 0; border-radius: 8px; background: transparent; color: var(--text); font: inherit; font-size: .84rem; text-align: left; text-decoration: none; cursor: pointer; }
+.account-dropdown > a:hover,.account-dropdown > button:hover,.account-dropdown > a:focus-visible,.account-dropdown > button:focus-visible { background: var(--bg); color: var(--primary); outline: 2px solid var(--primary); outline-offset: -2px; }
+.account-dropdown > button:disabled { opacity: .6; cursor: wait; }
+.account-menu-error { margin: 8px 4px 4px; color: var(--text); font-size: .76rem; line-height: 1.5; }
+.account-menu-sidebar { width: 100%; }
+.account-menu-card { gap: 4px; padding-right: 8px; }
+.account-menu-profile-link { display: flex; flex: 1; min-width: 0; align-items: center; gap: 12px; color: var(--text); text-decoration: none; border-radius: 6px; }
+.account-menu-arrow { display: grid; place-items: center; flex-shrink: 0; width: 32px; min-height: 44px; padding: 0; border: 0; border-radius: 8px; background: transparent; color: var(--muted); cursor: pointer; }
+.account-menu-arrow:hover { background: var(--panel); color: var(--primary); }
+.account-menu-arrow[aria-expanded="true"] svg { transform: rotate(-90deg); }
+.account-menu-arrow:focus-visible,.account-menu-profile-link:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.account-menu-sidebar > .account-dropdown { top: auto; bottom: calc(100% + 10px); left: 0; right: auto; width: 100%; }
 .profile-error { color: var(--ink); padding: 12px 14px; border-left: 3px solid #c64764; border-radius: 8px; background: var(--surface-soft, transparent); }
 @media (max-width: 480px) {
  .profile-photo-preview { flex-direction: column; align-items: flex-start; gap: 12px; }

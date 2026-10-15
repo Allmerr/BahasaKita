@@ -5,8 +5,8 @@ import { createApp } from './app.js'
 const id='11111111-1111-4111-8111-111111111111'
 async function fixture(t:{after:(fn:()=>Promise<void>)=>void}){
  const calls:{name:string,args:unknown}[]=[]
- const state={admin:false,error:null as null|{code:string,message:string},data:{ok:true} as unknown}
- const client={auth:{getUser:async(token:string)=>({data:{user:token==='valid'?{id,email:'test@example.test'}:null},error:null})},rpc:async(name:string,args:unknown)=>{calls.push({name,args});return name==='bk_is_admin'?{data:state.admin,error:null}:{data:state.error?null:state.data,error:state.error}}}
+ const state={admin:false,error:null as null|{code:string,message:string},data:{ok:true} as unknown,catalog:{lessons:[{id:'first',grade:'SD',aspect:'kosakata'},{id:'second',grade:'SD',aspect:'kalimat'}]},learning:{mastered:[] as string[],attempts:[],assessment:{kosakata:80,kalimat:100}}}
+ const client={auth:{getUser:async(token:string)=>({data:{user:token==='valid'?{id,email:'test@example.test'}:null},error:null})},rpc:async(name:string,args:unknown)=>{calls.push({name,args});return name==='bk_is_admin'?{data:state.admin,error:null}:{data:state.error?null:name==='bk_catalog'?state.catalog:name==='bk_learning_state'?state.learning:state.data,error:state.error}}}
  const server=createApp(()=>client as unknown as SupabaseClient).listen(0,'127.0.0.1');await new Promise<void>(resolve=>server.once('listening',resolve));t.after(()=>new Promise<void>(resolve=>server.close(()=>resolve())))
  const address=server.address();assert.ok(address&&typeof address!=='string');const origin='http://127.0.0.1:'+address.port
  const request=(path:string,body?:unknown,method=body===undefined?'GET':'POST')=>fetch(origin+path,{method,headers:{Authorization:'Bearer valid','Content-Type':'application/json'},...(body!==undefined?{body:JSON.stringify(body)}:{})})
@@ -17,6 +17,16 @@ test('catalog is public, account state is authenticated and responses disable ca
  const r=await f.request('/api/v1/me/learning');assert.equal(r.status,200);assert.equal(r.headers.get('cache-control'),'no-store')
  assert.equal((await fetch(f.origin+'/api/v1/me/learning')).status,401)
  assert.equal((await fetch(f.origin+'/api/v1/me/learning',{headers:{Authorization:'Bearer forged'}})).status,401)
+})
+test('lesson starts enforce sequential progress before reaching the grading RPC',async t=>{
+ const f=await fixture(t),url='/api/v1/me/learning/attempts'
+ assert.equal((await f.request(url,{kind:'lesson',lesson:'second'})).status,403)
+ assert.ok(!f.calls.some(c=>c.name==='bk_start_attempt'))
+ assert.equal((await f.request(url,{kind:'lesson',lesson:'first'})).status,200)
+ f.state.learning.mastered=['first']
+ assert.equal((await f.request(url,{kind:'lesson',lesson:'second'})).status,200)
+ assert.equal((await f.request(url,{kind:'lesson',lesson:'first'})).status,200)
+ assert.equal((await f.request(url,{kind:'lesson',lesson:'unknown'})).status,403)
 })
 test('all admin endpoints reject a student before any content write',async t=>{
  const f=await fixture(t)

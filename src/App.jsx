@@ -36,8 +36,7 @@ function BasicGate() {
 export function AppRoutes({ authorized, enter }) {
  return <AccessContext.Provider value={{ authorized }}><Routes><Route element={<AuthLayout/>}><Route path="signin" element={<Login onEnter={enter}/>}/><Route path="signup" element={<Register onEnter={enter}/>}/></Route><Route element={<WorkspaceGate authorized={authorized}/>}><Route element={<Shell/>}><Route element={<LearningGate authorized={authorized}/>}><Route index element={<Dashboard/>}/><Route path="learning" element={<LearningPath/>}/><Route path="dictionary" element={<Dictionary/>}/><Route element={<Protected authorized={authorized}/>}><Route path="progress" element={<Progress/>}/><Route path="lesson/:id" element={<Lesson/>}/></Route></Route><Route path="settings" element={<Settings/>}/><Route element={<Protected authorized={authorized}/>}><Route path="assessment" element={<Assessment/>}/><Route path="basic-class" element={<BasicGate/>}/><Route path="profile" element={<Profile/>}/><Route path="support" element={<Suspense fallback={<div className="panel" role="status">Memuat pendampingan…</div>}><Support/></Suspense>}/><Route path="admin/accounts" element={<Suspense fallback={<div className="panel">Memuat akun…</div>}><SupportAccounts/></Suspense>}/><Route path="admin" element={<Suspense fallback={<div className="panel">Memuat pengelola…</div>}><Admin/></Suspense>}/></Route><Route path="*" element={<Missing/>}/></Route></Route></Routes></AccessContext.Provider>
 }
-function EntryApp() {
- const [opening, setOpening] = useState(true)
+function EntryApp({ opening, setOpening }) {
  const { session, loading } = useAccount()
  const { state, accountReady,isAdmin,isSupporter,studentPreview } = useStore()
  const authorized = !!session
@@ -48,6 +47,9 @@ function EntryApp() {
 }
 function AccountWorkspace() {
  const { session } = useAccount()
- return <Provider key={session?.user.id || 'guest'}><EntryApp/></Provider>
+ // Keep the opening screen finished when Auth replaces the guest workspace.
+ // The learning provider still resets so accounts never share learning state.
+ const [opening, setOpening] = useState(true)
+ return <Provider key={session?.user.id || 'guest'}><EntryApp opening={opening} setOpening={setOpening}/></Provider>
 }
 export default function App() { return <AccountProvider><AccountWorkspace/></AccountProvider> }

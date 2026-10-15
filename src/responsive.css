@@ -285,7 +285,10 @@ h1,h2,h3,h4,p,.tag,.text-link,.btn,.field,.answer-option,.reading-box{overflow-w
 [data-theme=dark] .login-soft-card{background:linear-gradient(145deg,#30275a,#172237 70%);border-color:#475569}
 [data-theme=dark] .login-soft-card h1{color:#f8fafc}
 [data-theme=dark] .login-soft-card .login-card-description,[data-theme=dark] .soft-login-field>span,[data-theme=dark] .login-remember,[data-theme=dark] .login-signup-bottom,[data-theme=dark] .login-soft-card .login-line-divider{color:#dbeafe}
-[data-theme=dark] .soft-input-wrap select{color:#f8fafc}
+[data-theme=dark] .soft-input-wrap{background:#0f172a;border-color:#475569;color:#f8fafc;color-scheme:dark}
+[data-theme=dark] .soft-input-wrap input,[data-theme=dark] .soft-input-wrap select{color:#f8fafc}
+[data-theme=dark] .soft-input-wrap input::placeholder{color:#c1cde0;opacity:1}
+[data-theme=dark] .soft-input-wrap>svg,[data-theme=dark] .soft-input-wrap .password-toggle{color:#c1cde0}
 [data-theme=dark] .soft-input-wrap select option{background:#172237;color:#f8fafc}
 [data-theme=dark] .social-login-status{color:#cbd5e1}
 [data-theme=dark] .login-signup-bottom .login-register-link{color:#a5b4fc}

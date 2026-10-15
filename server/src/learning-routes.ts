@@ -3,6 +3,7 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 
 import { id, object, text, questionPayload, lessonPayload } from './learning-validation.js'
 import { installPreviewRoutes } from './preview-routes.js'
+import { orderedLessons, unlockedInPath } from '../../shared/lesson-path.js'
 
 async function run(res:Response,name:string,args:Record<string,unknown>={}) {
  const {data,error}=await res.locals.client.rpc(name,args)
@@ -29,7 +30,22 @@ export function installLearningRoutes(app:Express,clientForToken:(token:string)=
   try {object(req.body);if (JSON.stringify(req.body).length>100000) throw new Error('Arsip perangkat terlalu besar.');await run(res,'bk_import_legacy',{p_payload:req.body})}catch(error){res.status(400).json({error:(error as Error).message})}
  })
  app.post('/api/v1/me/learning/attempts',async(req,res)=>{
-  try {const p=object(req.body);if(!['assessment','lesson'].includes(p.kind))throw new Error('Jenis sesi tidak valid.');await run(res,'bk_start_attempt',{p_kind:p.kind,p_lesson:p.kind==='lesson'?text(p.lesson,100):null})}catch(error){res.status(400).json({error:(error as Error).message})}
+  try {
+   const p=object(req.body);if(!['assessment','lesson'].includes(p.kind))throw new Error('Jenis sesi tidak valid.')
+   const lesson=p.kind==='lesson'?text(p.lesson,100):null
+   if(lesson){
+    const [catalog,learning]=await Promise.all([res.locals.client.rpc('bk_catalog'),res.locals.client.rpc('bk_learning_state')])
+    if(catalog.error||learning.error||!Array.isArray(catalog.data?.lessons)||!Array.isArray(learning.data?.mastered)||!Array.isArray(learning.data?.attempts)){
+     res.status(503).json({error:'Urutan materi belum dapat diperiksa. Coba lagi.'});return
+    }
+    const target=catalog.data.lessons.find((l:{id:string})=>l.id===lesson)
+    const path=target?orderedLessons(learning.data,catalog.data.lessons.filter((l:{grade:string})=>l.grade===target.grade)):[]
+    if(!unlockedInPath(lesson,learning.data.mastered,path)){
+     res.status(403).json({error:'Materi masih terkunci. Selesaikan materi sebelumnya terlebih dahulu.'});return
+    }
+   }
+   await run(res,'bk_start_attempt',{p_kind:p.kind,p_lesson:lesson})
+  }catch(error){res.status(400).json({error:(error as Error).message})}
  })
  app.get('/api/v1/me/learning/attempts/:id',async(req,res)=>{try{await run(res,'bk_get_attempt',{p_attempt:id(req.params.id)})}catch(error){res.status(400).json({error:(error as Error).message})}})
  app.post('/api/v1/me/learning/attempts/:id/answers',async(req,res)=>{
