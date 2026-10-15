@@ -1,0 +1,225 @@
+{
+  "fileKey": "lq8j5WRNWnNPIL7Vg2mma0",
+  "createdNodeIds": [
+    "5:4",
+    "5:5"
+  ],
+  "mutatedNodeIds": [
+    "0:1"
+  ],
+  "pages": {
+    "ds": "5:4",
+    "screens": "0:1",
+    "mobile": "5:5"
+  },
+  "semantic": {
+    "Light": {
+      "primary": "VariableID:5:24",
+      "bg": "VariableID:5:25",
+      "panel": "VariableID:5:26",
+      "text": "VariableID:5:27",
+      "muted": "VariableID:5:28",
+      "border": "VariableID:5:29",
+      "purple": "VariableID:5:30",
+      "blue": "VariableID:5:31",
+      "pink": "VariableID:5:32",
+      "yellow": "VariableID:5:33"
+    },
+    "Dark": {
+      "primary": "VariableID:5:35",
+      "bg": "VariableID:5:36",
+      "panel": "VariableID:5:37",
+      "text": "VariableID:5:38",
+      "muted": "VariableID:5:39",
+      "border": "VariableID:5:40",
+      "purple": "VariableID:5:41",
+      "blue": "VariableID:5:42",
+      "pink": "VariableID:5:43",
+      "yellow": "VariableID:5:44"
+    }
+  },
+  "sizes": {
+    "space4": "VariableID:5:46",
+    "space8": "VariableID:5:47",
+    "space12": "VariableID:5:48",
+    "space16": "VariableID:5:49",
+    "space20": "VariableID:5:50",
+    "space24": "VariableID:5:51",
+    "space32": "VariableID:5:52",
+    "space40": "VariableID:5:53",
+    "radius8": "VariableID:5:54",
+    "radius14": "VariableID:5:55",
+    "radius20": "VariableID:5:56",
+    "radius32": "VariableID:5:57",
+    "radius999": "VariableID:5:58"
+  },
+  "styles": {
+    "Display": "S:85d64295af72e84e9aec0e1cb3416c42a540813d,",
+    "Heading": "S:c9bda5a1a2d355bd62d3afc688c3dda0bb50683d,",
+    "Section": "S:67b7a5e73bc9088c71f473a56b65ccec6ebc38a4,",
+    "Body": "S:8f3cca09d2dc99755105c522bf6b91089e48ac00,",
+    "Label": "S:97e24f6e303471491f0a35506c9c443ee4e9f00c,",
+    "Caption": "S:748e7dfb88547f5544958d7eff3f0806e72921c0,"
+  },
+  "variables": 49,
+  "typography": "Noto Sans (Segoe UI unavailable)",
+  "components": {
+    "createdNodeIds": [
+      "6:2",
+      "6:3",
+      "6:4",
+      "6:5",
+      "6:6",
+      "6:7",
+      "6:8",
+      "6:9",
+      "6:10",
+      "6:11",
+      "6:12",
+      "6:13",
+      "6:14",
+      "6:15",
+      "6:16",
+      "6:17",
+      "6:18",
+      "6:19",
+      "6:20",
+      "6:21",
+      "6:22",
+      "6:23",
+      "6:24",
+      "6:25",
+      "6:26",
+      "6:27",
+      "6:28",
+      "6:29",
+      "6:30",
+      "6:31",
+      "6:32",
+      "6:33",
+      "6:34",
+      "6:35",
+      "6:36",
+      "6:37",
+      "6:38",
+      "6:39",
+      "6:40",
+      "6:42",
+      "6:43",
+      "6:44",
+      "6:45",
+      "6:46",
+      "6:47",
+      "6:48",
+      "6:49",
+      "6:50",
+      "6:51",
+      "6:52",
+      "6:53",
+      "6:54"
+    ],
+    "board": "6:2",
+    "masters": {
+      "ButtonPrimary": "6:7",
+      "ButtonSecondary": "6:9",
+      "Tag": "6:11",
+      "Input": "6:14",
+      "NavItem": "6:21",
+      "WordCard": "6:27",
+      "LessonCard": "6:35",
+      "Stat": "6:42",
+      "VideoCard": "6:49",
+      "Brand": "6:53"
+    },
+    "props": {
+      "ButtonPrimary": {
+        "label": "Label#6:0"
+      },
+      "ButtonSecondary": {
+        "label": "Label#6:1"
+      },
+      "Tag": {
+        "label": "Label#6:2"
+      },
+      "Input": {
+        "value": "Value#6:3"
+      },
+      "NavItem": {
+        "label": "Label#6:4"
+      },
+      "WordCard": {
+        "category": "Category#6:5",
+        "title": "Title#6:6",
+        "meaning": "Meaning#6:7"
+      },
+      "LessonCard": {
+        "title": "Title#6:8",
+        "body": "Body#6:9"
+      },
+      "Stat": {
+        "value": "Value#6:10",
+        "label": "Label#6:11"
+      },
+      "VideoCard": {
+        "title": "Title#6:12"
+      }
+    },
+    "components": 10,
+    "bounds": {
+      "w": 1200,
+      "h": 689
+    }
+  },
+  "screens": {
+    "Beranda": "7:3",
+    "Register": "7:4",
+    "Login": "7:5",
+    "Asesmen awal": "7:6",
+    "Kelas belajar dasar": "7:7",
+    "Belajar": "7:8",
+    "Materi belajar": "7:9",
+    "Kamus visual": "7:10",
+    "Kemajuan saya": "7:11",
+    "Profil saya": "7:12",
+    "Pengaturan": "7:13",
+    "Beranda · Gelap": "7:14",
+    "Detail kata": "7:15"
+  },
+  "status": "expanded-via-desktop-plugin",
+  "completedScreens": [
+    "Beranda",
+    "Register",
+    "Login",
+    "Asesmen awal",
+    "Kelas belajar dasar",
+    "Belajar",
+    "Materi belajar",
+    "Kamus visual",
+    "Kemajuan saya",
+    "Profil saya",
+    "Pengaturan",
+    "Beranda · Gelap",
+    "Detail kata"
+  ],
+  "pendingScreens": [],
+  "validation": {
+    "structural": "Native Figma completion panel confirmed: 271 desktop, 65 mobile, 111 dialogs on 15 October 2026.",
+    "visual": "Source-specific SMA lesson sample reviewed in native editor; prototype sample checks in progress. Not every screen or interaction audited."
+  },
+  "captureNodeId": "3:2",
+  "notes": [
+    "Reference capture preserved separately.",
+    "Noto Sans substitutes Segoe UI.",
+    "Expanded via local desktop plugin; MCP quota remains unavailable.",
+    "Source curriculum expanded: 12 lessons, 60 evaluation questions, 36 adaptive assessment question states. Starter plan supports one action per interaction; cumulative scoring is represented by example outcomes."
+  ],
+  "localContinuation": {
+    "manifest": "design/figma-plugin/manifest.json",
+    "status": "executed-in-figma-desktop",
+    "syntaxCheck": "passed",
+    "additionalDesktopScreens": 10,
+    "mobileScreens": 65,
+    "desktopScreens": 271,
+    "dialogs": 111
+  }
+}
