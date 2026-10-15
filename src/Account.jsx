@@ -36,5 +36,12 @@ export function AccountProvider({ children }) {
     if (error) throw new Error('Belum berhasil keluar. Coba lagi.')
     try { if(session?.user.id)sessionStorage.removeItem('bahasakita-preview-'+session.user.id) } catch {}
   }
-  return <Context.Provider value={{ session, loading, login, register, logout, accountApi }}>{children}</Context.Provider>
+  const requestAccount = async (...args) => {
+    try { return await accountApi(...args) }
+    catch (error) {
+      if (error.code === 'AUTH_SESSION_EXPIRED') setSession(null)
+      throw error
+    }
+  }
+  return <Context.Provider value={{ session, loading, login, register, logout, accountApi: requestAccount }}>{children}</Context.Provider>
 }

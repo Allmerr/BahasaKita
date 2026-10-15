@@ -1,7 +1,7 @@
 import { renderHook,act,waitFor } from '@testing-library/react'
 import { beforeEach,it,expect,vi } from 'vitest'
-const mocks=vi.hoisted(()=>({auth:{onAuthStateChange:vi.fn(),getSession:vi.fn(),signInWithPassword:vi.fn(),signUp:vi.fn(),signOut:vi.fn()},unsubscribe:vi.fn(),listener:null}))
-vi.mock('../../src/supabase',()=>({supabase:{auth:mocks.auth},supabaseConfigError:'',accountApi:vi.fn()}))
+const mocks=vi.hoisted(()=>({auth:{onAuthStateChange:vi.fn(),getSession:vi.fn(),signInWithPassword:vi.fn(),signUp:vi.fn(),signOut:vi.fn()},api:vi.fn(),unsubscribe:vi.fn(),listener:null}))
+vi.mock('../../src/supabase',()=>({supabase:{auth:mocks.auth},supabaseConfigError:'',accountApi:mocks.api}))
 import { AccountProvider,useAccount } from '../../src/Account.jsx'
 beforeEach(()=>{mocks.auth.onAuthStateChange.mockImplementation(fn=>{mocks.listener=fn;return {data:{subscription:{unsubscribe:mocks.unsubscribe}}}});mocks.auth.getSession.mockResolvedValue({data:{session:null},error:null});mocks.auth.signInWithPassword.mockResolvedValue({error:null});mocks.auth.signUp.mockResolvedValue({data:{session:null},error:null});mocks.auth.signOut.mockResolvedValue({error:null})})
 const setup=()=>renderHook(()=>useAccount(),{wrapper:AccountProvider})
@@ -14,4 +14,14 @@ it('registers profile metadata with confirmation redirect',async()=>{const {resu
 it('reports when registration also created a session',async()=>{mocks.auth.signUp.mockResolvedValue({data:{session:{user:{id:'dina'}}},error:null});const {result}=setup();await act(async()=>expect(await result.current.register('dina@example.test','Password123!',{})).toBe(true))})
 it('translates register and logout errors',async()=>{mocks.auth.signUp.mockResolvedValue({error:{code:'email_exists'}});mocks.auth.signOut.mockResolvedValue({error:{message:'internal'}});const {result}=setup();await expect(result.current.register('dina@example.test','Password123!',{})).rejects.toThrow(/sudah terdaftar/);await expect(result.current.logout()).rejects.toThrow(/Belum berhasil keluar/)})
 it('performs logout through Supabase',async()=>{const {result}=setup();await act(()=>result.current.logout());expect(mocks.auth.signOut).toHaveBeenCalledOnce()})
+<<<<<<< HEAD
 it('logout clears the cached admin preview selection',async()=>{const {result}=setup();await waitFor(()=>expect(result.current.loading).toBe(false));act(()=>mocks.listener('SIGNED_IN',{user:{id:'admin'}}));sessionStorage.setItem('bahasakita-preview-admin','sandbox');await act(()=>result.current.logout());expect(sessionStorage.getItem('bahasakita-preview-admin')).toBeNull()})
+=======
+it('leaves the blocked account workspace after the API confirms session expiration',async()=>{
+ mocks.auth.getSession.mockResolvedValue({data:{session:{user:{id:'dina'}}}})
+ const {result}=setup();await waitFor(()=>expect(result.current.session?.user.id).toBe('dina'))
+ const expired=Object.assign(new Error('Sesi sudah berakhir.'),{code:'AUTH_SESSION_EXPIRED'});mocks.api.mockRejectedValueOnce(expired)
+ await act(async()=>{await expect(result.current.accountApi()).rejects.toBe(expired)})
+ expect(result.current.session).toBeNull()
+})
+>>>>>>> c717d07e77b5f10915ce6efbcf3bbc04cf94fcb4

@@ -17,6 +17,9 @@ export function createApp(clientForToken: (token: string) => SupabaseClient) {
     if (!token) { res.status(401).json({ error: 'Silakan masuk terlebih dahulu.' }); return }
     const client = clientForToken(token)
     const { data, error } = await client.auth.getUser(token)
+    if (error && (error.status === 0 || error.status === 429 || (error.status ?? 0) >= 500 || error.name === 'AuthRetryableFetchError')) {
+      res.status(503).json({ error: 'Layanan akun belum dapat dihubungi. Periksa koneksi lalu coba lagi.' }); return
+    }
     if (error || !data.user) { res.status(401).json({ error: 'Sesi tidak valid. Silakan masuk kembali.' }); return }
     res.locals.client = client
     res.locals.user = data.user
