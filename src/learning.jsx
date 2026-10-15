@@ -112,7 +112,28 @@ export function Provider({ children }) {
  const saveProfile = async profile => {
   const data = await account.accountApi('/profile', profile)
   setState(previous => ({ ...previous, profile: { ...previous.profile, name: data.name, grade: data.grade, goal: data.goal } }))
+  return data
  }
+ const uploadAvatar = async file => {
+  const avatar = await account.accountApi('/avatar', file, { method: 'PUT' })
+  setState(previous => ({ ...previous, profile: { ...previous.profile, ...avatar } }))
+ }
+ const removeAvatar = async () => {
+  const avatar = await account.accountApi('/avatar', undefined, { method: 'DELETE' })
+  setState(previous => ({ ...previous, profile: { ...previous.profile, ...avatar } }))
+ }
+ useEffect(() => {
+  if (!userId || !accountReady || !state.profile?.avatar_path) return
+  let active = true
+  const path = state.profile.avatar_path
+  const refresh = () => account.accountApi('/avatar').then(avatar => {
+   if (active) setState(previous => previous.profile?.avatar_path === path ? { ...previous, profile: { ...previous.profile, ...avatar } } : previous)
+  }).catch(() => {})
+  const timer = setInterval(refresh, 50 * 60 * 1000)
+  const visible = () => { if (document.visibilityState === 'visible') refresh() }
+  document.addEventListener('visibilitychange', visible)
+  return () => { active = false; clearInterval(timer); document.removeEventListener('visibilitychange', visible) }
+ }, [userId, accountReady, state.profile?.avatar_path])
  const savePreferences = async () => { await account.accountApi('/preferences', state.settings) }
  useEffect(() => { document.documentElement.dataset.theme = state.settings.theme; document.documentElement.dataset.size = state.settings.textSize; document.documentElement.dataset.comfort = String(state.settings.comfortable); document.documentElement.dataset.contrast = String(state.settings.contrast); document.title = 'BahasaKita — Belajar dengan caramu' }, [state.settings])
  const update = patch => setState(previous => ({ ...previous, ...patch }))
@@ -123,7 +144,7 @@ export function Provider({ children }) {
  const lessonAttempts = state.attempts.filter(attempt => attempt.type === 'lesson' && activeIds.has(attempt.lesson))
  const path = buildPath(state)
  const next = path.find(l => !state.mastered.includes(l.id))
- return <Store.Provider value={{ state, setState, update, setting, path, next, clips, setClips, saveProfile, savePreferences, accountError, accountReady, lessons: catalog, dictionary: dictionaryForGrade(state.profile?.grade), masteredLessons, lessonAttempts }}>{children}</Store.Provider>
+ return <Store.Provider value={{ state, setState, update, setting, path, next, clips, setClips, saveProfile, savePreferences, uploadAvatar, removeAvatar, accountError, accountReady, lessons: catalog, dictionary: dictionaryForGrade(state.profile?.grade), masteredLessons, lessonAttempts }}>{children}</Store.Provider>
 }
 export const useStore = () => useContext(Store)
 export function buildPath(state) {
