@@ -6,7 +6,8 @@
     "dev": "tsx watch --env-file=.env src/index.ts",
     "build": "tsc",
     "start": "node --env-file=.env dist/index.js",
-    "test": "tsx --test src/*.test.ts"
+    "test": "tsx --test src/*.test.ts",
+    "seed:demo": "tsx --env-file=.env src/seed-demo.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.0.0",

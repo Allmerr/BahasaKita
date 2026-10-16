@@ -1,4 +1,6 @@
 import { videosForGrade } from './youtubeMaterials.js'
+import { additionalDictionaryForGrade } from './additionalDictionary.js'
+import { dictionarySignVideo } from './dictionarySignVideos.js'
 
 // Start points lead into the word's context, rather than claiming an isolated sign clip.
 // Words and contexts were checked against sampled frames of these source videos.
@@ -45,6 +47,9 @@ const entries = {
 }
 export function dictionaryForGrade(grade) {
  const videos = videosForGrade(grade)
- return (Object.hasOwn(entries, grade) ? entries[grade] : []).map(entry => ({ ...entry, video: videos.find(video => video.id === entry.videoId) }))
+ return [...(Object.hasOwn(entries, grade) ? entries[grade] : []), ...additionalDictionaryForGrade(grade)].map(entry => {
+  const video = videos.find(item => item.id === entry.videoId) || dictionarySignVideo(grade, entry.word)
+  return { ...entry, video, mediaStatus: video ? 'video-available' : entry.mediaStatus }
+ })
 }
 export function videoTime(seconds) { return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}` }
