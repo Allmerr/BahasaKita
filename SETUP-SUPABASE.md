@@ -51,7 +51,24 @@ Pemeriksaan membaca layanan Auth dan metadata akses tabel. Tidak membuat akun at
 
 Jalankan API di terminal pertama dengan `npm run dev:api`, lalu frontend di terminal kedua dengan `npm run dev`. Jika dependensi belum ada, jalankan `npm install` di folder utama, lalu jalankan `npm install` dari folder `server`. Restart keduanya setelah mengubah file env. Proxy Vite meneruskan `/api` ke port 3001.
 
+## Login Google dan reset kata sandi
+
+1. Di **Supabase Dashboard → Authentication → URL Configuration**, isi **Site URL** dengan alamat aplikasi yang digunakan. Tambahkan `http://localhost:5173/**`, alamat produksi `https://domain-anda/**`, dan URL tunnel yang sedang dipakai `https://nama.ngrok-free.app/**` ke **Redirect URLs** sesuai kebutuhan. Alur Google kembali ke `/signin`; email pemulihan kembali ke `/reset-password`. Origin callback dibuat dari alamat yang dibuka pengguna, sehingga setiap origin harus diizinkan.
+2. Di **Google Cloud Console**, buat OAuth Client ID bertipe **Web application**. Pada **Authorized redirect URIs**, gunakan **Callback URL** yang ditampilkan di halaman penyedia Google Supabase (umumnya `https://PROJECT.supabase.co/auth/v1/callback`). Jangan isi dengan URL `/signin` aplikasi. Tambahkan origin aplikasi yang digunakan ke **Authorized JavaScript origins** bila diminta pada konfigurasi OAuth.
+3. Aktifkan **Google** di **Supabase Dashboard → Authentication → Providers**, lalu masukkan Client ID dan Client Secret dari Google Cloud di sana. Simpan secret hanya di dashboard; frontend tetap memakai publishable key. Akun Google baru otomatis menjadi siswa dengan jenjang awal SD. Untuk akun guru/orang tua baru, gunakan formulir registrasi email; akun lama mempertahankan peran saat login Google jika identitasnya tertaut.
+4. Pastikan penyedia **Email** aktif dan pengiriman email Supabase/SMTP telah dikonfigurasi. Dari halaman Login, buka **Lupa kata sandi?**, kirim email, buka tautan yang diterima, lalu simpan kata sandi baru. Tautan pemulihan akan membuka `/reset-password`. Bila template email khusus selalu mengarah ke Site URL, periksa variabel redirect pada template.
+5. Uji Google dan reset dari `localhost` serta URL HTTPS tunnel/produksi yang sebenarnya. URL tunnel acak baru perlu ditambahkan lagi ke Redirect URLs sebelum dicoba. Setelah mengubah konfigurasi atau kode frontend, buat build baru dan mulai ulang Preview.
+
+### Status proyek BahasaKita saat ini
+
+Pada 16 Oktober 2026, proyek Supabase `thkhsiuknhewpvvpollj` sudah mengaktifkan Google dan Email. Callback Google memakai `https://thkhsiuknhewpvvpollj.supabase.co/auth/v1/callback`. Redirect URL untuk tunnel aktif dan localhost pada port 5173/4173 sudah tersimpan; jika alamat tunnel berubah, tambahkan alamat baru di Supabase dan Google Cloud. Login Google sudah diuji berhasil dengan akun pemilik proyek.
+
+OAuth Google masih berstatus **Testing**. Akun `kevinalmer4@gmail.com` sudah terdaftar sebagai test user; pengguna lain baru bisa masuk lewat Google setelah emailnya ditambahkan sebagai test user atau aplikasi OAuth siap dipublikasikan dengan domain dan informasi aplikasi tetap.
+
+**Custom SMTP sudah aktif.** Proyek memakai `smtp.gmail.com` port 465 dengan pengirim Gmail proyek. Uji awal `/forgot-password` melalui tunnel pada 16 Oktober 2026 ditolak Gmail dengan `535 5.7.8`; setelah pemilik akun mengganti App Password langsung di dashboard, uji ulang dari aplikasi mendapat respons berhasil dan log Auth mencatat `POST /recover` status 200. Pemilik akun mengonfirmasi email diterima dan tautannya membuka halaman **Buat kata sandi baru**. Perubahan kata sandi dan login ulang belum diuji sebagai bagian dari pemeriksaan ini. Jangan menaruh App Password di frontend, Git, atau chat. Untuk produksi, layanan email transaksional dan domain pengirim yang terverifikasi lebih sesuai daripada Gmail pribadi.
+
 ## 5. Verifikasi penyimpanan asli
+
 
 1. Aktifkan Email provider di Authentication. Atur Site URL dan Redirect URL ke `http://localhost:5173`; pertahankan konfirmasi email.
 2. Register dari aplikasi, konfirmasi email jika diminta, lalu login.

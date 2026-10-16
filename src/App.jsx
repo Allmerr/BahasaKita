@@ -4,6 +4,7 @@ import { AccountProvider, useAccount } from './Account.jsx'
 import { Provider, useStore, learningDestination } from './learning.jsx'
 import { AccessContext, publicPages } from './access.jsx'
 import { Splash, AuthLayout, Login, Register } from './EntryFlow.jsx'
+import { ForgotPassword, ResetPassword } from './PasswordRecovery.jsx'
 import { Shell, Dashboard, LearningPath, Dictionary, Progress, Profile, Settings, Missing } from './LearningApp.jsx'
 import { Assessment, Lesson, LearningStatus } from './OnlineLearning.jsx'
 const Admin = lazy(()=>import('./Admin.jsx'))
@@ -35,14 +36,16 @@ function BasicGate() {
  return destination === '/basic-class' ? <BasicClass/> : <Navigate to={destination} replace/>
 }
 export function AppRoutes({ authorized, enter }) {
- return <AccessContext.Provider value={{ authorized }}><Routes><Route element={<AuthLayout/>}><Route path="signin" element={<Login onEnter={enter}/>}/><Route path="signup" element={<Register onEnter={enter}/>}/></Route><Route element={<WorkspaceGate authorized={authorized}/>}><Route element={<Shell/>}><Route element={<LearningGate authorized={authorized}/>}><Route index element={<Dashboard/>}/><Route path="learning" element={<LearningPath/>}/><Route path="dictionary" element={<Dictionary/>}/><Route element={<Protected authorized={authorized}/>}><Route path="progress" element={<Progress/>}/><Route path="lesson/:id" element={<Lesson/>}/></Route></Route><Route path="settings" element={<Settings/>}/><Route element={<Protected authorized={authorized}/>}><Route path="assessment" element={<Assessment/>}/><Route path="basic-class" element={<BasicGate/>}/><Route path="profile" element={<Profile/>}/><Route path="support" element={<Suspense fallback={<div className="panel" role="status">Memuat pendampingan…</div>}><Support/></Suspense>}/><Route path="admin/accounts" element={<Suspense fallback={<div className="panel">Memuat akun…</div>}><SupportAccounts/></Suspense>}/><Route path="admin/dictionary" element={<Suspense fallback={<div className="panel">Memuat kamus…</div>}><AdminDictionary/></Suspense>}/><Route path="admin" element={<Suspense fallback={<div className="panel">Memuat pengelola…</div>}><Admin/></Suspense>}/></Route><Route path="*" element={<Missing/>}/></Route></Route></Routes></AccessContext.Provider>
+ return <AccessContext.Provider value={{ authorized }}><Routes><Route element={<AuthLayout/>}><Route path="signin" element={<Login onEnter={enter}/>}/><Route path="signup" element={<Register onEnter={enter}/>}/><Route path="forgot-password" element={<ForgotPassword/>}/><Route path="reset-password" element={<ResetPassword/>}/></Route><Route element={<WorkspaceGate authorized={authorized}/>}><Route element={<Shell/>}><Route element={<LearningGate authorized={authorized}/>}><Route index element={<Dashboard/>}/><Route path="learning" element={<LearningPath/>}/><Route path="dictionary" element={<Dictionary/>}/><Route element={<Protected authorized={authorized}/>}><Route path="progress" element={<Progress/>}/><Route path="lesson/:id" element={<Lesson/>}/></Route></Route><Route path="settings" element={<Settings/>}/><Route element={<Protected authorized={authorized}/>}><Route path="assessment" element={<Assessment/>}/><Route path="basic-class" element={<BasicGate/>}/><Route path="profile" element={<Profile/>}/><Route path="support" element={<Suspense fallback={<div className="panel" role="status">Memuat pendampingan…</div>}><Support/></Suspense>}/><Route path="admin/accounts" element={<Suspense fallback={<div className="panel">Memuat akun…</div>}><SupportAccounts/></Suspense>}/><Route path="admin/dictionary" element={<Suspense fallback={<div className="panel">Memuat kamus…</div>}><AdminDictionary/></Suspense>}/><Route path="admin" element={<Suspense fallback={<div className="panel">Memuat pengelola…</div>}><Admin/></Suspense>}/></Route><Route path="*" element={<Missing/>}/></Route></Route></Routes></AccessContext.Provider>
 }
 function EntryApp({ opening, setOpening }) {
  const { session, loading } = useAccount()
+ const { pathname } = useLocation()
  const { state, accountReady,isAdmin,isSupporter,studentPreview } = useStore()
  const authorized = !!session
  const navigate = useNavigate()
  const finishOpening = useCallback(() => { setOpening(false); navigate(authorized && accountReady ? isAdmin&&!studentPreview?'/admin':isSupporter?'/support':learningDestination(state) : '/', { replace: true }) }, [navigate, authorized, accountReady, state,isAdmin,isSupporter,studentPreview])
+ if (['/signin', '/signup', '/forgot-password', '/reset-password'].includes(pathname)) return loading ? <main className="workspace-loading panel" role="status">Memeriksa sesi akun…</main> : <AppRoutes authorized={authorized} enter={() => {}}/>
  if (opening || loading) return <Splash onFinish={finishOpening}/>
  return <AppRoutes authorized={authorized} enter={() => {}}/>
 }

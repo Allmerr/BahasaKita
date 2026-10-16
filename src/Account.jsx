@@ -30,6 +30,26 @@ export function AccountProvider({ children }) {
     if (error) throw new Error(authErrorMessage(error))
     return !!data.session
   }
+  const signInWithGoogle = async () => {
+    requireClient()
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: new URL('/signin', window.location.origin).toString() },
+    })
+    if (error) throw new Error(authErrorMessage(error, 'google'))
+  }
+  const requestPasswordReset = async email => {
+    requireClient()
+    const { error } = await supabase.auth.resetPasswordForEmail(email.trim().toLowerCase(), {
+      redirectTo: new URL('/reset-password', window.location.origin).toString(),
+    })
+    if (error) throw new Error(authErrorMessage(error, 'reset'))
+  }
+  const updatePassword = async password => {
+    requireClient()
+    const { error } = await supabase.auth.updateUser({ password })
+    if (error) throw new Error(authErrorMessage(error, 'reset'))
+  }
   const logout = async () => {
     requireClient()
     const { error } = await supabase.auth.signOut()
@@ -53,5 +73,5 @@ export function AccountProvider({ children }) {
       throw error
     }
   }
-  return <Context.Provider value={{ session, loading, login, register, logout, deleteAccount, accountApi: requestAccount }}>{children}</Context.Provider>
+  return <Context.Provider value={{ session, loading, login, register, signInWithGoogle, requestPasswordReset, updatePassword, logout, deleteAccount, accountApi: requestAccount }}>{children}</Context.Provider>
 }

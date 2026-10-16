@@ -54,6 +54,8 @@ Opsi `--host-header=rewrite` membuat Vite menerima permintaan dengan host lokal.
 
 Autentikasi email mengarahkan kembali ke origin browser saat ini. Untuk setiap URL tunnel baru, buka **Supabase Dashboard → Authentication → URL Configuration**, lalu tambahkan URL publik persisnya ke **Redirect URLs** (misalnya `https://nama-random.ngrok-free.app/**`). Untuk pengujian, set **Site URL** ke URL tunnel yang sedang dipakai bila alur konfirmasi email kembali ke URL yang salah. Kembalikan Site URL ke alamat aplikasi tetap setelah demo. URL tunnel acak biasanya berubah setiap kali tunnel dimulai.
 
+Login Google kembali ke `https://nama-random.ngrok-free.app/signin`; reset kata sandi kembali ke `https://nama-random.ngrok-free.app/reset-password`. Keduanya perlu diizinkan dalam Redirect URLs. Google Cloud memakai URL callback **Supabase** pada konfigurasi OAuth, bukan URL ngrok. Lihat langkah [login Google dan reset kata sandi](SETUP-SUPABASE.md#login-google-dan-reset-kata-sandi) untuk pengaturan provider dan email.
+
 ## Pemeriksaan cepat
 
 - Buka `https://<domain-tunnel>/api/health`. Respons yang diharapkan: `{"status":"ok"}`.

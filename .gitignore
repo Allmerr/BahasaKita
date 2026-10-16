@@ -2,6 +2,7 @@ node_modules
 coverage
 dist
 dist-ssr
+.vercel
 *.local
 .DS_Store
 .vscode/*
