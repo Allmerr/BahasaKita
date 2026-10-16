@@ -268,6 +268,9 @@ h1,h2,h3,h4,p,.tag,.text-link,.btn,.field,.answer-option,.reading-box{overflow-w
 .password-toggle{display:grid;place-items:center;background:none;border:0;color:#64748b;min-width:38px;min-height:44px;flex-shrink:0;padding:5px;border-radius:50%;margin-right:-7px}
 .login-remember{display:flex;align-items:center;gap:9px;font-size:.75rem;color:#0f172a;min-height:38px;margin:-3px 0 18px}
 .login-remember input{width:21px;height:21px;accent-color:#4f46e5;margin:0;flex-shrink:0}
+.login-help-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:-3px 0 18px}
+.login-help-row .login-remember{margin:0}
+.login-help-row>a,.recovery-secondary a{font-size:.75rem;font-weight:600;color:#4f46e5}
 .login-soft-card .login-rounded-submit{min-height:57px;box-shadow:none;background:#4f46e5;border:1px solid #4f46e5;font-weight:650;border-radius:999px}
 .login-soft-card .login-rounded-submit:hover{background:#7c3aed;border-color:#7c3aed;box-shadow:none}
 .login-soft-card .login-rounded-submit:active{transform:none}
@@ -276,11 +279,16 @@ h1,h2,h3,h4,p,.tag,.text-link,.btn,.field,.answer-option,.reading-box{overflow-w
 .social-login-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
 .social-login-options button{display:flex;justify-content:center;align-items:center;gap:10px;min-width:0;min-height:55px;background:#ffffffee;border:1px solid #fff;border-radius:999px;color:#0f172a;font-size:.85rem;padding:10px 12px}
 .social-login-options button:disabled{opacity:.8}
+.social-login-options button:not(:disabled){cursor:pointer}
+.social-login-options button:not(:disabled):hover{border-color:#a5b4fc;background:#fff}
 .google-letter{font-size:1.5rem;line-height:1;font-weight:750;background:conic-gradient(#4285f4 0 25%,#34a853 25% 48%,#fbbc05 48% 68%,#ea4335 68% 83%,#4285f4 83%);background-clip:text;-webkit-background-clip:text;color:transparent}
 .social-login-status{font-size:.63rem;color:#64748b;margin:10px 0 0}
 .login-signup-bottom{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:5px;margin-top:auto;padding-top:45px;font-size:.77rem;color:#475569}
 .login-signup-bottom .login-register-link{font-size:.77rem;color:#4f46e5;min-height:35px}
 .login-soft-card .login-error{background:#fff9;color:#0f172a;border-color:#a5b4fc}
+.recovery-soft-card{min-height:500px}
+.recovery-notice{padding:16px;border-radius:16px;background:#ffffffbb;color:#0f172a;font-size:.86rem;line-height:1.5}
+.recovery-secondary{margin:18px 0 0;text-align:center}
 [data-theme=dark] .soft-login-backdrop{background:radial-gradient(ellipse at 20% 12%,#30275a,transparent 65%),#0f172a}
 [data-theme=dark] .login-soft-card{background:linear-gradient(145deg,#30275a,#172237 70%);border-color:#475569}
 [data-theme=dark] .login-soft-card h1{color:#f8fafc}
@@ -292,6 +300,8 @@ h1,h2,h3,h4,p,.tag,.text-link,.btn,.field,.answer-option,.reading-box{overflow-w
 [data-theme=dark] .soft-input-wrap select option{background:#172237;color:#f8fafc}
 [data-theme=dark] .social-login-status{color:#cbd5e1}
 [data-theme=dark] .login-signup-bottom .login-register-link{color:#a5b4fc}
+[data-theme=dark] .login-help-row>a,[data-theme=dark] .recovery-secondary a{color:#c4b5fd}
+[data-theme=dark] .recovery-notice{background:#0f172a;color:#f8fafc}
 @media(max-width:600px){.soft-login-backdrop{padding:0;background:#ede9fe}.auth-login-page .login-center{min-height:100dvh}.login-soft-card{min-height:100dvh;max-width:480px;width:100%;border:0;border-radius:0;padding:32px max(23px,env(safe-area-inset-right)) max(26px,env(safe-area-inset-bottom)) max(23px,env(safe-area-inset-left));box-shadow:none}.login-soft-card .login-card-logo{width:195px;margin-bottom:22px}.login-soft-card h1{font-size:1.6rem}.soft-input-wrap input,.soft-input-wrap select{font-size:16px}.login-signup-bottom{padding-top:36px}.auth-login-page .auth-content{padding:0}}
 @media(max-width:360px){.login-soft-card{padding-left:19px;padding-right:19px}.login-soft-card h1{font-size:1.4rem}.login-soft-card .login-card-description{font-size:.78rem}.social-login-options{gap:10px}.social-login-options button{font-size:.8rem}.soft-input-wrap{padding-left:15px;padding-right:12px}}
 @media(max-height:650px) and (min-width:601px){.soft-login-backdrop{padding:24px 20px}.auth-login-page .login-center{min-height:0}.login-soft-card{min-height:0}.login-signup-bottom{padding-top:25px}}
