@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { assessmentScore, useStore } from './learning.jsx'
 import { basicForGrade, basicYoutubeId } from './basicContent.js'
-import { youtubeEmbedUrl, youtubeWatchUrl } from './youtubeMaterials.js'
+import { youtubeEmbedUrl } from './youtubeMaterials.js'
 import Icon from './components/Icon.jsx'
 
 function BasicPlayer({ material, settings, grade }) {
@@ -14,8 +14,6 @@ function BasicPlayer({ material, settings, grade }) {
   {material.description && <p>{material.description}</p>}
   {youtubeId ? <>
    {playing ? <div className="youtube-frame"><iframe src={youtubeEmbedUrl(youtubeId, material.start || 0)} title={`Video kelas dasar ${grade}: ${material.title}`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen referrerPolicy="strict-origin-when-cross-origin"/></div> : <button type="button" className="btn" onClick={() => setPlaying(true)}><Icon name="play" size={18}/>Putar video pembelajaran</button>}
-   <p className="muted">Amati isyarat, gambar, dan teks dalam video. Jeda atau ulangi sesuai kebutuhan. Subtitle dapat diaktifkan melalui CC jika tersedia.</p>
-   <p className="muted">Sumber: {material.sourceTitle || 'Video pembelajaran YouTube'}{material.sourceAuthor && ` — ${material.sourceAuthor}`}. <a href={youtubeWatchUrl(youtubeId)} target="_blank" rel="noopener noreferrer">Buka di YouTube</a> jika video tidak dapat diputar di sini.</p>
   </> : <>
    <video controls playsInline preload={settings.dataSaver ? 'none' : 'metadata'} aria-label={`Video pembelajaran ${material.title}`} onLoadedMetadata={e => { e.currentTarget.playbackRate = Number(settings.speed) }} onError={() => setFailed(true)}><source src={material.videoSrc}/>Browsermu belum mendukung video. Baca penjelasan di bawah.</video>
    {failed && <p role="alert">Video belum dapat diputar. Materi lengkap tersedia pada teks penjelasan berikut.</p>}

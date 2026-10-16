@@ -11,6 +11,8 @@ Aplikasi React + Vite dengan Supabase Auth dan API Express. Mendukung siswa SD, 
 
 `npm run build` menghasilkan frontend pada `dist`; `npm run preview` menyediakan pratinjau hasil build. Pada produksi, layani frontend dan API di origin HTTPS yang sama. Ngrok untuk preview harus menunjuk frontend yang meneruskan API.
 
+Untuk membagikan preview lokal melalui HTTPS sementara, ikuti [TUNNELING.md](TUNNELING.md).
+
 ## Aplikasi dan PWA
 
 Hasil build mendukung pemasangan **BahasaKita Learn** dari Pengaturan atau menu browser, dengan favicon dan ikon layar utama dari logo BahasaKita. Saat koneksi terputus, navigasi menampilkan halaman bantuan offline. Asesmen, video, chat, dan penyimpanan progres tetap memerlukan internet; service worker hanya menyimpan aset publik, tanpa cache data akun atau antrean jawaban/pesan. Pembaruan diterapkan setelah tab ditutup atau melalui tombol pembaruan di Pengaturan.

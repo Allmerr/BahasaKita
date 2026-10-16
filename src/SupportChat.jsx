@@ -1,6 +1,7 @@
 import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react'
 import { useAccount } from './Account'
 import Icon from './components/Icon.jsx'
+import { displayName } from './displayName.js'
 import './chat.css'
 
 const initials = name => name.trim().split(/\s+/).slice(0, 2).map(word => word[0]).join('').toLocaleUpperCase('id')
@@ -160,10 +161,9 @@ export default function SupportChat({ linkId, name = '', subtitle = '', conversa
   <aside className="dm-sidebar" aria-label="Daftar percakapan">
    <div className="dm-inbox-heading"><span className="dm-inbox-icon"><Icon name="message" size={25}/></span><div><h2>Pesan</h2><p>Belajar, berbagi, bertumbuh.</p></div><span className="dm-contact-count" aria-label={contacts.length + ' percakapan'}>{contacts.length}</span></div>
    <label className="dm-search"><Icon name="search" size={19}/><span className="sr-only">Cari percakapan</span><input ref={searchInput} type="search" value={search} onChange={event => setSearch(event.target.value)} placeholder="Cari percakapan…"/></label>
-   <nav className="dm-contacts" aria-label="Pilih percakapan">{filtered.map(contact => <button type="button" key={contact.id} className={'dm-contact-button' + (contact.id === linkId ? ' selected' : '')} aria-current={contact.id === linkId ? 'true' : undefined} onClick={() => select(contact)}><span className="dm-avatar" aria-hidden="true">{initials(contact.name)}</span><span className="dm-contact-copy"><strong>{contact.name}</strong><span>{contact.subtitle || 'Pendamping belajar'}</span><small>{contact.id === linkId ? 'Percakapan dipilih' : 'Buka percakapan'}</small></span><Icon name="chevron" size={17}/></button>)}</nav>
+   <nav className="dm-contacts" aria-label="Pilih percakapan">{filtered.map(contact => <button type="button" key={contact.id} className={'dm-contact-button' + (contact.id === linkId ? ' selected' : '')} aria-current={contact.id === linkId ? 'true' : undefined} onClick={() => select(contact)}><span className="dm-avatar" aria-hidden="true">{initials(contact.name)}</span><span className="dm-contact-copy"><strong>{displayName(contact.name)}</strong><span>{contact.subtitle || 'Pendamping belajar'}</span><small>{contact.id === linkId ? 'Percakapan dipilih' : 'Buka percakapan'}</small></span><Icon name="chevron" size={17}/></button>)}</nav>
    {!filtered.length && <p className="dm-no-results">{search ? 'Nama belum ditemukan. Coba nama lain.' : 'Percakapan muncul setelah kamu terhubung dengan pendamping.'}</p>}
-   <p className="dm-sidebar-note"><Icon name="hand" size={19}/><span>Saling mendukung, satu pesan setiap kali.</span></p>
   </aside>
-  {linkId ? <Conversation key={linkId} linkId={linkId} name={name} subtitle={subtitle} headingRef={heading} onBack={() => { setMobileThread(false); requestAnimationFrame(() => searchInput.current?.focus({ preventScroll: true })) }}/> : <div className="dm-placeholder"><span className="dm-empty-icon"><Icon name="message" size={38}/></span><h3>Pesan belajarmu</h3><p>Pilih nama di daftar untuk bertanya, berbagi kemajuan, atau menyapa pendampingmu.</p></div>}
+  {linkId ? <Conversation key={linkId} linkId={linkId} name={displayName(name)} subtitle={subtitle} headingRef={heading} onBack={() => { setMobileThread(false); requestAnimationFrame(() => searchInput.current?.focus({ preventScroll: true })) }}/> : <div className="dm-placeholder"><span className="dm-empty-icon"><Icon name="message" size={38}/></span><h3>Pesan belajarmu</h3><p>Pilih nama di daftar untuk bertanya, berbagi kemajuan, atau menyapa pendampingmu.</p></div>}
  </section>
 }

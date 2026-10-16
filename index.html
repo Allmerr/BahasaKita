@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -11,10 +14,19 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="BahasaKita" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="description" content="BahasaKita: ruang belajar mandiri dengan isyarat, visual, dan jalur sesuai kemampuanmu." />
+    <meta name="description" content="BahasaKita" />
     <meta name="theme-color" content="#4F46E5" />
     <title>BahasaKita</title>
-    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+    <script>
+      try {
+        const theme = JSON.parse(localStorage.getItem('bahasakita-preferences') || '{}').theme
+        if (theme === 'dark' || theme === 'light') document.documentElement.dataset.theme = theme
+      } catch {}
+    </script>
+    <script
+      src="https://mcp.figma.com/mcp/html-to-design/capture.js"
+      async
+    ></script>
   </head>
   <body>
     <div id="root"></div>
