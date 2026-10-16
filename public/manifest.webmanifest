@@ -1,0 +1,19 @@
+{
+ "id": "/",
+ "name": "BahasaKita Learn",
+ "short_name": "BahasaKita",
+ "description": "Ruang belajar adaptif dengan video BISINDO, visual, dan latihan interaktif.",
+ "lang": "id",
+ "dir": "ltr",
+ "start_url": "/",
+ "scope": "/",
+ "display": "standalone",
+ "background_color": "#f5f3ff",
+ "theme_color": "#4f46e5",
+ "prefer_related_applications": false,
+ "icons": [
+  { "src": "/icons/app-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+  { "src": "/icons/app-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+  { "src": "/icons/app-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+ ]
+}

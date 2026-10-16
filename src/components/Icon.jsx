@@ -1,5 +1,7 @@
 export default function Icon({ name = 'book', size = 22, ...props }) {
  const paths = {
+ wifiOff: <><path d="m3 3 18 18M2 8.8a16 16 0 0 1 3-1.7M9 5.3A16 16 0 0 1 22 8.8M5 12a11 11 0 0 1 3.5-1.7M13 10a11 11 0 0 1 6 2M8.5 15.5a5 5 0 0 1 7 0M12 19v.1"/></>,
+ download: <><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></>,
  mail: <><rect x="3" y="5" width="18" height="14" rx="4"/><path d="m4 7 8 6 8-6"/></>,
  message: <><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H4l-2 2V11.5A8.5 8.5 0 0 1 10.5 3h2a8.5 8.5 0 0 1 8.5 8.5Z"/><path d="M7 9h9M7 13h6"/></>,
  send: <><path d="m22 2-7 20-4-9L2 9 22 2ZM22 2 11 13"/></>,

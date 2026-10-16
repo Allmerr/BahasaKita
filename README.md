@@ -11,6 +11,12 @@ Aplikasi React + Vite dengan Supabase Auth dan API Express. Mendukung siswa SD, 
 
 `npm run build` menghasilkan frontend pada `dist`; `npm run preview` menyediakan pratinjau hasil build. Pada produksi, layani frontend dan API di origin HTTPS yang sama. Ngrok untuk preview harus menunjuk frontend yang meneruskan API.
 
+## Aplikasi dan PWA
+
+Hasil build mendukung pemasangan **BahasaKita Learn** dari Pengaturan atau menu browser, dengan favicon dan ikon layar utama dari logo BahasaKita. Saat koneksi terputus, navigasi menampilkan halaman bantuan offline. Asesmen, video, chat, dan penyimpanan progres tetap memerlukan internet; service worker hanya menyimpan aset publik, tanpa cache data akun atau antrean jawaban/pesan. Pembaruan diterapkan setelah tab ditutup atau melalui tombol pembaruan di Pengaturan.
+
+Jalankan `npm run test:pwa` untuk memeriksa manifest, instalabilitas Chromium, offline, dan pembaruan. PWA aktif pada versi produksi melalui HTTPS/localhost, bukan server pengembangan Vite. Panduan pemasangan, hosting, batas offline, pengujian, dan daftar file ada di [PWA.md](PWA.md).
+
 ## Alur belajar
 
 Login memakai Supabase Auth dengan konfirmasi email. Profil, foto privat, serta pengaturan akun tersimpan online. Sesi dipulihkan saat refresh; preferensi tampilan tamu tetap tersedia di perangkat.
