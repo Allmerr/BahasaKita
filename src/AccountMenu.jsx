@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAccount } from './Account.jsx'
 import { ProfileAvatar } from './AccountProfile.jsx'
 import Icon from './components/Icon.jsx'
+import { displayName } from './displayName.js'
 
 export default function AccountMenu({ profile, authorized, variant = 'header', subtitle }) {
  const { logout } = useAccount()
@@ -43,7 +44,7 @@ export default function AccountMenu({ profile, authorized, variant = 'header', s
   {sidebar ? <div className="sidebar-profile account-menu-card">
    <Link data-assessment-navigation={authorized || undefined} data-public-navigation={!authorized || undefined} to={authorized ? '/profile' : '/signin'} className="account-menu-profile-link" onClick={() => setOpen(false)}>
     <span className="profile-card-avatar"><ProfileAvatar profile={authorized ? profile : null} size={23}/></span>
-    <span className="sidebar-profile-copy"><strong>{profile?.name || 'Profil saya'}</strong><small>{subtitle || (authorized ? profile?.grade || 'SD' : 'Lihat profilmu')}</small></span>
+    <span className="sidebar-profile-copy"><strong>{profile?.name ? displayName(profile.name) : 'Profil saya'}</strong><small>{subtitle || (authorized ? profile?.grade || 'SD' : 'Lihat profilmu')}</small></span>
    </Link>
    {authorized ? <button data-assessment-navigation type="button" className="account-menu-arrow" ref={trigger} aria-label="Menu profil sidebar" aria-expanded={open} aria-controls={dropdownId} onClick={() => setOpen(value => !value)}><Icon name="chevron" size={17}/></button> : <Icon name="chevron" size={17}/>}
   </div> : <button data-assessment-navigation type="button" className="avatar account-menu-trigger" ref={trigger} aria-label="Menu profil" aria-expanded={open} aria-controls={dropdownId} onClick={() => setOpen(value => !value)}>

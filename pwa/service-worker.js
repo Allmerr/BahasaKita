@@ -8,7 +8,7 @@ const offlineUrl = new URL('/offline.html', self.location.origin).href
 
 self.addEventListener('install', event => {
  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(
-  [...publicUrls].map(url => new Request(url, { cache: 'reload', credentials: 'omit' }))
+  [...publicUrls].map(url => new Request(url, { cache: 'reload', credentials: 'same-origin' }))
  )))
  // A new version waits until tabs close or the user explicitly requests it.
 })

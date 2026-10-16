@@ -4,6 +4,7 @@ import Icon from './components/Icon.jsx'
 import { useStore } from './learning.jsx'
 import { useAccount } from './Account.jsx'
 import { normalizeEmail } from './auth.js'
+import { displayName } from './displayName.js'
 
 export function Splash({ onFinish }) {
  const { state } = useStore()
@@ -46,7 +47,7 @@ export function Register({ onEnter }) {
   if (password !== confirmation) { setError('Konfirmasi kata sandi belum cocok.'); return }
   setBusy(true); setError(''); setNotice('')
   try {
-   const signedIn = await register(email, password, { name: name.trim(), goal, ...(role === 'student' ? { grade } : { role }) })
+   const signedIn = await register(email, password, { name: displayName(name.trim()), goal, ...(role === 'student' ? { grade } : { role }) })
    if (!signedIn) { setNotice('Akun dibuat. Periksa email untuk konfirmasi, lalu login.'); return }
    onEnter(); navigate(role==='student'?'/assessment':'/support', { replace: true })
   } catch (error) { setError(error.message) }

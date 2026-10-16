@@ -11,10 +11,12 @@ export const aspects = [
   { id: 'akademik', name: 'Soal akademik', icon: 'shapes', color: 'yellow', description: 'Pahami konsep matematika.' },
 ]
 export const initialState = { profile: null, learningReady: false, legacy: null, activeAssessment: null, assessment: null, assessmentDraft: null, mastered: [], attempts: [], settings: { textSize: 'normal', theme: 'light', speed: '1', comfortable: false, contrast: false, language: 'default', dataSaver: false } }
+const deviceTheme = () => { try { const theme = JSON.parse(localStorage.getItem('bahasakita-preferences') || '{}').theme; return ['light', 'dark'].includes(theme) ? theme : null } catch { return null } }
 const Store = createContext(null)
 export function Provider({ children }) {
  const account = useAccount()
  const userId = account?.session?.user.id
+ const preferredTheme = useRef(deviceTheme())
  const [state,setState] = useState(() => { try { return { ...structuredClone(initialState), settings: { ...initialState.settings, ...JSON.parse(localStorage.getItem('bahasakita-preferences') || '{}') } } } catch { return structuredClone(initialState) } })
  const [content,setContent] = useState({lessons:[],basicMaterials:[]})
  const [contentError,setContentError] = useState('')
@@ -66,7 +68,7 @@ export function Provider({ children }) {
   if(!userId)return()=>{active=false}
   account.accountApi().then(async data=>{
    if(!active)return
-   setState(previous=>({...previous,profile:data.profile,settings:{...initialState.settings,...data.preferences}}));setAccountReady(true)
+   setState(previous=>({...previous,profile:data.profile,settings:{...initialState.settings,...data.preferences,theme:preferredTheme.current || data.preferences?.theme || initialState.settings.theme}}));setAccountReady(true)
    const results=await Promise.allSettled([account.accountApi('/access'),account.accountApi('/learning')])
    if(!active)return
    if(results[0].status==='fulfilled'){try{await applyAccess(results[0].value,()=>active)}catch(e){if(active)setAccessError(e.message)}}else setAccessError(results[0].reason.message)
@@ -120,7 +122,7 @@ export function Provider({ children }) {
  useEffect(()=>{document.documentElement.dataset.theme=visibleState.settings.theme;document.documentElement.dataset.size=visibleState.settings.textSize;document.documentElement.dataset.comfort=String(visibleState.settings.comfortable);document.documentElement.dataset.contrast=String(visibleState.settings.contrast);document.title='BahasaKita — Belajar dengan caramu'},[visibleState.settings])
  const setVisibleState=updater=>{if(previewId.current)setPreview(p=>p?{...p,state:typeof updater==='function'?updater(p.state):updater}:p);else setState(updater)}
  const update=patch=>setVisibleState(previous=>({...previous,...patch}))
- const setting=(key,value)=>setVisibleState(previous=>({...previous,settings:{...previous.settings,[key]:value}}))
+ const setting=(key,value)=>{if(key==='theme'&&!previewId.current)preferredTheme.current=value;setVisibleState(previous=>({...previous,settings:{...previous.settings,[key]:value}}))}
  const visibleContent=preview?.catalog||content
  const visibleClips=preview?previewClips.current:clips
  const setVisibleClips=next=>{if(previewId.current){previewClips.current=typeof next==='function'?next(previewClips.current):next;setPreview(p=>p?{...p}:p)}else setClips(next)}

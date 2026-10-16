@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import Icon from './components/Icon.jsx'
+import { displayName } from './displayName.js'
 import { useStore } from './learning.jsx'
 import './profile.css'
 
@@ -7,19 +8,19 @@ export function ProfileAvatar({ profile, size = 24 }) {
  const [failed, setFailed] = useState(false)
  useEffect(() => { setFailed(false) }, [profile?.avatar_url])
  return profile?.avatar_url && !failed
-  ? <img className="profile-photo" src={profile.avatar_url} alt={`Foto profil ${profile.name || 'pengguna'}`} onError={() => setFailed(true)}/>
+  ? <img className="profile-photo" src={profile.avatar_url} alt={`Foto profil ${displayName(profile.name || 'pengguna')}`} onError={() => setFailed(true)}/>
   : profile?.name?.[0]?.toUpperCase() || <Icon name="profile" size={size}/>
 }
 
 export function ProfileEditor() {
  const { state, saveProfile,isSupporter } = useStore()
  const profile = state.profile
- const [fields, setFields] = useState(() => ({ name: profile?.name || '', grade: profile?.grade || 'SD', goal: profile?.goal || 'Mengenal kata' }))
+ const [fields, setFields] = useState(() => ({ name: displayName(profile?.name), grade: profile?.grade || 'SD', goal: profile?.goal || 'Mengenal kata' }))
  const [saving, setSaving] = useState(false)
  const [notice, setNotice] = useState('')
  const [error, setError] = useState('')
  useEffect(() => {
-  setFields({ name: profile?.name || '', grade: profile?.grade || 'SD', goal: profile?.goal || 'Mengenal kata' })
+  setFields({ name: displayName(profile?.name), grade: profile?.grade || 'SD', goal: profile?.goal || 'Mengenal kata' })
  }, [profile?.name, profile?.grade, profile?.goal])
  const change = event => { setFields(previous => ({ ...previous, [event.target.name]: event.target.value })); setNotice(''); setError('') }
  const submit = async event => {
@@ -27,8 +28,8 @@ export function ProfileEditor() {
   if (saving) return
   setSaving(true); setNotice(''); setError('')
   try {
-   const saved = await saveProfile({ ...fields, name: fields.name.trim() })
-   setFields({ name: saved.name, grade: saved.grade, goal: saved.goal })
+   const saved = await saveProfile({ ...fields, name: displayName(fields.name.trim()) })
+   setFields({ name: displayName(saved.name), grade: saved.grade, goal: saved.goal })
    setNotice('Nama, jenjang, dan tujuan belajar berhasil disimpan.')
   } catch (error) { setError(error.message) }
   finally { setSaving(false) }

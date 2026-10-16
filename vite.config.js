@@ -8,12 +8,17 @@ export default defineConfig(({ mode }) => {
  const key = env.VITE_SUPABASE_PUBLISHABLE_KEY || env.VITE_SUPABASE_ANON_KEY
  const config = readSupabaseConfig(env.VITE_SUPABASE_URL, key)
  if (key && key !== 'YOUR_PUBLISHABLE_KEY' && config.error) throw new Error(config.error)
+ const apiProxy = { '/api': 'http://127.0.0.1:3001' }
  return {
   plugins: [react(), bahasaKitaPwa()],
   server: {
     port: 5173,
-    proxy: { '/api': 'http://127.0.0.1:3001' },
+   proxy: apiProxy,
     open: true,
+  },
+  preview: {
+   port: 4173,
+   proxy: apiProxy,
   },
  }
 })

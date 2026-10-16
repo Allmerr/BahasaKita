@@ -1,17 +1,19 @@
-import { render,screen,fireEvent,waitFor } from '@testing-library/react'
+import { render,screen,fireEvent,waitFor,within } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach,it,expect,vi } from 'vitest'
 import { profile,preferences,scores,lesson } from '../fixtures.js'
 const mocks=vi.hoisted(()=>({store:{},account:{}}))
 vi.mock('../../src/learning.jsx',async original=>({...await original(),useStore:()=>mocks.store}))
 vi.mock('../../src/Account.jsx',()=>({useAccount:()=>mocks.account,AccountProvider:({children})=>children}))
-import { Dashboard,PhotoStoriesCarousel,LearningPath,Progress,Profile,Settings } from '../../src/LearningApp.jsx'
+import { Dashboard,PhotoStoriesCarousel,LearningPath,Progress,Profile,Settings,Shell } from '../../src/LearningApp.jsx'
 import BasicClass from '../../src/BasicClass.jsx'
 import { AppRoutes } from '../../src/App.jsx'
 beforeEach(()=>{mocks.account={session:{user:{id:'dina'}},logout:vi.fn().mockResolvedValue(undefined)};mocks.store={state:{profile:{...profile},settings:{...preferences},learningReady:true,assessment:scores,attempts:[],mastered:[],legacy:null},path:[lesson],lessons:[lesson],next:lesson,masteredLessons:[],lessonAttempts:[],accountReady:true,isAdmin:false,accountError:'',learningError:'',contentError:'',clips:{},dictionary:[],basicMaterials:[{id:'basic-kosakata',title:'Dasar kosakata',videoSrc:'/videos/basic.webm',slides:[['Kenali kata','Mangga adalah buah.']]}],setting:vi.fn(),setClips:vi.fn(),savePreferences:vi.fn().mockResolvedValue(undefined),saveProfile:vi.fn(),reloadCatalog:vi.fn().mockResolvedValue(undefined)}})
 const router=element=>render(<MemoryRouter future={{v7_startTransition:true,v7_relativeSplatPath:true}}>{element}</MemoryRouter>)
-it('dashboard shows account name, next lesson and mastery count',()=>{router(<Dashboard/>);expect(screen.getByRole('heading',{name:'Halo, Dina!'})).toBeInTheDocument();expect(screen.getByRole('link',{name:'Lanjutkan belajar: '+lesson.title})).toHaveAttribute('href','/lesson/'+lesson.id)})
-it('video selection opens the player and closes the dialog',()=>{router(<PhotoStoriesCarousel state={mocks.store.state}/>);fireEvent.click(screen.getAllByRole('button',{name:/Tonton video SD:/})[0]);expect(screen.getByRole('dialog')).toBeInTheDocument();fireEvent.click(screen.getByRole('button',{name:'Tutup video pembelajaran'}));expect(screen.queryByRole('dialog')).not.toBeInTheDocument()})
+it('dashboard shows the next lesson without decorative icons',()=>{const {container}=router(<Dashboard/>);expect(screen.getByRole('heading',{name:'Halo, Dina!'})).toBeInTheDocument();expect(screen.getByRole('link',{name:'Lanjutkan belajar: '+lesson.title})).toHaveAttribute('href','/lesson/'+lesson.id);expect(screen.getByText('LANGKAH BERIKUTNYA').querySelector('svg')).toBeNull();expect(container.querySelector('.home-focus-art')).toBeNull()})
+it('capitalizes each word of a displayed account name',()=>{mocks.store.state.profile.name='kevin bisnis';router(<Dashboard/>);expect(screen.getByRole('heading',{name:'Halo, Kevin Bisnis!'})).toBeInTheDocument()})
+it('admin bottom navigation highlights only the current section',()=>{mocks.store.isAdmin=true;render(<MemoryRouter initialEntries={['/admin/dictionary']} future={{v7_startTransition:true,v7_relativeSplatPath:true}}><Shell/></MemoryRouter>);const menu=within(screen.getByRole('navigation',{name:'Navigasi bawah'}));expect(menu.getByRole('link',{name:'Kelola kamus'})).toHaveClass('active');expect(menu.getByRole('link',{name:'Kelola konten'})).not.toHaveClass('active')})
+it('video selection opens the player without source text and closes the dialog',()=>{router(<PhotoStoriesCarousel state={mocks.store.state}/>);fireEvent.click(screen.getAllByRole('button',{name:/Tonton video SD:/})[0]);expect(screen.getByRole('dialog')).toBeInTheDocument();expect(screen.queryByText(/Sumber:/)).not.toBeInTheDocument();fireEvent.click(screen.getByRole('button',{name:'Tutup video pembelajaran'}));expect(screen.queryByRole('dialog')).not.toBeInTheDocument()})
 it('video gallery only moves when requested and respects comfortable mode',()=>{vi.useFakeTimers();mocks.store.state.settings.comfortable=true;router(<PhotoStoriesCarousel state={mocks.store.state}/>);vi.advanceTimersByTime(8000);expect(HTMLElement.prototype.scrollBy).not.toHaveBeenCalled();fireEvent.click(screen.getByRole('button',{name:'Geser ke kanan'}));expect(HTMLElement.prototype.scrollBy).toHaveBeenCalledWith(expect.objectContaining({behavior:'auto'}))})
 it('manual video scrolling follows the system reduced-motion preference',()=>{
  vi.stubGlobal('matchMedia',vi.fn(()=>({matches:true,addEventListener:vi.fn(),removeEventListener:vi.fn()})))
@@ -52,6 +54,7 @@ it.each([false,true])('student settings omit advanced panels, including admin st
  expect(screen.getByRole('heading',{name:'Profil belajarmu'})).toBeInTheDocument()
  expect(screen.getByRole('heading',{name:'Data & privasi'})).toBeInTheDocument()
 })
+it.each([['admin',true,false],['supporter',false,true]])('%s settings omit the learner profile editor',(_,isAdmin,isSupporter)=>{mocks.store.isAdmin=isAdmin;mocks.store.isSupporter=isSupporter;router(<Settings/>);expect(screen.queryByRole('heading',{name:'Profil belajarmu'})).not.toBeInTheDocument();expect(screen.getByRole('heading',{name:'Aksesibilitas'})).toBeInTheDocument()})
 it('admin settings apply accessibility preferences and save online',async()=>{mocks.store.isAdmin=true;router(<Settings/>);fireEvent.change(screen.getByLabelText('Ukuran teks'),{target:{value:'extra'}});fireEvent.change(screen.getByLabelText('Tampilan'),{target:{value:'dark'}});fireEvent.change(screen.getByLabelText('Kecepatan video awal'),{target:{value:'0.5'}});fireEvent.click(screen.getByRole('checkbox',{name:/Kontras tinggi/}));fireEvent.click(screen.getByRole('checkbox',{name:/Hemat data video/}));expect(mocks.store.setting.mock.calls).toEqual(expect.arrayContaining([['textSize','extra'],['theme','dark'],['speed','0.5'],['contrast',true],['dataSaver',true]]));fireEvent.click(screen.getByRole('button',{name:'Simpan pengaturan akun'}));expect(await screen.findByText('Pengaturan tersimpan online.')).toBeInTheDocument()})
 it('admin settings display save errors and no longer contain a logout button',async()=>{mocks.store.isAdmin=true;mocks.store.savePreferences.mockRejectedValue(new Error('Offline'));router(<Settings/>);fireEvent.click(screen.getByRole('button',{name:'Simpan pengaturan akun'}));await screen.findByText('Offline');expect(screen.queryByRole('button',{name:'Keluar akun'})).not.toBeInTheDocument();expect(mocks.account.logout).not.toHaveBeenCalled()})
 it('clearing device archives preserves online progress',()=>{localStorage.setItem('bahasakita-learning-dina','old');mocks.store.clips={word:'blob:old'};router(<Settings/>);fireEvent.click(screen.getByRole('button',{name:'Bersihkan arsip perangkat'}));fireEvent.click(screen.getByRole('button',{name:'Ya, hapus data'}));expect(localStorage.getItem('bahasakita-learning-dina')).toBeNull();expect(mocks.store.state.assessment).toEqual(scores);expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:old')})
@@ -65,7 +68,7 @@ it.each(['SD','SMP','SMA'])('basic class selects only %s content and starts YouT
  expect(container.querySelector('iframe')).toBeNull()
  fireEvent.click(screen.getByRole('button',{name:'Putar video pembelajaran'}))
  expect(container.querySelector('iframe')).toHaveAttribute('src',expect.stringContaining('youtube-nocookie.com/embed/iDDkYTki6pU'))
- expect(screen.getByRole('link',{name:'Buka di YouTube'})).toHaveAttribute('href','https://www.youtube.com/watch?v=iDDkYTki6pU')
+ expect(screen.queryByRole('link',{name:'Buka di YouTube'})).not.toBeInTheDocument()
  fireEvent.click(screen.getByRole('button',{name:new RegExp(`Materi ${grade} 2`)}))
  expect(container.querySelector('iframe')).toBeNull();expect(screen.getByText(`Penjelasan ${grade} 2`)).toBeInTheDocument()
 })
