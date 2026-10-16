@@ -12,7 +12,7 @@ beforeEach(()=>{
  detail={id:'student-id',name:'Dina',grade:'SD',goal:'Mengenal kata',mastered:1,totalLessons:4,assessmentScore:100,scores,lastActivity:null,history:[],difficulties:[{aspect:'bacaan',incorrect:2,total:4}],assignments:[],notes:[]}
  studentSupport={links:[],invites:[],assignments:[],notes:[]}
  mocks.store={state:{profile,settings:preferences,learningReady:true,assessment:scores,attempts:[],mastered:[]},role:'student',isSupporter:false,isAdmin:false,supportReady:true,accountReady:true,accessReady:true,allLessons:[lesson],lessons:[lesson],dictionary:[],setting:vi.fn(),masteredLessons:[],lessonAttempts:[]}
- mocks.api.mockImplementation(async(path)=>path==='/support'?studentSupport:path==='/support/dashboard'?{students:[{...detail,linkId:'link-id'}]}:path==='/support/students/student-id'?detail:path==='/support/invites'?{id:'invite-id',kind:'teacher',code:'A'.repeat(32),expiresAt:'2030-01-01T00:00:00Z'}:{ok:true})
+ mocks.api.mockImplementation(async(path)=>path.startsWith('/support/chat/')?{messages:[],hasOlder:false}:path==='/support'?studentSupport:path==='/support/dashboard'?{students:[{...detail,linkId:'link-id'}]}:path==='/support/students/student-id'?detail:path==='/support/invites'?{id:'invite-id',kind:'teacher',code:'A'.repeat(32),expiresAt:'2030-01-01T00:00:00Z'}:{ok:true})
 })
 const mount=element=>render(<MemoryRouter future={{v7_startTransition:true,v7_relativeSplatPath:true}}>{element||<Support/>}</MemoryRouter>)
 it('student sees independent study, creates a role-bound invite and can revoke it',async()=>{
@@ -39,8 +39,11 @@ it('admin preview never queries real student relationships',()=>{
 it('revoked progress is removed from the dashboard after a denied refresh',async()=>{
  mocks.store.role='teacher';mocks.store.isSupporter=true;mount();await screen.findByText('Perkembangan Dina');mocks.api.mockRejectedValueOnce(new Error('Hubungan diputuskan.'));fireEvent.click(screen.getByRole('button',{name:'Perbarui progres'}));await screen.findByText('Hubungan diputuskan.');expect(screen.queryByText('Perkembangan Dina')).not.toBeInTheDocument()
 })
-it('admin can assign a support role to an existing account',async()=>{
- mocks.store.isAdmin=true;mount(<SupportAccounts/>);fireEvent.change(screen.getByLabelText('Email akun'),{target:{value:'guru@example.test'}});fireEvent.click(screen.getByRole('button',{name:'Simpan peran'}));await waitFor(()=>expect(mocks.api).toHaveBeenCalledWith('/admin/support/roles',{email:'guru@example.test',role:'teacher'},{method:'POST'}))
+it('admin can assign a support role through the current user editor',async()=>{
+ mocks.store.isAdmin=true
+ const user={id:'teacher-id',name:'Bu Guru',email:'guru@example.test',role:'student',grade:'SD',goal:'Mengenal kata',created_at:'2026-10-01T00:00:00Z'}
+ mocks.api.mockResolvedValue({users:[user],total:1})
+ mount(<SupportAccounts/>);fireEvent.click(await screen.findByRole('button',{name:'Edit',exact:true}));fireEvent.change(screen.getByLabelText('Peran'),{target:{value:'teacher'}});fireEvent.click(screen.getByRole('button',{name:'Simpan perubahan'}));await waitFor(()=>expect(mocks.api).toHaveBeenCalledWith('/admin/users/teacher-id',expect.objectContaining({role:'teacher'}),{method:'PATCH'}))
 })
 it('supporters go directly to their dashboard without learner navigation or assessment prompts',async()=>{
  mocks.store.role='teacher';mocks.store.isSupporter=true;mocks.store.state={...mocks.store.state,assessment:null}

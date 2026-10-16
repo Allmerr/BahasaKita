@@ -9,6 +9,7 @@ Gunakan Node.js 22.12+ atau Node.js 24+, lalu jalankan `npm ci` dan `npm --prefi
 | `npm test` | Unit/komponen React, validasi backend, API HTTP, dan PostgreSQL/RLS |
 | `npm run test:unit` | Unit/komponen React dan unit validasi backend |
 | `npm run test:watch` | Unit frontend dalam mode watch |
+| `npm run test:pwa` | Build produksi, manifest/ikon, kelayakan instalasi Chromium, cache publik, offline, pemulihan, dan pembaruan tanpa memaksa reload tab lain |
 | `npm run test:coverage` | Unit frontend dengan laporan V8 di `coverage/index.html` dan `coverage/coverage-summary.json` |
 | `npm run test:e2e` | Kompilasi API dan lima alur browser: profil/foto, belajar/admin, visual semua materi, pratinjau admin, serta guru–orang tua–siswa |
 | `npm run test:all` | Unit, integrasi, laporan coverage frontend, build produksi, dan seluruh alur browser |
@@ -29,6 +30,7 @@ Untuk tes browser, jalankan `npx playwright install chromium` satu kali. Skrip m
 | Kelas dasar | `pages`, `admin`, `learning-validation`: video, teks slide, kegagalan video, asesmen ulang dan editor | Nilai asesmen gagal membuka kelas dasar; draft/publikasi kelas dasar |
 | Kamus dan video | `dictionary-media`: jenjang, pencarian, kategori/sumber, modal, URL/waktu video, putar/tutup, preview lokal, hemat data/kecepatan | Unit memeriksa konfigurasi player; ketersediaan video eksternal memerlukan pemeriksaan terpisah |
 | Beranda, jalur, profil, kemajuan | `pages`, `learning-logic`: rekomendasi, batas jenjang, mastery, jejak belajar, arsip lama dan rute privat | Penguasaan/riwayat sesudah sesi belajar |
+| PWA dan ikon aplikasi | `pwa`: prompt setelah tindakan pengguna, batal/pasang, koneksi, kegagalan registrasi, update eksplisit, worker nonaktif saat development | Build asli: manifest/kelayakan instalasi via CDP, dimensi ikon, daftar cache publik, API/auth/Authorization tidak dicache, offline rute dalam, reconnect, pembaruan lintas tab, keyboard dan lebar 320–1440 px |
 | Admin | `admin`, `learning-validation`, `learning-routes`: editor, pilihan/kunci, draft, simpan sebelum terbit, penolakan siswa | PostgreSQL memeriksa peran, draft tersembunyi, publikasi, versi tetap, sesi aktif dan penguasaan antarversi |
 | Admin dan pratinjau siswa | `pages`, `learning-store`, `preview`, `preview-routes`: pengalihan admin, menu terpisah, izin yang belum terverifikasi, sesi sementara, kepemilikan, TTL, grade/profil/pengaturan uji, serta pengakhiran sesi | Paritas penilaian pratinjau dengan PostgreSQL; browser memeriksa asesmen/mastery, refresh/resume, pergantian jenjang, dan tidak berubahnya profil/progres asli |
 | Guru, orang tua, dan siswa | `support`, `support-routes`, `support.test.ts`: role dari database, kode sekali pakai/kedaluwarsa/batal, relasi aktif, progres terhubung, tugas sesuai jenjang, catatan guru, retry idempoten dan pencabutan akses | Browser tiga akun: hubungkan guru/orang tua, beri tugas/catatan, respons hilang lalu retry, status selesai dari grading PostgreSQL, batas orang tua, pemutusan hubungan dan mobile |

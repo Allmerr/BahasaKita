@@ -22,6 +22,8 @@
     "test:e2e": "node scripts/run-tests.mjs e2e",
     "test:all": "node scripts/run-tests.mjs all",
     "test:watch": "vitest",
+    "test:pwa": "node scripts/check-pwa.mjs",
+    "icons:generate": "node scripts/generate-app-icons.mjs",
     "seed:expanded": "node scripts/generate-expanded-lessons.mjs",
     "test:expanded": "node --test scripts/check-expanded-lessons.mjs"
   },
