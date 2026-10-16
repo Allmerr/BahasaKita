@@ -21,7 +21,9 @@
     "test:coverage": "node scripts/run-tests.mjs coverage",
     "test:e2e": "node scripts/run-tests.mjs e2e",
     "test:all": "node scripts/run-tests.mjs all",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "seed:expanded": "node scripts/generate-expanded-lessons.mjs",
+    "test:expanded": "node --test scripts/check-expanded-lessons.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.117.3",

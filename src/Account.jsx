@@ -36,6 +36,16 @@ export function AccountProvider({ children }) {
     if (error) throw new Error('Belum berhasil keluar. Coba lagi.')
     try { if(session?.user.id)sessionStorage.removeItem('bahasakita-preview-'+session.user.id) } catch {}
   }
+  const deleteAccount = async confirmation => {
+    await accountApi('/account', { confirmation }, { method: 'DELETE' })
+    try {
+      localStorage.removeItem('bahasakita-learning-' + session.user.id)
+      localStorage.removeItem('bahasakita-login-email')
+      sessionStorage.removeItem('bahasakita-preview-' + session.user.id)
+    } catch {}
+    await supabase.auth.signOut({ scope: 'local' }).catch(() => {})
+    setSession(null)
+  }
   const requestAccount = async (...args) => {
     try { return await accountApi(...args) }
     catch (error) {
@@ -43,5 +53,5 @@ export function AccountProvider({ children }) {
       throw error
     }
   }
-  return <Context.Provider value={{ session, loading, login, register, logout, accountApi: requestAccount }}>{children}</Context.Provider>
+  return <Context.Provider value={{ session, loading, login, register, logout, deleteAccount, accountApi: requestAccount }}>{children}</Context.Provider>
 }

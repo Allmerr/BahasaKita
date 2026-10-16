@@ -14,6 +14,10 @@ test('support HTTP: authentication, narrow RPC inputs, validation and controlled
  await request('/support/notes',{studentId:uuid,body:' Arahan ',requestId:uuid,teacherId:'forged',role:'admin'});assert.deepEqual(calls.at(-1),{name:'bk_add_support_note',args:{p_student:uuid,p_body:'Arahan',p_request:uuid}})
  await request('/support/assignments',{studentId:uuid,lessonId:uuid,title:' Tugas ',instructions:' Contoh ',requestId:uuid,dueAt:null,completed:true});assert.deepEqual(calls.at(-1),{name:'bk_assign_support_lesson',args:{p_student:uuid,p_lesson:uuid,p_title:'Tugas',p_instructions:'Contoh',p_due:null,p_request:uuid}})
  await request('/support/redeem',{code:'aaaa-aaaa aaaaaaaa aaaaaaaa aaaaaaaa'});assert.equal(calls.at(-1).args.p_code,'A'.repeat(32))
+ await request('/support/chat/'+uuid,{body:' Halo ',requestId:uuid,senderId:'forged'});assert.deepEqual(calls.at(-1),{name:'bk_chat_send',args:{p_link:uuid,p_body:'Halo',p_request:uuid}})
+ await request('/support/chat/'+uuid+'?before=25');assert.deepEqual(calls.at(-1),{name:'bk_chat_messages',args:{p_link:uuid,p_before:'25'}})
+ assert.equal((await request('/support/chat/'+uuid+'?before=invalid')).status,400)
+ assert.equal((await request('/support/chat/'+uuid,{body:' ',requestId:uuid})).status,400)
  const count=calls.length
  for(const [path,body] of [['/support/redeem',{code:'bad'}],['/support/invites',{kind:'admin'}],['/support/notes',{studentId:uuid,body:' ',requestId:uuid}],['/support/assignments',{studentId:uuid,lessonId:uuid,title:'Tugas',instructions:[],requestId:uuid}],['/support/assignments',{studentId:uuid,lessonId:uuid,title:'Tugas',requestId:uuid,dueAt:1}]] as const)assert.equal((await request(path,body)).status,400)
  assert.equal((await request('/support/students/invalid')).status,400);assert.equal((await request('/support/links/invalid',undefined,'DELETE')).status,400);assert.equal(calls.length,count)

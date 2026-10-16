@@ -96,3 +96,22 @@ Akun baru memilih **Daftar sebagai** siswa, guru, atau orang tua. Untuk akun yan
 Dashboard memuat empat aspek, materi dikuasai, nilai asesmen dan aktivitas terbaru. Guru juga melihat ringkasan jawaban salah per aspek; ini belum diagnosis penyebab kesalahan. Saran kegiatan orang tua memakai panduan sederhana berdasarkan aspek yang perlu dilatih. Versi awal menggunakan daftar siswa; pengelolaan kelas, chat, dan notifikasi otomatis belum termasuk.
 
 Verifikasi dengan akun siswa/guru/orang tua terpisah. Pastikan akun pendamping lain tidak dapat mengakses siswa tanpa undangan, orang tua tidak dapat membuat tugas/catatan melalui API, dan setelah hubungan diputus endpoint progres mengembalikan 403. Tes otomatis melakukan skenario ini pada database lokal, tanpa memakai akun cloud.
+
+## Hapus akun permanen
+Isi SUPABASE_SERVICE_ROLE_KEY hanya di server/.env, lalu restart API. Jangan gunakan awalan VITE_ untuk secret ini. DELETE /api/v1/me/account memverifikasi pengguna dan konfirmasi HAPUS AKUN; ID akun berasal dari token. Foto dibersihkan lewat Storage API, lalu Auth admin menghapus akun; foreign key cascade menghapus profil dan data belajar. Bila penghapusan Auth gagal setelah foto dibersihkan, ulangi permintaan. Uji online menggunakan akun percobaan, bukan akun utama.
+
+## Tabel pengguna admin dan akun demo
+Jalankan migrasi 009_admin_users.sql setelah migrasi sebelumnya. Halaman /admin/accounts menyediakan tabel, cari nama/email, pagination 20 akun, detail, edit profil/peran non-admin, dan hapus permanen. Perubahan peran ditolak jika hubungan pendamping aktif. Email ditampilkan read-only; admin tidak dapat dipromosikan/dihapus dari tabel. Hapus memakai SUPABASE_SERVICE_ROLE_KEY khusus backend.
+
+Dari folder server: npm run seed:demo menampilkan rencana 24 akun demo. npm run seed:demo -- --apply membuat akun online dengan password acak dan email terkonfirmasi. Domain .example khusus data simulasi; akun tersebut tidak dapat menerima email pemulihan. Akun yang sudah ada dilewati tanpa reset password. Kredensial baru ditulis ke demo-credentials-*.local.json yang diabaikan Git. Data meliputi variasi SD/SMP/SMA, nama, tujuan, dan preferensi; progres/nilai palsu tidak dimasukkan ke hasil asesmen. Gunakan proyek pengujian untuk demo.
+
+## Chat pendamping dan tabel murid
+Jalankan migrasi 010_support_chat.sql setelah migrasi 007, lalu restart API. Murid membuka Pendamping > Buka chat; guru/orang tua membuka dashboard pendamping, mencari murid di tabel lalu memilih Progres & chat. Hanya pasangan murid-pendamping yang terhubung dapat membaca/mengirim pesan. Hubungan yang diputus menutup akses chat; jika pasangan terhubung lagi, riwayat lama tersedia kembali. Percakapan antarpendamping tetap terpisah.
+
+Pesan teks maksimum 2000 karakter, diperbarui setiap 5 detik, riwayat 50 pesan per halaman dengan Muat pesan sebelumnya. Tidak ada lampiran, panggilan, notifikasi push, maupun status sudah dibaca pada versi ini. Pesan tersimpan di database dan tidak memakai enkripsi end-to-end. Penghapusan akun/link secara permanen menghapus pesan melalui cascade. Pengiriman ulang dengan request ID sama tidak menggandakan pesan.
+
+Uji online dengan dua akun yang sudah dihubungkan: kirim bolak-balik, pindah murid, coba dari akun tak terkait, lalu putuskan hubungan. Tes SQL lokal tersedia di server/src/chat.test.ts.
+# Pengelolaan Kamus Visual
+
+Jalankan `supabase/migrations/012_dictionary_admin.sql` di SQL Editor Supabase setelah migrasi sebelumnya. Admin lalu dapat membuka **Kelola kamus** di sidebar untuk menambah, mengedit, menyembunyikan, atau menghapus kosakata. Kamus siswa membaca perubahan dari Supabase saat halaman dimuat. Kata bawaan tetap tersedia bila tabel belum dibuat, dengan pesan kesalahan sinkronisasi. Video YouTube dapat memakai ID atau URL; video MP4 langsung dibatasi pada sumber Balai Bahasa Jawa Timur.
+

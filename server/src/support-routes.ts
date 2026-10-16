@@ -6,7 +6,7 @@ async function rpc(res:Response,name:string,args:Record<string,unknown>={}) {
  if(error){
   const missing=['PGRST202','42883','42P01'].includes(error.code)
   const status=error.code==='42501'?403:error.code==='P0001'||error.code==='22007'||error.code==='22008'?400:error.code==='23505'||error.code==='40001'?409:503
-  res.status(missing?503:status).json({error:missing?'Fitur pendampingan belum diaktifkan. Hubungi admin untuk menjalankan migrasi 007.':status===503?'Data pendampingan belum dapat diproses. Coba kembali.':error.message,code:missing?'support_not_ready':undefined});return
+  res.status(missing?503:status).json({error:missing?(name.startsWith('bk_chat_')?'Chat belum diaktifkan. Hubungi admin untuk menjalankan migrasi 010.':'Fitur pendampingan belum diaktifkan. Hubungi admin untuk menjalankan migrasi 007.'):status===503?'Data pendampingan belum dapat diproses. Coba kembali.':error.message,code:missing?'support_not_ready':undefined});return
  }
  res.json(data)
 }
@@ -15,6 +15,14 @@ export function installSupportRoutes(app:Express){
   app[method]('/api/v1/me'+path,async(req,res)=>{try{await rpc(res,name,parse(req))}catch(e){res.status(400).json({error:(e as Error).message})}})
  }
  route('get','/support','bk_student_support')
+ route('get','/support/chat/:id','bk_chat_messages',req=>{
+  const before=req.query.before
+  if(before!==undefined&&(typeof before!=='string'||!/^\d{1,18}$/.test(before)))throw new Error('Posisi pesan tidak valid.')
+  return {p_link:id(req.params.id),p_before:before||null}
+ })
+ route('post','/support/chat/:id','bk_chat_send',req=>{
+  const p=object(req.body);return {p_link:id(req.params.id),p_body:text(p.body,2000),p_request:id(p.requestId)}
+ })
  route('get','/support/dashboard','bk_support_dashboard')
  route('get','/support/students/:id','bk_support_student',req=>({p_student:id(req.params.id)}))
  route('post','/support/invites','bk_create_support_invite',req=>{

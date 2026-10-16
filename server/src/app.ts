@@ -6,8 +6,9 @@ import { profileInput, preferencesInput } from './validation.js'
 import { AVATAR_BUCKET, AVATAR_LIMIT, avatarExtension, ownsAvatar } from './avatar.js'
 import { installLearningRoutes } from './learning-routes.js'
 import { installSupportRoutes } from './support-routes.js'
+import { installAdminUsers } from './admin-users.js'
 
-export function createApp(clientForToken: (token: string) => SupabaseClient) {
+export function createApp(clientForToken: (token: string) => SupabaseClient, adminClient?: SupabaseClient) {
   const app = express()
   app.use(helmet())
   app.use(express.json({ limit: '128kb' }))
@@ -25,6 +26,24 @@ export function createApp(clientForToken: (token: string) => SupabaseClient) {
     res.locals.client = client
     res.locals.user = data.user
     next()
+  })
+
+  app.delete('/api/v1/me/account', async (req, res) => {
+    if (req.body?.confirmation !== 'HAPUS AKUN') { res.status(400).json({ error: 'Ketik HAPUS AKUN untuk mengonfirmasi.' }); return }
+    if (!adminClient) { res.status(503).json({ error: 'Penghapusan akun belum dikonfigurasi oleh pengelola.' }); return }
+    const id = res.locals.user.id
+    // Remove owned files through Storage API before Auth deletion; never delete storage metadata with SQL.
+    while (true) {
+      const listed = await adminClient.storage.from(AVATAR_BUCKET).list(id, { limit: 100 })
+      if (listed.error) { res.status(503).json({ error: 'Foto akun belum dapat dibersihkan. Coba lagi.' }); return }
+      const paths = (listed.data || []).filter(file => file.id).map(file => `${id}/${file.name}`)
+      if (!paths.length) break
+      const removed = await adminClient.storage.from(AVATAR_BUCKET).remove(paths)
+      if (removed.error) { res.status(503).json({ error: 'Foto akun belum dapat dibersihkan. Coba lagi.' }); return }
+    }
+    const { error } = await adminClient.auth.admin.deleteUser(id)
+    if (error) { res.status(503).json({ error: 'Akun belum berhasil dihapus. Coba lagi. Foto profil mungkin sudah dibersihkan.' }); return }
+    res.json({ deleted: true })
   })
 
   async function avatarData(res: express.Response, path: unknown) {
@@ -90,6 +109,7 @@ export function createApp(clientForToken: (token: string) => SupabaseClient) {
   })
   installLearningRoutes(app, clientForToken)
   installSupportRoutes(app)
+  installAdminUsers(app, adminClient)
   app.use((error: { status?: number }, req: express.Request, res: express.Response, _next: express.NextFunction) => {
     const status = error.status === 400 || error.status === 413 ? error.status : 500
     res.status(status).json({ error: status === 413 ? req.path.endsWith('/avatar')?'Berkas terlalu besar. Foto profil maksimal 2 MB.':'Permintaan terlalu besar.' : 'Permintaan belum dapat diproses.' })
