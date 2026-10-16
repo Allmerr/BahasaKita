@@ -1,6 +1,8 @@
 export default function Icon({ name = 'book', size = 22, ...props }) {
  const paths = {
  mail: <><rect x="3" y="5" width="18" height="14" rx="4"/><path d="m4 7 8 6 8-6"/></>,
+ message: <><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H4l-2 2V11.5A8.5 8.5 0 0 1 10.5 3h2a8.5 8.5 0 0 1 8.5 8.5Z"/><path d="M7 9h9M7 13h6"/></>,
+ send: <><path d="m22 2-7 20-4-9L2 9 22 2ZM22 2 11 13"/></>,
  eye: <><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></>,
  eyeOff: <><path d="m3 3 18 18M10 5a12 12 0 0 1 12 7s-1 3-4 5M6 6c-3 2-4 6-4 6s3 7 10 7c2 0 4-1 5-2M9 9a4 4 0 0 0 6 6"/></>,
  profile: <><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></>,

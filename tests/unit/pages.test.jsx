@@ -10,9 +10,28 @@ import BasicClass from '../../src/BasicClass.jsx'
 import { AppRoutes } from '../../src/App.jsx'
 beforeEach(()=>{mocks.account={session:{user:{id:'dina'}},logout:vi.fn().mockResolvedValue(undefined)};mocks.store={state:{profile:{...profile},settings:{...preferences},learningReady:true,assessment:scores,attempts:[],mastered:[],legacy:null},path:[lesson],lessons:[lesson],next:lesson,masteredLessons:[],lessonAttempts:[],accountReady:true,isAdmin:false,accountError:'',learningError:'',contentError:'',clips:{},dictionary:[],basicMaterials:[{id:'basic-kosakata',title:'Dasar kosakata',videoSrc:'/videos/basic.webm',slides:[['Kenali kata','Mangga adalah buah.']]}],setting:vi.fn(),setClips:vi.fn(),savePreferences:vi.fn().mockResolvedValue(undefined),saveProfile:vi.fn(),reloadCatalog:vi.fn().mockResolvedValue(undefined)}})
 const router=element=>render(<MemoryRouter future={{v7_startTransition:true,v7_relativeSplatPath:true}}>{element}</MemoryRouter>)
-it('dashboard shows account name, next lesson and mastery count',()=>{router(<Dashboard/>);expect(screen.getByRole('heading',{name:'Halo, Dina!'})).toBeInTheDocument();expect(screen.getByRole('link',{name:'Pelajari '+lesson.title})).toHaveAttribute('href','/lesson/'+lesson.id)})
-it('carousel opens a video through keyboard and closes the dialog',()=>{router(<PhotoStoriesCarousel assessed next={lesson} state={mocks.store.state}/>);const card=screen.getAllByRole('button',{name:/Tonton video SD:/})[0];fireEvent.keyDown(card,{key:'Enter'});expect(screen.getByRole('dialog')).toBeInTheDocument();fireEvent.click(screen.getByRole('button',{name:'Tutup video pembelajaran'}));expect(screen.queryByRole('dialog')).not.toBeInTheDocument()})
-it('carousel movement pauses in comfortable mode',()=>{vi.useFakeTimers();mocks.store.state.settings.comfortable=true;router(<PhotoStoriesCarousel assessed next={lesson} state={mocks.store.state}/>);vi.advanceTimersByTime(4000);expect(HTMLElement.prototype.scrollBy).not.toHaveBeenCalled();fireEvent.click(screen.getByRole('button',{name:'Geser ke kanan'}));expect(HTMLElement.prototype.scrollBy).toHaveBeenCalledWith(expect.objectContaining({behavior:'smooth'}))})
+it('dashboard shows account name, next lesson and mastery count',()=>{router(<Dashboard/>);expect(screen.getByRole('heading',{name:'Halo, Dina!'})).toBeInTheDocument();expect(screen.getByRole('link',{name:'Lanjutkan belajar: '+lesson.title})).toHaveAttribute('href','/lesson/'+lesson.id)})
+it('video selection opens the player and closes the dialog',()=>{router(<PhotoStoriesCarousel state={mocks.store.state}/>);fireEvent.click(screen.getAllByRole('button',{name:/Tonton video SD:/})[0]);expect(screen.getByRole('dialog')).toBeInTheDocument();fireEvent.click(screen.getByRole('button',{name:'Tutup video pembelajaran'}));expect(screen.queryByRole('dialog')).not.toBeInTheDocument()})
+it('video gallery only moves when requested and respects comfortable mode',()=>{vi.useFakeTimers();mocks.store.state.settings.comfortable=true;router(<PhotoStoriesCarousel state={mocks.store.state}/>);vi.advanceTimersByTime(8000);expect(HTMLElement.prototype.scrollBy).not.toHaveBeenCalled();fireEvent.click(screen.getByRole('button',{name:'Geser ke kanan'}));expect(HTMLElement.prototype.scrollBy).toHaveBeenCalledWith(expect.objectContaining({behavior:'auto'}))})
+it('manual video scrolling follows the system reduced-motion preference',()=>{
+ vi.stubGlobal('matchMedia',vi.fn(()=>({matches:true,addEventListener:vi.fn(),removeEventListener:vi.fn()})))
+ mocks.store.state.settings.comfortable=false;router(<PhotoStoriesCarousel state={mocks.store.state}/>)
+ fireEvent.click(screen.getByRole('button',{name:'Geser ke kanan'}));expect(HTMLElement.prototype.scrollBy).toHaveBeenCalledWith(expect.objectContaining({behavior:'auto'}))
+})
+it('home recommends the basic class when assessment has not unlocked lessons',()=>{
+ mocks.store.state.assessment={kosakata:50,kalimat:50,bacaan:50,akademik:50};router(<Dashboard/>)
+ expect(screen.getByRole('link',{name:'Lanjutkan kelas dasar'})).toHaveAttribute('href','/basic-class')
+ expect(screen.queryByRole('link',{name:'Lanjutkan belajar: '+lesson.title})).not.toBeInTheDocument()
+})
+it('home offers to resume an unfinished assessment',()=>{
+ mocks.store.state.assessment=null;mocks.store.state.activeAssessment={answered:2};router(<Dashboard/>)
+ expect(screen.getByRole('link',{name:'Lanjutkan asesmen'})).toHaveAttribute('href','/assessment')
+})
+it('home offers progress after all available lessons are mastered',()=>{
+ mocks.store.next=null;mocks.store.masteredLessons=[lesson.id];router(<Dashboard/>)
+ expect(screen.getByRole('heading',{name:'Semua materi sudah kamu kuasai!'})).toBeInTheDocument()
+ expect(screen.getByRole('link',{name:'Lihat kemajuanmu'})).toHaveAttribute('href','/progress')
+})
 it('learning path exposes current-grade lessons after assessment',()=>{router(<LearningPath/>);expect(screen.getByRole('heading',{name:lesson.title})).toBeInTheDocument();expect(screen.getByRole('link',{name:'Mulai'})).toHaveAttribute('href','/lesson/'+lesson.id)})
 it('shows a disabled locked button until the preceding lesson is mastered',()=>{
  const second={...lesson,id:'second',title:'Materi kedua'};mocks.store.path=[lesson,second];mocks.store.lessons=[lesson,second]
